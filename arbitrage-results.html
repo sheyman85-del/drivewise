@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arbitrage Results - DriveWise</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #f5f5f5;
+      color: #333;
+    }
+    .header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 30px 20px;
+      text-align: center;
+    }
+    .header h1 { font-size: 32px; margin-bottom: 10px; }
+    .header p { font-size: 14px; opacity: 0.9; }
+    .container { max-width: 1200px; margin: 20px auto; padding: 0 20px; }
+    .filters {
+      background: white;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+    .filters select, .filters button {
+      padding: 10px 15px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 14px;
+      cursor: pointer;
+      background: white;
+    }
+    .filters button {
+      background: #667eea;
+      color: white;
+      border: none;
+    }
+    .loading { text-align: center; padding: 40px; font-size: 18px; color: #667eea; }
+    .stats {
+      background: white;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+    .stat-item { text-align: center; }
+    .stat-number { font-size: 24px; font-weight: bold; color: #667eea; }
+    .stat-label { font-size: 12px; color: #999; margin-top: 5px; text-transform: uppercase; }
+    .car-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 20px;
+    }
+    .car-card {
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      transition: transform 0.2s;
+    }
+    .car-card:hover { transform: translateY(-5px); box-shadow: 0 5px 15px rgba(0,0,0,0.15); }
+    .car-header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 15px;
+    }
+    .car-name { font-size: 18px; font-weight: bold; margin-bottom: 5px; }
+    .car-category { font-size: 12px; opacity: 0.9; text-transform: uppercase; }
+    .car-body { padding: 15px; }
+    .car-location { font-size: 12px; color: #999; margin-bottom: 10px; }
+    .price-display { font-size: 28px; font-weight: bold; color: #667eea; margin: 10px 0; }
+    .rates { font-size: 12px; color: #666; line-height: 1.6; }
+    .rate-item { margin: 5px 0; padding: 5px; background: #f9f9f9; border-radius: 3px; }
+    .back-btn { display: inline-block; margin-bottom: 20px; padding: 10px 20px; background: #667eea; color: white; border: none; border-radius: 6px; cursor: pointer; text-decoration: none; }
+    .back-btn:hover { background: #764ba2; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>🔍 All Cars - Lowest to Highest Price</h1>
+    <p id="searchInfo"></p>
+  </div>
+  
+  <div class="container">
+    <button class="back-btn" onclick="history.back()">← Back to Search</button>
+    
+    <div class="filters">
+      <select id="sortBy" onchange="updateDisplay()">
+        <option value="price_asc">💰 Lowest Price First</option>
+        <option value="price_desc">⬆️ Highest Price First</option>
+        <option value="location">📍 By Location</option>
+        <option value="category">🚗 By Car Type</option>
+      </select>
+      <select id="categoryFilter" onchange="updateDisplay()">
+        <option value="">All Categories</option>
+        <option value="Sedan">Sedan</option>
+        <option value="SUV">SUV</option>
+        <option value="Van">Van</option>
+        <option value="Convertible">Convertible</option>
+        <option value="Pickup">Pickup</option>
+      </select>
+    </div>
+    
+    <div id="stats" class="stats" style="display:none;"></div>
+    <div id="loading" class="loading">⏳ Loading all cars...</div>
+    <div id="carGrid" class="car-grid"></div>
+  </div>
+
+  <script>
+    let allCars = [];
+    const urlParams = new URLSearchParams(window.location.search);
+    const region = urlParams.get('region') || 'miami';
+    const pickup = urlParams.get('pickup') || '2026-05-08';
+    const dropoff = urlParams.get('dropoff') || '2026-05-10';
+    
+    async function loadCars() {
+      try {
+        document.getElementById('searchInfo').textContent = `${region.toUpperCase()} • ${pickup} to ${dropoff}`;
+        
+        const response = await fetch(
+          `http://localhost:3001/api/arbitrage?region=${region}&pickup=${pickup}&dropoff=${dropoff}&currency=USD`,
+          { timeout: 900000 }
+        );
+        
+        const data = await response.json();
+        console.log('API Response:', data);
+        
+        // Extract cars from all locations
+        if (data.locations && Array.isArray(data.locations)) {
+          data.locations.forEach(loc => {
+            if (loc.cars && Array.isArray(loc.cars)) {
+              loc.cars.forEach(car => {
+                allCars.push({
+                  ...car,
+                  location: loc.location
+                });
+              });
+            }
+          });
+        }
+        
+        if (allCars.length === 0) {
+          document.getElementById('loading').innerHTML = '❌ No cars found';
+          return;
+        }
+        
+        // Show stats
+        const stats = document.getElementById('stats');
+        const prices = allCars.map(c => c.cheapestPrice || 0);
+        stats.innerHTML = `
+          <div class="stat-item">
+            <div class="stat-number">${allCars.length}</div>
+            <div class="stat-label">Total Cars</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">$${Math.min(...prices).toFixed(2)}</div>
+            <div class="stat-label">Lowest Price</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">$${Math.max(...prices).toFixed(2)}</div>
+            <div class="stat-label">Highest Price</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">${new Set(allCars.map(c => c.location)).size}</div>
+            <div class="stat-label">Locations</div>
+          </div>
+        `;
+        stats.style.display = 'flex';
+        
+        document.getElementById('loading').style.display = 'none';
+        updateDisplay();
+        
+      } catch (e) {
+        document.getElementById('loading').innerHTML = '❌ Error: ' + e.message;
+        console.error('Arbitrage error:', e);
+      }
+    }
+    
+    function updateDisplay() {
+      const sortBy = document.getElementById('sortBy').value;
+      const categoryFilter = document.getElementById('categoryFilter').value;
+      
+      let filtered = allCars.filter(c => !categoryFilter || c.category === categoryFilter);
+      
+      if (sortBy === 'price_asc') {
+        filtered.sort((a, b) => (a.cheapestPrice || 0) - (b.cheapestPrice || 0));
+      } else if (sortBy === 'price_desc') {
+        filtered.sort((a, b) => (b.cheapestPrice || 0) - (a.cheapestPrice || 0));
+      } else if (sortBy === 'location') {
+        filtered.sort((a, b) => (a.location || '').localeCompare(b.location || ''));
+      } else if (sortBy === 'category') {
+        filtered.sort((a, b) => (a.category || '').localeCompare(b.category || ''));
+      }
+      
+      const grid = document.getElementById('carGrid');
+      grid.innerHTML = filtered.map(car => `
+        <div class="car-card">
+          <div class="car-header">
+            <div class="car-name">${car.carName || 'Unknown'}</div>
+            <div class="car-category">${car.category || 'Standard'}</div>
+          </div>
+          <div class="car-body">
+            <div class="car-location">📍 ${car.location || 'Unknown'}</div>
+            <div class="price-display">$${(car.cheapestPrice || 0).toFixed(2)}</div>
+            <div style="font-size:11px; color:#999; margin-bottom:10px;">per day</div>
+            <div class="rates">
+              <strong>All Rates:</strong>
+              ${car.rates && car.rates.length > 0 ? 
+                car.rates.map(r => `<div class="rate-item">• ${r.name}: $${(r.price || 0).toFixed(2)}</div>`).join('') :
+                '<div style="color:#999;">No rates available</div>'
+              }
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+    
+    loadCars();
+  </script>
+</body>
+</html>

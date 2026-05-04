@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>DriveWise — Best Car Rental Deals</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,system-ui,sans-serif;background:#f4f5f7;color:#0f1117}
+.nav{background:#0f1117;color:#fff;padding:14px 24px;display:flex;justify-content:space-between;align-items:center}
+.logo{font-size:22px;font-weight:800}
+.logo em{color:#e63946;font-style:normal}
+.hero{background:#0f1117;color:#fff;padding:40px 20px;text-align:center}
+.hero h1{font-size:42px;font-weight:800;margin-bottom:12px}
+.hero h1 em{color:#e63946;font-style:normal}
+.hero p{color:rgba(255,255,255,.6);margin-bottom:24px}
+.stats{display:inline-flex;border:1px solid rgba(255,255,255,.1);border-radius:12px;overflow:hidden}
+.stat{padding:14px 20px;border-right:1px solid rgba(255,255,255,.1)}
+.stat:last-child{border-right:none}
+.stat .n{font-size:22px;font-weight:800;color:#e63946}
+.stat .l{font-size:10px;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.05em}
+.card{max-width:720px;margin:-30px auto 40px;padding:0 16px}
+.box{background:#fff;border:1px solid #e2e5ea;border-radius:16px;padding:24px;box-shadow:0 8px 32px rgba(0,0,0,.08)}
+.lbl{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#9aa3b2;margin-bottom:6px}
+.input{width:100%;border:1.5px solid #e2e5ea;border-radius:9px;padding:12px 14px;font-size:14px;outline:none;font-family:inherit}
+.input:focus{border-color:#0f1117}
+.dw{position:relative;margin-bottom:14px}
+.dd{position:absolute;top:calc(100% + 4px);left:0;right:0;background:#fff;border:1.5px solid #e2e5ea;border-radius:12px;max-height:300px;overflow-y:auto;box-shadow:0 8px 32px rgba(0,0,0,.12);z-index:100;display:none}
+.dg{padding:8px 14px;font-size:10px;font-weight:700;color:#9aa3b2;text-transform:uppercase;background:#f4f5f7;border-bottom:1px solid #e2e5ea}
+.di{padding:10px 14px;cursor:pointer;display:flex;gap:10px;border-bottom:1px solid #f5f6f8}
+.di:hover{background:#f4f5f7}
+.dm{font-size:13px;font-weight:600}
+.ds{font-size:11px;color:#9aa3b2}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
+.sb{width:100%;padding:14px;background:#e63946;border:none;border-radius:10px;color:#fff;font-size:15px;font-weight:700;cursor:pointer;margin-top:10px}
+.sb:disabled{background:#9aa3b2;cursor:not-allowed}
+.spinner{display:inline-block;width:14px;height:14px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:sp 1s linear infinite;vertical-align:middle;margin-right:6px}
+@keyframes sp{to{transform:rotate(360deg)}}
+.rw{max-width:960px;margin:0 auto;padding:20px 16px 60px}
+.rh{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:10px}
+.bb{padding:8px 14px;background:#fff;border:1.5px solid #e2e5ea;border-radius:8px;color:#4a5568;font-weight:600;cursor:pointer;font-size:13px}
+.bb:hover{border-color:#0f1117}
+.sm{background:#fff;border:1px solid #e2e5ea;border-radius:10px;padding:12px 16px;margin-bottom:12px;font-size:13px;color:#4a5568;display:flex;gap:10px;flex-wrap:wrap}
+.deal{background:#fff;border:1px solid #e2e5ea;border-radius:12px;margin-bottom:12px;overflow:hidden}
+.deal-head{padding:16px 18px;display:flex;justify-content:space-between;gap:16px;align-items:flex-start;flex-wrap:wrap}
+.deal-name{font-size:20px;font-weight:800;margin-bottom:4px}
+.deal-meta{font-size:12px;color:#4a5568;display:flex;gap:10px;flex-wrap:wrap}
+.deal-price{text-align:right}
+.deal-price .from{font-size:10px;color:#9aa3b2}
+.deal-price .big{font-size:26px;font-weight:800;color:#e63946}
+.rates{padding:0 18px 14px;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px}
+.rate{border:2px solid;border-radius:10px;padding:12px;cursor:pointer;transition:all .15s;background:#fff}
+.rate.sel{background:rgba(45,158,107,.08)}
+.rate-price{font-size:22px;font-weight:800;margin-bottom:2px}
+.rate-name{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px}
+.rate-total{font-size:11px;color:#9aa3b2;margin-bottom:8px}
+.rate-inc{font-size:11px;color:#2d9e6b;margin-bottom:3px}
+.deal-foot{border-top:1px solid #e2e5ea;background:#f4f5f7;padding:12px 18px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+.bk{padding:9px 20px;background:#e63946;border:none;border-radius:8px;color:#fff;font-weight:700;cursor:pointer;font-size:13px}
+.emp{text-align:center;padding:50px 20px;color:#9aa3b2}
+.done{max-width:520px;margin:80px auto;text-align:center;padding:0 16px}
+.done .ck{width:72px;height:72px;border-radius:50%;background:#2d9e6b;color:#fff;display:flex;align-items:center;justify-content:center;font-size:32px;margin:0 auto 20px}
+.done h2{font-size:26px;font-weight:800;margin-bottom:8px}
+.done .ref{font-size:28px;font-weight:800;color:#e63946;margin:20px 0;letter-spacing:.1em}
+</style>
+</head>
+<body>
+
+<div class="nav">
+  <div class="logo">Drive<em>.</em>Wise</div>
+  <div style="font-size:12px;color:rgba(255,255,255,.6)">🇺🇸 EN</div>
+</div>
+
+<!-- SEARCH SCREEN -->
+<div id="Ss">
+  <div class="hero">
+    <h1>The <em>Smartest</em> Way to Rent a Car</h1>
+    <p>Exclusive Sixt agent prices — up to 30% cheaper</p>
+    <div class="stats">
+      <div class="stat"><div class="n">1,596</div><div class="l">Locations</div></div>
+      <div class="stat"><div class="n">80+</div><div class="l">Countries</div></div>
+      <div class="stat"><div class="n">-30%</div><div class="l">vs Retail</div></div>
+    </div>
+  </div>
+  <div class="card"><div class="box">
+    <div class="lbl">Pick-up & Return Location</div>
+    <div class="dw">
+      <input class="input" id="pi" placeholder="Airport, city, hotel…" oninput="onInput(this.value)" onfocus="onInput(this.value)" onblur="setTimeout(closeDD,200)">
+      <div class="dd" id="dd"></div>
+    </div>
+    <div class="g2">
+      <div><div class="lbl">Pick-up Date</div><input class="input" type="date" id="pd"></div>
+      <div><div class="lbl">Return Date</div><input class="input" type="date" id="rd"></div>
+    </div>
+    <div class="g2">
+      <div><div class="lbl">Pick-up Time</div><input class="input" type="time" id="pt" value="12:00"></div>
+      <div><div class="lbl">Return Time</div><input class="input" type="time" id="rt" value="12:00"></div>
+    </div>
+    <div class="g2">
+      <div><div class="lbl">Vehicle Category</div><select class="input" id="vt">
+        <option value="">All Categories</option>
+        <option value="sedan">🚗 Sedan</option>
+        <option value="suv">🚙 SUV</option>
+        <option value="pickup">🛻 Pickup</option>
+        <option value="multiseater">🚐 Van / Multiseater</option>
+        <option value="convertible">🏎️ Convertible</option>
+        <option value="compact">🚘 Compact</option>
+        <option value="electric">⚡ Electric</option>
+        <option value="luxury">💎 Luxury (BMW/Mercedes)</option>
+      </select></div>
+      <div><div class="lbl">Currency</div><select class="input" id="cu"><option value="USD">$ USD</option><option value="EUR">€ EUR</option><option value="GBP">£ GBP</option><option value="ILS">₪ ILS</option><option value="AED">د.إ AED</option><option value="CAD">CA$ CAD</option></select></div>
+      <div></div>
+    </div>
+    <button class="sb" id="sbtn" onclick="doSearch()">🔍 Search Best Deals</button>
+  </div></div>
+</div>
+
+<!-- RESULTS SCREEN -->
+<div id="Sr" style="display:none">
+  <div class="rw">
+    <div class="rh">
+      <button class="bb" onclick="goHome()">← New Search</button>
+      <div id="count" style="font-weight:700"></div>
+    </div>
+    <div class="sm" id="sm"></div>
+    <div id="dl"></div>
+  </div>
+</div>
+
+<!-- DONE SCREEN -->
+<div id="Sd" style="display:none">
+  <div class="done">
+    <div class="ck">✓</div>
+    <h2>Booking Received!</h2>
+    <p>Our agent will contact you within 30 minutes.</p>
+    <div class="ref" id="ref"></div>
+    <div id="dci" style="color:#4a5568;margin-bottom:20px"></div>
+    <button class="bb" onclick="goHome()">← New Search</button>
+  </div>
+</div>
+
+<script>
+const API='https://swung-blunderer-happiest.ngrok-free.dev';
+window.API = API;
+const FL={USA:'🇺🇸',Israel:'🇮🇱',France:'🇫🇷',Germany:'🇩🇪',Spain:'🇪🇸',Italy:'🇮🇹','United Kingdom':'🇬🇧',Netherlands:'🇳🇱',Austria:'🇦🇹','United Arab Emirates':'🇦🇪',Canada:'🇨🇦',Mexico:'🇲🇽',Brazil:'🇧🇷',Australia:'🇦🇺',Japan:'🇯🇵',Greece:'🇬🇷'};
+const SYM={USD:'$',EUR:'€',GBP:'£',ILS:'₪',AED:'د.إ',CAD:'CA$'};
+
+let pu=null,deals=[],params={},timer=null;
+
+// Defaults
+(function init(){
+  const t=new Date();t.setDate(t.getDate()+7);
+  const t2=new Date();t2.setDate(t2.getDate()+9);
+  document.getElementById('pd').value=t.toISOString().split('T')[0];
+  document.getElementById('rd').value=t2.toISOString().split('T')[0];
+})();
+
+function onInput(v){
+  clearTimeout(timer);
+  pu=null;
+  timer=setTimeout(async()=>{
+    try{
+      const r=await fetch(API+'/api/locations?q='+encodeURIComponent(v),{headers:{'ngrok-skip-browser-warning':'true'}});
+      const res=await r.json();
+      renderDD(res);
+    }catch(e){closeDD()}
+  },200);
+}
+
+function renderDD(res){
+  const dd=document.getElementById('dd');
+  if(!res||!res.length){dd.style.display='none';return}
+  dd.innerHTML='';
+  const ORDER=['Airport','Train Station','Hotel','Downtown'];
+  const ICON={Airport:'✈️','Train Station':'🚂',Hotel:'🏨',Downtown:'🏙️'};
+  const LBL={Airport:'Airports','Train Station':'Train Stations',Hotel:'Hotels',Downtown:'City Locations'};
+  const g={};res.forEach(l=>{const t=l.location_type||'Downtown';(g[t]=g[t]||[]).push(l)});
+  ORDER.forEach(t=>{
+    if(!g[t])return;
+    const h=document.createElement('div');h.className='dg';h.textContent=ICON[t]+' '+LBL[t];dd.appendChild(h);
+    g[t].forEach(l=>{
+      const flag=FL[l.country]||'🌍';
+      const d=document.createElement('div');d.className='di';
+      d.innerHTML=`<span style="font-size:17px">${flag}</span><div><div class="dm">${l.name}</div><div class="ds">${[l.city,l.country].filter(Boolean).join(', ')}</div></div>`;
+      d.onmousedown=()=>{document.getElementById('pi').value=l.name;pu=l;dd.style.display='none'};
+      dd.appendChild(d);
+    });
+  });
+  dd.style.display='block';
+}
+function closeDD(){document.getElementById('dd').style.display='none'}
+
+async function doSearch(){
+  if(!pu){alert('Please select a location');return}
+  const btn=document.getElementById('sbtn');
+  btn.disabled=true;
+  btn.innerHTML='<span class="spinner"></span>Searching Sixt…';
+  const pd=document.getElementById('pd').value;
+  const rd=document.getElementById('rd').value;
+  const cu=document.getElementById('cu').value;
+  const days=Math.max(1,Math.ceil((new Date(rd)-new Date(pd))/(1000*60*60*24)));
+  params={pu,pd,rd,days,currency:cu,sym:SYM[cu]||'$'};
+  try{
+    const r=await fetch(API+'/api/search/live',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','ngrok-skip-browser-warning':'true'},
+      body:JSON.stringify({city:pu.name,country:pu.country,pickup:pd,dropoff:rd,currency:cu})
+    });
+    const d=await r.json();
+    deals=d.deals||[];
+  }catch(e){deals=[];alert('Search failed: '+e.message)}
+  btn.disabled=false;
+  btn.innerHTML='🔍 Search Best Deals';
+  showResults();
+}
+
+function showResults(){
+  // Save original deals for re-filtering
+  if (!window.allDeals && deals && deals.length) window.allDeals = [...deals];
+  if (window.allDeals) deals = [...window.allDeals];
+  
+  // Filter by vehicle category if selected
+  var vt = document.getElementById('vt')?.value || '';
+  if (vt) {
+    deals = deals.filter(function(d){
+      var cat = (d.category || '').toLowerCase();
+      var name = (d.car_name || '').toLowerCase();
+      if (vt === 'luxury') return /bmw|mercedes|audi|porsche|cadillac|lexus|range|jaguar|maserati|tesla|genesis|infiniti|escalade|x5|x7/i.test(name);
+      if (vt === 'electric') return /electric|tesla|ev/i.test(cat) || /tesla|ev|electric/i.test(name);
+      return cat.indexOf(vt) >= 0;
+    });
+  }
+
+  document.getElementById('Ss').style.display='none';
+  document.getElementById('Sr').style.display='block';
+  document.getElementById('Sd').style.display='none';
+  window.scrollTo(0,0);
+  const sym=params.sym,days=params.days;
+  document.getElementById('sm').innerHTML=`
+    <span>${FL[params.pu.country]||'📍'} <strong>${params.pu.name}</strong></span>
+    <span>→</span>
+    <span>📅 ${params.pd} → ${params.rd}</span>
+    <span>· <strong>${days}</strong> days</span>
+    <span style="margin-left:auto;color:#9aa3b2">Live · ${params.currency}</span>`;
+  document.getElementById('count').innerHTML=`<span style="color:#2d9e6b">${deals.length}</span> deals found`;
+  
+  const list=document.getElementById('dl');
+  if(!deals.length){list.innerHTML='<div class="emp">🔍 No deals found. Try different dates.</div>';return}
+  
+  list.innerHTML='';
+  deals.forEach((deal,i)=>{
+    const rates=deal.rates||[{name:'Rate',price:deal.price_per_day,includes:[],color:'#2d9e6b'}];
+    const c=document.createElement('div');
+    c.className='deal';
+    c.innerHTML=`
+      <div class="deal-head">
+        <div>
+          <div class="deal-name">${deal.car_name}</div>
+          <div class="deal-meta">
+            <span>${deal.category}</span>
+            <span>👥 ${deal.seats} seats</span>
+            <span>⚙️ Auto</span>
+          </div>
+        </div>
+        <div class="deal-price">
+          <div class="from">FROM</div>
+          <div class="big">${sym}${deal.price_per_day}<span style="font-size:12px;color:#9aa3b2">/day</span></div>
+        </div>
+      </div>
+      <div class="rates" id="rates-${i}">
+        ${rates.map((r,ri)=>`
+          <div class="rate ${ri===0?'sel':''}" style="border-color:${ri===0?r.color:r.color+'40'};background:${ri===0?r.color+'12':'#fff'}" onclick="selRate(${i},${ri})">
+            <div class="rate-price" style="color:${r.color}">${sym}${r.price}<span style="font-size:11px;font-weight:400;color:#9aa3b2">/day</span></div>
+            <div class="rate-name" style="color:${r.color}">${r.name}</div>
+            <div class="rate-total">${sym}${(r.price*days).toFixed(0)} total</div>
+            ${(r.includes||[]).map(inc=>`<div class="rate-inc" style="color:${r.color}">✓ ${inc}</div>`).join('')}
+          </div>`).join('')}
+      </div>
+      <div class="deal-foot">
+        <div style="font-size:13px" id="sel-${i}">
+          <strong id="rn-${i}">${rates[0].name}</strong> · ${sym}<span id="rp-${i}">${rates[0].price}</span>/day · Total <strong>${sym}<span id="rt-${i}">${(rates[0].price*days).toFixed(2)}</span></strong>
+        </div>
+        <button class="bk" onclick="book(${i})">Book Now →</button>
+      </div>`;
+    list.appendChild(c);
+  });
+}
+
+function selRate(di,ri){
+  const deal=deals[di];
+  const r=deal.rates[ri];
+  const sym=params.sym,days=params.days;
+  document.querySelectorAll('#rates-'+di+' .rate').forEach((el,i)=>{
+    const rate=deal.rates[i];
+    if(i===ri){el.style.background=rate.color+'12';el.style.borderColor=rate.color}
+    else{el.style.background='#fff';el.style.borderColor=rate.color+'40'}
+  });
+  document.getElementById('rn-'+di).textContent=r.name;
+  document.getElementById('rp-'+di).textContent=r.price;
+  document.getElementById('rt-'+di).textContent=(r.price*days).toFixed(2);
+}
+
+function book(i){
+  const deal=deals[i];
+  const sel=document.getElementById('rn-'+i).textContent;
+  const price=document.getElementById('rp-'+i).textContent;
+  const total=document.getElementById('rt-'+i).textContent;
+  const sym=params.sym;
+  document.getElementById('Ss').style.display='none';
+  document.getElementById('Sr').style.display='none';
+  document.getElementById('Sd').style.display='block';
+  document.getElementById('ref').textContent='DW-'+Math.random().toString(36).substr(2,5).toUpperCase();
+  document.getElementById('dci').innerHTML=`<strong>${deal.car_name}</strong> · ${sel}<br>${sym}${price}/day · Total <strong>${sym}${total}</strong>`;
+  window.scrollTo(0,0);
+}
+
+function goHome(){
+  document.getElementById('Ss').style.display='block';
+  document.getElementById('Sr').style.display='none';
+  document.getElementById('Sd').style.display='none';
+  window.scrollTo(0,0);
+}
+</script>
+
+
+
+
+
+<!-- ARBITRAGE WIDGET -->
+<div id="arb-section" style="max-width:960px;margin:0 auto 40px;padding:0 16px;display:none">
+  <div style="background:#fff;border:2px solid #e63946;border-radius:14px;padding:24px">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:10px">
+      <div>
+        <div style="font-size:20px;font-weight:800">Arbitrage Scanner</div>
+        <div style="font-size:13px;color:#9aa3b2">Compare ALL locations in this region - find the cheapest pickup</div>
+      </div>
+      <button id="arb-btn" style="padding:12px 22px;background:#e63946;color:#fff;border:none;border-radius:8px;font-weight:700;cursor:pointer;font-size:14px">Compare All Locations</button>
+    </div>
+    <div id="arb-results"></div>
+  </div>
+</div>
+
+<script src="/arbitrage.js?v=1777660657646"></script>
+
+<script>
+// Make category filter reactive - re-render when changed
+document.addEventListener('DOMContentLoaded', function(){
+  setTimeout(function(){
+    const vt = document.getElementById('vt');
+    if (vt) {
+      vt.addEventListener('change', function(){
+        if (window.allDeals && window.allDeals.length > 0) {
+          window.showResults();
+        }
+      });
+    }
+  }, 500);
+});
+</script>
+
+</body>
+</html>
