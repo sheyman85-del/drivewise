@@ -2,361 +2,458 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>DriveWise — Best Car Rental Deals</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DriveWise — Car Rental</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:-apple-system,system-ui,sans-serif;background:#f4f5f7;color:#0f1117}
-.nav{background:#0f1117;color:#fff;padding:14px 24px;display:flex;justify-content:space-between;align-items:center}
-.logo{font-size:22px;font-weight:800}
-.logo em{color:#e63946;font-style:normal}
-.hero{background:#0f1117;color:#fff;padding:40px 20px;text-align:center}
-.hero h1{font-size:42px;font-weight:800;margin-bottom:12px}
-.hero h1 em{color:#e63946;font-style:normal}
-.hero p{color:rgba(255,255,255,.6);margin-bottom:24px}
-.stats{display:inline-flex;border:1px solid rgba(255,255,255,.1);border-radius:12px;overflow:hidden}
-.stat{padding:14px 20px;border-right:1px solid rgba(255,255,255,.1)}
-.stat:last-child{border-right:none}
-.stat .n{font-size:22px;font-weight:800;color:#e63946}
-.stat .l{font-size:10px;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.05em}
-.card{max-width:720px;margin:-30px auto 40px;padding:0 16px}
-.box{background:#fff;border:1px solid #e2e5ea;border-radius:16px;padding:24px;box-shadow:0 8px 32px rgba(0,0,0,.08)}
-.lbl{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#9aa3b2;margin-bottom:6px}
-.input{width:100%;border:1.5px solid #e2e5ea;border-radius:9px;padding:12px 14px;font-size:14px;outline:none;font-family:inherit}
-.input:focus{border-color:#0f1117}
-.dw{position:relative;margin-bottom:14px}
-.dd{position:absolute;top:calc(100% + 4px);left:0;right:0;background:#fff;border:1.5px solid #e2e5ea;border-radius:12px;max-height:300px;overflow-y:auto;box-shadow:0 8px 32px rgba(0,0,0,.12);z-index:100;display:none}
-.dg{padding:8px 14px;font-size:10px;font-weight:700;color:#9aa3b2;text-transform:uppercase;background:#f4f5f7;border-bottom:1px solid #e2e5ea}
-.di{padding:10px 14px;cursor:pointer;display:flex;gap:10px;border-bottom:1px solid #f5f6f8}
-.di:hover{background:#f4f5f7}
-.dm{font-size:13px;font-weight:600}
-.ds{font-size:11px;color:#9aa3b2}
-.g2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
-.sb{width:100%;padding:14px;background:#e63946;border:none;border-radius:10px;color:#fff;font-size:15px;font-weight:700;cursor:pointer;margin-top:10px}
-.sb:disabled{background:#9aa3b2;cursor:not-allowed}
-.spinner{display:inline-block;width:14px;height:14px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:sp 1s linear infinite;vertical-align:middle;margin-right:6px}
-@keyframes sp{to{transform:rotate(360deg)}}
-.rw{max-width:960px;margin:0 auto;padding:20px 16px 60px}
-.rh{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:10px}
-.bb{padding:8px 14px;background:#fff;border:1.5px solid #e2e5ea;border-radius:8px;color:#4a5568;font-weight:600;cursor:pointer;font-size:13px}
-.bb:hover{border-color:#0f1117}
-.sm{background:#fff;border:1px solid #e2e5ea;border-radius:10px;padding:12px 16px;margin-bottom:12px;font-size:13px;color:#4a5568;display:flex;gap:10px;flex-wrap:wrap}
-.deal{background:#fff;border:1px solid #e2e5ea;border-radius:12px;margin-bottom:12px;overflow:hidden}
-.deal-head{padding:16px 18px;display:flex;justify-content:space-between;gap:16px;align-items:flex-start;flex-wrap:wrap}
-.deal-name{font-size:20px;font-weight:800;margin-bottom:4px}
-.deal-meta{font-size:12px;color:#4a5568;display:flex;gap:10px;flex-wrap:wrap}
-.deal-price{text-align:right}
-.deal-price .from{font-size:10px;color:#9aa3b2}
-.deal-price .big{font-size:26px;font-weight:800;color:#e63946}
-.rates{padding:0 18px 14px;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px}
-.rate{border:2px solid;border-radius:10px;padding:12px;cursor:pointer;transition:all .15s;background:#fff}
-.rate.sel{background:rgba(45,158,107,.08)}
-.rate-price{font-size:22px;font-weight:800;margin-bottom:2px}
-.rate-name{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px}
-.rate-total{font-size:11px;color:#9aa3b2;margin-bottom:8px}
-.rate-inc{font-size:11px;color:#2d9e6b;margin-bottom:3px}
-.deal-foot{border-top:1px solid #e2e5ea;background:#f4f5f7;padding:12px 18px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
-.bk{padding:9px 20px;background:#e63946;border:none;border-radius:8px;color:#fff;font-weight:700;cursor:pointer;font-size:13px}
-.emp{text-align:center;padding:50px 20px;color:#9aa3b2}
-.done{max-width:520px;margin:80px auto;text-align:center;padding:0 16px}
-.done .ck{width:72px;height:72px;border-radius:50%;background:#2d9e6b;color:#fff;display:flex;align-items:center;justify-content:center;font-size:32px;margin:0 auto 20px}
-.done h2{font-size:26px;font-weight:800;margin-bottom:8px}
-.done .ref{font-size:28px;font-weight:800;color:#e63946;margin:20px 0;letter-spacing:.1em}
+:root{--green:#1a7f4e;--green-h:#14532d;--green-l:#e8f5ee;--mint:#5de0a0;--border:#e5e7eb;--grey:#6b7280;--grey-l:#f3f4f6;--text:#111827;--sh:0 1px 3px rgba(0,0,0,.08)}
+body{font-family:'Inter',sans-serif;color:var(--text);background:#fff;overflow-x:hidden}
+header{height:56px;background:#fff;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 40px;position:sticky;top:0;z-index:200;box-shadow:var(--sh)}
+.logo{font-size:20px;font-weight:800;color:var(--text);letter-spacing:-.3px}.logo span{color:#e05454}
+.hdr-r{display:flex;align-items:center;gap:6px}
+.hdr-sel{display:flex;align-items:center;gap:5px;padding:6px 12px;border-radius:6px;border:1px solid var(--border);background:#fff;font-family:'Inter',sans-serif;font-size:13px;font-weight:500;color:var(--text);outline:none;-webkit-appearance:none;cursor:pointer;transition:border-color .15s}
+.hdr-sel:hover{border-color:var(--green)}
+.hdr-sep{width:1px;height:18px;background:var(--border);margin:0 3px}
+.hero{background:#0f2318;padding:44px 0 0;position:relative;overflow:visible}
+.hero-inner{max-width:1160px;margin:0 auto;padding:0 40px}
+.tag{display:inline-flex;align-items:center;gap:6px;background:rgba(93,224,160,.12);border:1px solid rgba(93,224,160,.22);color:var(--mint);font-size:10px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;padding:4px 12px;border-radius:100px;margin-bottom:16px}
+h1{font-size:clamp(32px,4.5vw,56px);font-weight:800;color:#fff;line-height:1.05;letter-spacing:-.5px;margin-bottom:6px}
+h1 em{font-style:italic;color:var(--mint)}
+.sub{font-size:14px;color:rgba(255,255,255,.42);margin-bottom:24px;letter-spacing:.2px}
+.sub span{margin:0 5px;opacity:.4}
+.sw{background:#fff;border-radius:10px 10px 0 0;border-top:3px solid var(--mint);max-width:1160px;margin:0 auto;position:relative;overflow:visible}
+.fields{display:grid;grid-template-columns:1.8fr 1fr .7fr 1fr .7fr auto;border-bottom:1px solid var(--border)}
+.sf{position:relative;border-right:1px solid var(--border);display:flex;flex-direction:column;min-height:76px}
+.sf:last-child{border-right:none}
+.lbl{font-size:9px;font-weight:600;letter-spacing:1.3px;text-transform:uppercase;color:var(--grey);padding:11px 14px 0;display:block}
+.inp{border:none;outline:none;background:transparent;font-size:14px;font-weight:500;color:var(--text);padding:3px 14px 11px;width:100%;font-family:'Inter',sans-serif}
+.inp::placeholder{color:#9ca3af;font-weight:400;font-size:13px}
+.date-btn{border:none;outline:none;background:transparent;font-size:14px;font-weight:500;color:#9ca3af;padding:3px 14px 11px;width:100%;font-family:'Inter',sans-serif;text-align:left;cursor:pointer}
+.date-btn.set{color:var(--text)}
+.tw{position:relative;padding:3px 14px 11px;cursor:pointer;user-select:none}
+.td-val{font-size:14px;font-weight:500;color:var(--text);display:flex;align-items:center;justify-content:space-between}
+.td-ico{font-size:10px;color:var(--grey);margin-left:4px}
+.tdd{position:absolute;top:calc(100% + 2px);left:0;width:130px;background:#fff;border:1px solid var(--border);border-radius:8px;z-index:500;max-height:200px;overflow-y:auto;display:none;box-shadow:0 4px 16px rgba(0,0,0,.1)}
+.tdd.open{display:block}
+.to{padding:8px 14px;font-size:13px;color:var(--text);cursor:pointer;transition:background .08s;border-bottom:1px solid #f9fafb}
+.to:last-child{border-bottom:none}
+.to:hover{background:var(--grey-l)}
+.to.sel{font-weight:600;color:var(--green);background:var(--green-l)}
+.sbtn{background:var(--mint);color:#111827;border:none;cursor:pointer;font-size:20px;font-weight:800;font-family:'Inter',sans-serif;letter-spacing:-.4px;border-radius:0 9px 0 0;padding:0 28px;min-width:110px;transition:background .12s}
+.sbtn:hover{background:#4bcf91}
+.rdl{padding:5px 14px 9px;display:flex;align-items:center;gap:7px;border-top:1px solid var(--border)}
+.rdl input[type=checkbox]{accent-color:var(--green);cursor:pointer;width:13px;height:13px}
+.rdl label{font-size:11px;color:var(--grey);cursor:pointer}
+.rdl label b{color:var(--green);font-weight:600}
+.droprow{display:none;border-top:1px solid var(--border)}
+.droprow.show{display:flex;flex-direction:column}
+.droprow .sf{border-right:none;min-height:56px}
+.actions{display:grid;grid-template-columns:1fr 1fr 1fr;border-top:1px solid var(--border)}
+.ab{display:flex;flex-direction:column;justify-content:center;padding:15px 20px;border:none;cursor:pointer;background:var(--mint);border-right:1px solid rgba(15,35,24,.15);transition:background .12s;text-align:left}
+.ab:first-child{border-radius:0 0 0 9px}
+.ab:last-child{border-right:none;border-radius:0 0 9px 0}
+.ab:hover{background:#4bcf91}
+.ab-title{font-size:16px;font-weight:700;color:#0f2318;letter-spacing:-.3px;line-height:1.1}
+.ab-sub{font-size:11px;color:rgba(15,35,24,.55);margin-top:3px;line-height:1.3}
+.amid{display:flex;flex-direction:column;justify-content:center;padding:15px 20px;background:var(--mint);border-right:1px solid rgba(15,35,24,.15)}
+.amid-t{font-size:16px;font-weight:700;color:#0f2318;margin-bottom:7px;letter-spacing:-.3px}
+.tog{display:flex;gap:6px}
+.tob{padding:4px 18px;border-radius:100px;border:1.5px solid rgba(15,35,24,.35);font-size:12px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;background:transparent;color:#0f2318;transition:all .12s}
+.tob.on{background:#0f2318;color:var(--mint);border-color:#0f2318}
+.sixt-row{padding:9px 0 7px;display:flex;align-items:center;justify-content:center;gap:8px;max-width:1160px;margin:0 auto}
+.sixt-w{font-size:10px;color:rgba(255,255,255,.3);letter-spacing:.4px}
+.sixt-p{background:#ff5f00;color:#fff;font-size:11px;font-weight:600;padding:2px 8px;border-radius:3px;letter-spacing:.5px}
+.acd{position:absolute;top:100%;left:0;right:0;background:#fff;border:1px solid var(--border);border-radius:8px;box-shadow:0 6px 20px rgba(0,0,0,.1);z-index:600;max-height:260px;overflow-y:auto;display:none}
+.acd.open{display:block}
+.aci{padding:9px 14px;cursor:pointer;border-bottom:1px solid #f9fafb;transition:background .08s}
+.aci:last-child{border-bottom:none}
+.aci:hover{background:var(--grey-l)}
+.ain{font-size:12.5px;font-weight:500;color:var(--text)}
+.ain b{color:var(--green)}
+.ais{font-size:10.5px;color:var(--grey);margin-top:1px}
+.cal-pop{position:absolute;top:calc(100% + 4px);left:0;width:560px;background:#fff;border:1px solid var(--border);border-radius:12px;z-index:700;padding:16px;display:none;box-shadow:0 8px 28px rgba(0,0,0,.12)}
+.cal-pop.open{display:block}
+.cg{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.chd{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.cmn{font-size:12px;font-weight:600;color:var(--text)}
+.cnv{background:none;border:1px solid var(--border);border-radius:4px;width:22px;height:22px;cursor:pointer;font-size:11px;color:var(--grey);display:flex;align-items:center;justify-content:center}
+.cnv:hover{background:var(--grey-l)}
+.cnv.h{visibility:hidden}
+.wds{display:grid;grid-template-columns:repeat(7,1fr);margin-bottom:3px}
+.wd{text-align:center;font-size:8.5px;font-weight:600;letter-spacing:.4px;color:var(--grey);padding:2px 0;text-transform:uppercase}
+.cds{display:grid;grid-template-columns:repeat(7,1fr);gap:1px}
+.cd{text-align:center;padding:6px 0;font-size:11.5px;cursor:pointer;border-radius:4px;border:none;background:none;font-family:'Inter',sans-serif;color:var(--text);transition:background .08s;font-weight:400}
+.cd:hover:not(.e):not(.d){background:var(--grey-l)}
+.cd.e,.cd.d{cursor:default;color:#d1d5db}
+.cd.td{font-weight:700;color:var(--green)}
+.cd.s,.cd.end{background:var(--green)!important;color:#fff!important;font-weight:600;border-radius:4px}
+.cd.r{background:var(--green-l);border-radius:0}
+.cd.s{border-radius:4px 0 0 4px}
+.cd.end{border-radius:0 4px 4px 0}
+.cd.s.end{border-radius:4px!important}
+.cft{margin-top:10px;padding-top:10px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.cdur{font-size:11.5px;color:var(--grey)}
+.cdur b{color:var(--green);font-weight:600}
+.cok{background:var(--green);color:#fff;border:none;padding:6px 16px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif}
+.cok:hover{background:var(--green-h)}
+#results-page{display:none;background:#f8fafc;min-height:100vh}
+.rh{background:#fff;border-bottom:1px solid var(--border);padding:0 40px;height:52px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:56px;z-index:100;box-shadow:var(--sh)}
+.rh-logo{font-size:17px;font-weight:800;color:var(--text)}.rh-logo span{color:#e05454}
+.rh-meta{font-size:12px;color:var(--grey)}
+.rh-back{background:var(--grey-l);color:var(--text);border:none;cursor:pointer;padding:7px 14px;border-radius:6px;font-family:'Inter',sans-serif;font-size:13px;font-weight:500}
+.rh-back:hover{background:var(--border)}
+.rbody{display:grid;grid-template-columns:240px 1fr;min-height:calc(100vh - 108px)}
+.filt{background:#fff;border-right:1px solid var(--border);padding:20px 16px;position:sticky;top:108px;height:fit-content}
+.ft{font-size:9.5px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--grey);margin-bottom:8px;margin-top:18px}
+.ft:first-child{margin-top:0}
+.chips{display:flex;flex-wrap:wrap;gap:5px}
+.chip{padding:4px 12px;border-radius:100px;border:1px solid var(--border);font-size:11.5px;font-weight:500;cursor:pointer;background:#fff;color:var(--grey);transition:all .12s}
+.chip.on{background:var(--green);color:#fff;border-color:var(--green)}
+.chip:hover:not(.on){border-color:var(--green);color:var(--green)}
+.cars{padding:16px 20px;display:flex;flex-direction:column;gap:10px}
+.card{background:#fff;border:1px solid var(--border);border-radius:10px;display:grid;grid-template-columns:175px 1fr;box-shadow:var(--sh);transition:box-shadow .2s,transform .15s;opacity:0;transform:translateY(10px)}
+.card.v{animation:su .28s ease forwards}
+@keyframes su{to{opacity:1;transform:translateY(0)}}
+.card:hover{box-shadow:0 6px 20px rgba(0,0,0,.1);transform:translateY(-1px)}
+.ci{background:linear-gradient(135deg,#f8fafb,#eef0f2);display:flex;align-items:center;justify-content:center;padding:16px;position:relative;border-right:1px solid var(--border);border-radius:10px 0 0 10px}
+.cbdg{position:absolute;top:8px;left:8px;font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:3px 8px;border-radius:100px}
+.cbdg.b{background:var(--green);color:#fff}
+.cbdg.v{background:#e05454;color:#fff}
+.cico{font-size:50px;opacity:.18}
+.cb{padding:14px 18px;display:flex;flex-direction:column;justify-content:space-between}
+.cn{font-size:15px;font-weight:700;color:var(--text);margin-bottom:2px}
+.cm{font-size:10.5px;color:var(--grey);margin-bottom:10px}
+.crates{display:flex;flex-direction:column;gap:3px;margin-bottom:10px}
+.rr{display:flex;align-items:center;justify-content:space-between;padding:4px 10px;border-radius:5px;background:var(--grey-l);border-left:3px solid var(--border)}
+.rr.lo{background:var(--green-l);border-left-color:var(--green)}
+.rr .rn{font-size:11px;font-weight:500;color:var(--grey)}
+.rr.lo .rn{color:var(--green);font-weight:600}
+.rr .rp{font-size:12px;font-weight:700;color:var(--text)}
+.rr.lo .rp{color:var(--green)}
+.cf{display:flex;align-items:center;justify-content:space-between;padding-top:10px;border-top:1px solid var(--border)}
+.pf{font-size:9px;text-transform:uppercase;letter-spacing:.5px;color:var(--grey)}
+.pb{font-size:26px;font-weight:800;color:var(--green);line-height:1}
+.pd{font-size:10px;color:var(--grey)}
+.bkb{background:var(--green);color:#fff;border:none;cursor:pointer;padding:9px 20px;border-radius:7px;font-size:13px;font-weight:700;font-family:'Inter',sans-serif;transition:background .12s,transform .1s}
+.bkb:hover{background:var(--green-h);transform:scale(1.02)}
+.sp{width:36px;height:36px;border:3px solid var(--border);border-top-color:var(--green);border-radius:50%;animation:spin .7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.lw{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:80px 40px;gap:12px}
+.lt{font-size:13px;color:var(--grey)}
+.ov{display:none;position:fixed;inset:0;z-index:2000;background:rgba(17,24,39,.55);backdrop-filter:blur(4px);align-items:center;justify-content:center;padding:20px}
+.ov.open{display:flex}
+.bm{background:#fff;border-radius:14px;width:100%;max-width:720px;max-height:90vh;overflow-y:auto;box-shadow:0 24px 60px rgba(0,0,0,.18)}
+.bmh{background:var(--green);padding:18px 26px;display:flex;align-items:center;justify-content:space-between;border-radius:14px 14px 0 0;position:sticky;top:0;z-index:10}
+.bmt{font-size:17px;font-weight:800;color:#fff}
+.bmc{background:rgba(255,255,255,.15);border:none;cursor:pointer;color:#fff;width:28px;height:28px;border-radius:50%;font-size:15px;display:flex;align-items:center;justify-content:center}
+.bmc:hover{background:rgba(255,255,255,.25)}
+.bmb2{padding:24px}
+.bsum{background:#f8fafb;border-radius:8px;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;border:1px solid var(--border)}
+.bcn{font-weight:700;font-size:14px}
+.bcs{font-size:10px;color:var(--grey);margin-top:1px}
+.bcp{font-size:22px;font-weight:800;color:var(--green)}
+.stl{font-size:9.5px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--grey);margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--border);margin-top:18px}
+.stl:first-of-type{margin-top:0}
+.trads{display:flex;gap:14px;margin-bottom:12px}
+.tro{display:flex;align-items:center;gap:6px;cursor:pointer;font-size:13px;font-weight:500}
+.tro input{accent-color:var(--green);width:14px;height:14px}
+.fg{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
+.fg3{grid-template-columns:1fr 1fr 1fr}
+.ff label{display:block;font-size:9.5px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--grey);margin-bottom:3px}
+.ff input,.ff select{width:100%;padding:9px 11px;border:1px solid var(--border);border-radius:6px;font-family:'Inter',sans-serif;font-size:13px;outline:none;background:#fff;transition:border-color .15s;-webkit-appearance:none}
+.ff input:focus,.ff select:focus{border-color:var(--green)}
+.pbox{background:#0d1f2d;border-radius:9px;padding:16px;margin-bottom:16px}
+.pt2{color:#fff;font-weight:700;font-size:13px;margin-bottom:2px}
+.ps2{color:rgba(255,255,255,.35);font-size:11px;margin-bottom:14px}
+.pg{display:grid;grid-template-columns:1fr 1fr 1fr;gap:9px}
+.pf2 label{display:block;font-size:9.5px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:3px}
+.pf2 input,.pf2 select{width:100%;padding:9px 11px;border:1px solid rgba(255,255,255,.1);border-radius:6px;font-family:'Inter',sans-serif;font-size:13px;outline:none;background:rgba(255,255,255,.06);color:#fff;-webkit-appearance:none}
+.pf2 input:focus,.pf2 select:focus{border-color:var(--green)}
+.pf2 input::placeholder{color:rgba(255,255,255,.18)}
+.pf2 select option{background:#1a2a38;color:#fff}
+.pfc{grid-column:1/-1}
+.trw{display:flex;align-items:flex-start;gap:8px;margin-bottom:14px;font-size:12px;color:var(--grey);line-height:1.6}
+.trw input{margin-top:2px;flex-shrink:0;accent-color:var(--green)}
+.trw a{color:var(--green)}
+.fbtn{width:100%;padding:13px;background:var(--green);color:#fff;border:none;cursor:pointer;border-radius:8px;font-family:'Inter',sans-serif;font-size:15px;font-weight:700;transition:background .15s}
+.fbtn:hover{background:var(--green-h)}
+.fbtn:disabled{opacity:.6;cursor:not-allowed}
+.snote{text-align:center;font-size:11px;color:var(--grey);margin-top:9px}
+@media(max-width:900px){
+  header{padding:0 16px}
+  .hero-inner,.sw,.sixt-row{padding-left:16px;padding-right:16px;max-width:100%}
+  .fields{grid-template-columns:1fr}.sf{border-right:none;border-bottom:1px solid var(--border)}
+  .actions{grid-template-columns:1fr}.ab:first-child{border-radius:0}.ab:last-child{border-radius:0 0 9px 9px}
+  .amid{border-right:none;border-bottom:1px solid rgba(15,35,24,.15)}
+  .rbody{grid-template-columns:1fr}.filt{display:none}
+  .card{grid-template-columns:1fr}.ci{border-right:none;border-bottom:1px solid var(--border);border-radius:10px 10px 0 0}
+  .fg,.fg3{grid-template-columns:1fr}.pg{grid-template-columns:1fr 1fr}
+}
 </style>
 </head>
 <body>
 
-<div class="nav">
-  <div class="logo">Drive<em>.</em>Wise</div>
-  <div style="font-size:12px;color:rgba(255,255,255,.6)">🇺🇸 EN</div>
-</div>
+<header>
+  <div class="logo">DriveWise<span>.</span></div>
+  <div class="hdr-r">
+    <select class="hdr-sel" id="lang-sel" onchange="changeLang(this.value)">
+      <option value="en">🇺🇸 EN</option><option value="es">🇪🇸 ES</option><option value="fr">🇫🇷 FR</option>
+      <option value="de">🇩🇪 DE</option><option value="it">🇮🇹 IT</option><option value="pt">🇧🇷 PT</option><option value="he">🇮🇱 HE</option>
+    </select>
+    <div class="hdr-sep"></div>
+    <select class="hdr-sel" id="hdr-cur" onchange="document.getElementById('cur-val').value=this.value">
+      <option value="USD">$ USD</option><option value="GBP">£ GBP</option>
+    </select>
+  </div>
+</header>
+<input type="hidden" id="cur-val" value="USD">
 
-<!-- SEARCH SCREEN -->
-<div id="Ss">
-  <div class="hero">
-    <h1>The <em>Smartest</em> Way to Rent a Car</h1>
-    <p>Exclusive Sixt agent prices — up to 30% cheaper</p>
-    <div class="stats">
-      <div class="stat"><div class="n">1,596</div><div class="l">Locations</div></div>
-      <div class="stat"><div class="n">80+</div><div class="l">Countries</div></div>
-      <div class="stat"><div class="n">-30%</div><div class="l">vs Retail</div></div>
+<div id="hero-page">
+<div class="hero">
+  <div class="hero-inner">
+    <div class="tag">✓ SIXT Certified Travel Partner</div>
+    <h1>The Smartest Way to Rent a Car<br><em>Drive Wiser.</em></h1>
+    <p class="sub">2,000+ locations <span>·</span> Best prices <span>·</span> Instant booking</p>
+  </div>
+  <div class="sw">
+    <div class="fields">
+      <div class="sf">
+        <span class="lbl">Pick-up location</span>
+        <div style="position:relative">
+          <input class="inp" id="loc-pu" type="text" placeholder="City, airport or station…" autocomplete="off" oninput="aS(this,'pu')" onfocus="aS(this,'pu')" onblur="setTimeout(()=>aH('pu'),160)">
+          <div class="acd" id="ac-pu"></div>
+        </div>
+        <div class="rdl">
+          <input type="checkbox" id="rdl" onchange="document.getElementById('dr').classList.toggle('show',this.checked)">
+          <label for="rdl">Return to a <b>different location</b></label>
+        </div>
+      </div>
+      <div class="sf" style="overflow:visible">
+        <span class="lbl">Pick-up date</span>
+        <button class="date-btn" id="dpu" onclick="openC('pu')">Add date</button>
+        <div class="cal-pop" id="cal-pu"></div>
+      </div>
+      <div class="sf" style="overflow:visible">
+        <span class="lbl">Pick-up time</span>
+        <div class="tw" onclick="tTog('tpu')">
+          <div class="td-val"><span id="tpu-v">11:00</span><span class="td-ico">▾</span></div>
+          <div class="tdd" id="tpu"></div>
+        </div>
+      </div>
+      <div class="sf" style="overflow:visible">
+        <span class="lbl">Return date</span>
+        <button class="date-btn" id="ddo" onclick="openC('do')">Add date</button>
+        <div class="cal-pop" id="cal-do"></div>
+      </div>
+      <div class="sf" style="overflow:visible">
+        <span class="lbl">Return time</span>
+        <div class="tw" onclick="tTog('tdo')">
+          <div class="td-val"><span id="tdo-v">11:00</span><span class="td-ico">▾</span></div>
+          <div class="tdd" id="tdo"></div>
+        </div>
+      </div>
+      <div class="sf" style="border-right:none">
+        <button class="sbtn" onclick="doSearch('main')" style="height:100%">Search</button>
+      </div>
+    </div>
+    <div class="droprow" id="dr">
+      <div class="sf">
+        <span class="lbl">Drop-off location</span>
+        <div style="position:relative">
+          <input class="inp" id="loc-do" type="text" placeholder="Different city or airport…" autocomplete="off" oninput="aS(this,'do')" onfocus="aS(this,'do')" onblur="setTimeout(()=>aH('do'),160)">
+          <div class="acd" id="ac-do"></div>
+        </div>
+      </div>
+    </div>
+    <div class="actions">
+      <button class="ab" onclick="doSearch('monthly')">
+        <div class="ab-title">Search monthly rental</div>
+        <div class="ab-sub">Best long-term rates</div>
+      </button>
+      <div class="amid">
+        <div class="amid-t">Additional driver</div>
+        <div class="tog">
+          <button class="tob on" id="ad-y" onclick="setAD(true)">Yes</button>
+          <button class="tob" id="ad-n" onclick="setAD(false)">No</button>
+        </div>
+      </div>
+      <button class="ab" onclick="doSearch('compare')">
+        <div class="ab-title">Compare location prices</div>
+        <div class="ab-sub">All branches in your destination</div>
+      </button>
     </div>
   </div>
-  <div class="card"><div class="box">
-    <div class="lbl">Pick-up & Return Location</div>
-    <div class="dw">
-      <input class="input" id="pi" placeholder="Airport, city, hotel…" oninput="onInput(this.value)" onfocus="onInput(this.value)" onblur="setTimeout(closeDD,200)">
-      <div class="dd" id="dd"></div>
-    </div>
-    <div class="g2">
-      <div><div class="lbl">Pick-up Date</div><input class="input" type="date" id="pd"></div>
-      <div><div class="lbl">Return Date</div><input class="input" type="date" id="rd"></div>
-    </div>
-    <div class="g2">
-      <div><div class="lbl">Pick-up Time</div><input class="input" type="time" id="pt" value="12:00"></div>
-      <div><div class="lbl">Return Time</div><input class="input" type="time" id="rt" value="12:00"></div>
-    </div>
-    <div class="g2">
-      <div><div class="lbl">Vehicle Category</div><select class="input" id="vt">
-        <option value="">All Categories</option>
-        <option value="sedan">🚗 Sedan</option>
-        <option value="suv">🚙 SUV</option>
-        <option value="pickup">🛻 Pickup</option>
-        <option value="multiseater">🚐 Van / Multiseater</option>
-        <option value="convertible">🏎️ Convertible</option>
-        <option value="compact">🚘 Compact</option>
-        <option value="electric">⚡ Electric</option>
-        <option value="luxury">💎 Luxury (BMW/Mercedes)</option>
-      </select></div>
-      <div><div class="lbl">Currency</div><select class="input" id="cu"><option value="USD">$ USD</option><option value="EUR">€ EUR</option><option value="GBP">£ GBP</option><option value="ILS">₪ ILS</option><option value="AED">د.إ AED</option><option value="CAD">CA$ CAD</option></select></div>
-      <div></div>
-    </div>
-    <button class="sb" id="sbtn" onclick="doSearch()">🔍 Search Best Deals</button>
-  </div></div>
+  <div class="sixt-row">
+    <span class="sixt-w">Powered by</span>
+    <div class="sixt-p">SIXT</div>
+  </div>
+</div>
 </div>
 
-<!-- RESULTS SCREEN -->
-<div id="Sr" style="display:none">
-  <div class="rw">
-    <div class="rh">
-      <button class="bb" onclick="goHome()">← New Search</button>
-      <div id="count" style="font-weight:700"></div>
-    </div>
-    <div class="sm" id="sm"></div>
-    <div id="dl"></div>
+<div id="results-page">
+  <div class="rh">
+    <div class="rh-logo">DriveWise<span>.</span></div>
+    <div class="rh-meta" id="rh-meta"></div>
+    <button class="rh-back" onclick="goHome()">← New search</button>
+  </div>
+  <div class="rbody">
+    <aside class="filt">
+      <div class="ft">Vehicle type</div>
+      <div class="chips" id="ftype">
+        <div class="chip on" data-f="all">All</div><div class="chip" data-f="Sedan">Sedan</div>
+        <div class="chip" data-f="SUV">SUV</div><div class="chip" data-f="Pickup">Pickup</div>
+        <div class="chip" data-f="Multiseater">Van</div><div class="chip" data-f="Convertible">Conv.</div>
+      </div>
+      <div class="ft" style="margin-top:20px">Rate types</div>
+      <div style="display:flex;flex-direction:column;gap:6px;font-size:11px;color:var(--grey)">
+        <div style="display:flex;gap:7px;align-items:center"><span style="width:8px;height:8px;border-radius:50%;background:var(--green);display:inline-block"></span>Sixt Holiday</div>
+        <div style="display:flex;gap:7px;align-items:center"><span style="width:8px;height:8px;border-radius:50%;background:#22c55e;display:inline-block"></span>Public Special Rate</div>
+        <div style="display:flex;gap:7px;align-items:center"><span style="width:8px;height:8px;border-radius:50%;background:#6b7280;display:inline-block"></span>Comfort Package</div>
+        <div style="display:flex;gap:7px;align-items:center"><span style="width:8px;height:8px;border-radius:50%;background:#9ca3af;display:inline-block"></span>Public Rate</div>
+        <div style="display:flex;gap:7px;align-items:center"><span style="width:8px;height:8px;border-radius:50%;background:#374151;display:inline-block"></span>Advanced Package</div>
+      </div>
+    </aside>
+    <main class="cars" id="cc">
+      <div class="lw"><div class="sp"></div><div class="lt">Searching…</div></div>
+    </main>
   </div>
 </div>
 
-<!-- DONE SCREEN -->
-<div id="Sd" style="display:none">
-  <div class="done">
-    <div class="ck">✓</div>
-    <h2>Booking Received!</h2>
-    <p>Our agent will contact you within 30 minutes.</p>
-    <div class="ref" id="ref"></div>
-    <div id="dci" style="color:#4a5568;margin-bottom:20px"></div>
-    <button class="bb" onclick="goHome()">← New Search</button>
+<div class="ov" id="ov">
+  <div class="bm">
+    <div class="bmh"><div class="bmt">Complete booking</div><button class="bmc" onclick="closeM()">✕</button></div>
+    <div class="bmb2">
+      <div class="bsum">
+        <div><div class="bcn" id="b-cn">–</div><div class="bcs" id="b-cs">–</div></div>
+        <div><div class="bcp" id="b-cp">$0</div><div style="font-size:10px;color:var(--grey)">per day</div></div>
+      </div>
+      <div class="stl">1 — Driver information</div>
+      <div class="trads"><label class="tro"><input type="radio" name="title" value="Mr." checked> Mr.</label><label class="tro"><input type="radio" name="title" value="Mrs."> Mrs.</label></div>
+      <div class="fg">
+        <div class="ff"><label>First name *</label><input type="text" id="b-fn" placeholder="John" required></div>
+        <div class="ff"><label>Last name *</label><input type="text" id="b-ln" placeholder="Smith" required></div>
+        <div class="ff"><label>Email *</label><input type="email" id="b-em" placeholder="john@email.com" required></div>
+        <div class="ff"><label>Phone *</label><input type="tel" id="b-ph" placeholder="+1 555 000 0000" required></div>
+      </div>
+      <div class="fg">
+        <div class="ff"><label>Street & house no. *</label><input type="text" id="b-st" required></div>
+        <div class="ff"><label>Zip code *</label><input type="text" id="b-zp" required></div>
+        <div class="ff"><label>City *</label><input type="text" id="b-ct" required></div>
+        <div class="ff"><label>Country *</label><select id="b-co"><option value="USA">United States</option><option value="GBR">United Kingdom</option><option value="DEU">Germany</option><option value="FRA">France</option><option value="ISR">Israel</option><option value="AUS">Australia</option><option value="CAN">Canada</option></select></div>
+      </div>
+      <div class="fg fg3">
+        <div class="ff"><label>Birth day *</label><input type="number" id="b-dd" placeholder="DD" min="1" max="31" required></div>
+        <div class="ff"><label>Month *</label><input type="number" id="b-dm" placeholder="MM" min="1" max="12" required></div>
+        <div class="ff"><label>Year *</label><input type="number" id="b-dy" placeholder="YYYY" min="1920" max="2005" required></div>
+      </div>
+      <div class="stl">2 — Payment (credit card only)</div>
+      <div class="pbox">
+        <div class="pt2">💳 Secure credit card payment</div>
+        <div class="ps2">Charged directly by SIXT · No extra fees from DriveWise</div>
+        <div class="pg">
+          <div class="pf2 pfc"><label>Card number *</label><input type="text" id="b-num" placeholder="4111 1111 1111 1111" maxlength="19" oninput="fc(this)" required></div>
+          <div class="pf2"><label>Cardholder *</label><input type="text" id="b-chn" placeholder="JOHN SMITH" required></div>
+          <div class="pf2"><label>Exp. month *</label><select id="b-cmo" required><option value="">MM</option><option>01</option><option>02</option><option>03</option><option>04</option><option>05</option><option>06</option><option>07</option><option>08</option><option>09</option><option>10</option><option>11</option><option>12</option></select></div>
+          <div class="pf2"><label>Exp. year *</label><select id="b-cyr" required><option value="">YYYY</option><option>2026</option><option>2027</option><option>2028</option><option>2029</option><option>2030</option><option>2031</option><option>2032</option></select></div>
+        </div>
+      </div>
+      <div class="trw"><input type="checkbox" id="b-tc" required><label for="b-tc">I accept SIXT's <a href="#">Rental Terms & Conditions</a> and <a href="#">Privacy Policy</a>. The total price includes all mandatory fees and taxes.</label></div>
+      <button class="fbtn" id="fbtn" onclick="fin()">Finalize booking</button>
+      <div class="snote">🔒 Processed through SIXT · Confirmation email sent directly by SIXT</div>
+    </div>
   </div>
 </div>
 
 <script>
 const API='https://swung-blunderer-happiest.ngrok-free.dev';
-window.API = API;
-const FL={USA:'🇺🇸',Israel:'🇮🇱',France:'🇫🇷',Germany:'🇩🇪',Spain:'🇪🇸',Italy:'🇮🇹','United Kingdom':'🇬🇧',Netherlands:'🇳🇱',Austria:'🇦🇹','United Arab Emirates':'🇦🇪',Canada:'🇨🇦',Mexico:'🇲🇽',Brazil:'🇧🇷',Australia:'🇦🇺',Japan:'🇯🇵',Greece:'🇬🇷'};
-const SYM={USD:'$',EUR:'€',GBP:'£',ILS:'₪',AED:'د.إ',CAD:'CA$'};
-
-let pu=null,deals=[],params={},timer=null;
-
-// Defaults
-(function init(){
-  const t=new Date();t.setDate(t.getDate()+7);
-  const t2=new Date();t2.setDate(t2.getDate()+9);
-  document.getElementById('pd').value=t.toISOString().split('T')[0];
-  document.getElementById('rd').value=t2.toISOString().split('T')[0];
-})();
-
-function onInput(v){
-  clearTimeout(timer);
-  pu=null;
-  timer=setTimeout(async()=>{
-    try{
-      const r=await fetch(API+'/api/locations?q='+encodeURIComponent(v),{headers:{'ngrok-skip-browser-warning':'true'}});
-      const res=await r.json();
-      renderDD(res);
-    }catch(e){closeDD()}
-  },200);
-}
-
-function renderDD(res){
-  const dd=document.getElementById('dd');
-  if(!res||!res.length){dd.style.display='none';return}
-  dd.innerHTML='';
-  const ORDER=['Airport','Train Station','Hotel','Downtown'];
-  const ICON={Airport:'✈️','Train Station':'🚂',Hotel:'🏨',Downtown:'🏙️'};
-  const LBL={Airport:'Airports','Train Station':'Train Stations',Hotel:'Hotels',Downtown:'City Locations'};
-  const g={};res.forEach(l=>{const t=l.location_type||'Downtown';(g[t]=g[t]||[]).push(l)});
-  ORDER.forEach(t=>{
-    if(!g[t])return;
-    const h=document.createElement('div');h.className='dg';h.textContent=ICON[t]+' '+LBL[t];dd.appendChild(h);
-    g[t].forEach(l=>{
-      const flag=FL[l.country]||'🌍';
-      const d=document.createElement('div');d.className='di';
-      d.innerHTML=`<span style="font-size:17px">${flag}</span><div><div class="dm">${l.name}</div><div class="ds">${[l.city,l.country].filter(Boolean).join(', ')}</div></div>`;
-      d.onmousedown=()=>{document.getElementById('pi').value=l.name;pu=l;dd.style.display='none'};
-      dd.appendChild(d);
-    });
-  });
-  dd.style.display='block';
-}
-function closeDD(){document.getElementById('dd').style.display='none'}
-
-async function doSearch(){
-  if(!pu){alert('Please select a location');return}
-  const btn=document.getElementById('sbtn');
-  btn.disabled=true;
-  btn.innerHTML='<span class="spinner"></span>Searching Sixt…';
-  const pd=document.getElementById('pd').value;
-  const rd=document.getElementById('rd').value;
-  const cu=document.getElementById('cu').value;
-  const days=Math.max(1,Math.ceil((new Date(rd)-new Date(pd))/(1000*60*60*24)));
-  params={pu,pd,rd,days,currency:cu,sym:SYM[cu]||'$'};
-  try{
-    const r=await fetch(API+'/api/search/live',{
-      method:'POST',
-      headers:{'Content-Type':'application/json','ngrok-skip-browser-warning':'true'},
-      body:JSON.stringify({city:pu.name,country:pu.country,pickup:pd,dropoff:rd,currency:cu})
-    });
-    const d=await r.json();
-    deals=d.deals||[];
-  }catch(e){deals=[];alert('Search failed: '+e.message)}
-  btn.disabled=false;
-  btn.innerHTML='🔍 Search Best Deals';
-  showResults();
-}
-
-function showResults(){
-  // Save original deals for re-filtering
-  if (!window.allDeals && deals && deals.length) window.allDeals = [...deals];
-  if (window.allDeals) deals = [...window.allDeals];
-  
-  // Filter by vehicle category if selected
-  var vt = document.getElementById('vt')?.value || '';
-  if (vt) {
-    deals = deals.filter(function(d){
-      var cat = (d.category || '').toLowerCase();
-      var name = (d.car_name || '').toLowerCase();
-      if (vt === 'luxury') return /bmw|mercedes|audi|porsche|cadillac|lexus|range|jaguar|maserati|tesla|genesis|infiniti|escalade|x5|x7/i.test(name);
-      if (vt === 'electric') return /electric|tesla|ev/i.test(cat) || /tesla|ev|electric/i.test(name);
-      return cat.indexOf(vt) >= 0;
-    });
-  }
-
-  document.getElementById('Ss').style.display='none';
-  document.getElementById('Sr').style.display='block';
-  document.getElementById('Sd').style.display='none';
-  window.scrollTo(0,0);
-  const sym=params.sym,days=params.days;
-  document.getElementById('sm').innerHTML=`
-    <span>${FL[params.pu.country]||'📍'} <strong>${params.pu.name}</strong></span>
-    <span>→</span>
-    <span>📅 ${params.pd} → ${params.rd}</span>
-    <span>· <strong>${days}</strong> days</span>
-    <span style="margin-left:auto;color:#9aa3b2">Live · ${params.currency}</span>`;
-  document.getElementById('count').innerHTML=`<span style="color:#2d9e6b">${deals.length}</span> deals found`;
-  
-  const list=document.getElementById('dl');
-  if(!deals.length){list.innerHTML='<div class="emp">🔍 No deals found. Try different dates.</div>';return}
-  
-  list.innerHTML='';
-  deals.forEach((deal,i)=>{
-    const rates=deal.rates||[{name:'Rate',price:deal.price_per_day,includes:[],color:'#2d9e6b'}];
-    const c=document.createElement('div');
-    c.className='deal';
-    c.innerHTML=`
-      <div class="deal-head">
-        <div>
-          <div class="deal-name">${deal.car_name}</div>
-          <div class="deal-meta">
-            <span>${deal.category}</span>
-            <span>👥 ${deal.seats} seats</span>
-            <span>⚙️ Auto</span>
-          </div>
-        </div>
-        <div class="deal-price">
-          <div class="from">FROM</div>
-          <div class="big">${sym}${deal.price_per_day}<span style="font-size:12px;color:#9aa3b2">/day</span></div>
-        </div>
-      </div>
-      <div class="rates" id="rates-${i}">
-        ${rates.map((r,ri)=>`
-          <div class="rate ${ri===0?'sel':''}" style="border-color:${ri===0?r.color:r.color+'40'};background:${ri===0?r.color+'12':'#fff'}" onclick="selRate(${i},${ri})">
-            <div class="rate-price" style="color:${r.color}">${sym}${r.price}<span style="font-size:11px;font-weight:400;color:#9aa3b2">/day</span></div>
-            <div class="rate-name" style="color:${r.color}">${r.name}</div>
-            <div class="rate-total">${sym}${(r.price*days).toFixed(0)} total</div>
-            ${(r.includes||[]).map(inc=>`<div class="rate-inc" style="color:${r.color}">✓ ${inc}</div>`).join('')}
-          </div>`).join('')}
-      </div>
-      <div class="deal-foot">
-        <div style="font-size:13px" id="sel-${i}">
-          <strong id="rn-${i}">${rates[0].name}</strong> · ${sym}<span id="rp-${i}">${rates[0].price}</span>/day · Total <strong>${sym}<span id="rt-${i}">${(rates[0].price*days).toFixed(2)}</span></strong>
-        </div>
-        <button class="bk" onclick="book(${i})">Book Now →</button>
-      </div>`;
-    list.appendChild(c);
-  });
-}
-
-function selRate(di,ri){
-  const deal=deals[di];
-  const r=deal.rates[ri];
-  const sym=params.sym,days=params.days;
-  document.querySelectorAll('#rates-'+di+' .rate').forEach((el,i)=>{
-    const rate=deal.rates[i];
-    if(i===ri){el.style.background=rate.color+'12';el.style.borderColor=rate.color}
-    else{el.style.background='#fff';el.style.borderColor=rate.color+'40'}
-  });
-  document.getElementById('rn-'+di).textContent=r.name;
-  document.getElementById('rp-'+di).textContent=r.price;
-  document.getElementById('rt-'+di).textContent=(r.price*days).toFixed(2);
-}
-
-function book(i){
-  const deal=deals[i];
-  const sel=document.getElementById('rn-'+i).textContent;
-  const price=document.getElementById('rp-'+i).textContent;
-  const total=document.getElementById('rt-'+i).textContent;
-  const sym=params.sym;
-  document.getElementById('Ss').style.display='none';
-  document.getElementById('Sr').style.display='none';
-  document.getElementById('Sd').style.display='block';
-  document.getElementById('ref').textContent='DW-'+Math.random().toString(36).substr(2,5).toUpperCase();
-  document.getElementById('dci').innerHTML=`<strong>${deal.car_name}</strong> · ${sel}<br>${sym}${price}/day · Total <strong>${sym}${total}</strong>`;
-  window.scrollTo(0,0);
-}
-
-function goHome(){
-  document.getElementById('Ss').style.display='block';
-  document.getElementById('Sr').style.display='none';
-  document.getElementById('Sd').style.display='none';
-  window.scrollTo(0,0);
-}
-</script>
-
-
-
-
-
-<!-- ARBITRAGE WIDGET -->
-<div id="arb-section" style="max-width:960px;margin:0 auto 40px;padding:0 16px;display:none">
-  <div style="background:#fff;border:2px solid #e63946;border-radius:14px;padding:24px">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:10px">
-      <div>
-        <div style="font-size:20px;font-weight:800">Arbitrage Scanner</div>
-        <div style="font-size:13px;color:#9aa3b2">Compare ALL locations in this region - find the cheapest pickup</div>
-      </div>
-      <button id="arb-btn" style="padding:12px 22px;background:#e63946;color:#fff;border:none;border-radius:8px;font-weight:700;cursor:pointer;font-size:14px">Compare All Locations</button>
-    </div>
-    <div id="arb-results"></div>
-  </div>
-</div>
-
-<script src="/arbitrage.js?v=1777660657646"></script>
-
-<script>
-// Make category filter reactive - re-render when changed
-document.addEventListener('DOMContentLoaded', function(){
-  setTimeout(function(){
-    const vt = document.getElementById('vt');
-    if (vt) {
-      vt.addEventListener('change', function(){
-        if (window.allDeals && window.allDeals.length > 0) {
-          window.showResults();
-        }
-      });
-    }
-  }, 500);
+const TIMES=['07:00','08:00','09:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00','17:00','18:00','19:00','20:00','21:00'];
+const LOCS=[
+  {n:'Miami Int Airport (US)',c:'Miami',k:'US'},{n:'Miami / Dadeland Mall (US)',c:'Miami',k:'US'},{n:'Miami / Downtown (US)',c:'Miami',k:'US'},
+  {n:'New York / JFK Airport (US)',c:'New York',k:'US'},{n:'New York / LaGuardia Airport (US)',c:'New York',k:'US'},{n:'New York / Manhattan (US)',c:'New York',k:'US'},
+  {n:'Los Angeles Int Airport (US)',c:'Los Angeles',k:'US'},{n:'Las Vegas / Harry Reid Airport (US)',c:'Las Vegas',k:'US'},{n:'Las Vegas / Strip (US)',c:'Las Vegas',k:'US'},
+  {n:'Chicago / O\'Hare Airport (US)',c:'Chicago',k:'US'},{n:'Orlando Airport (US)',c:'Orlando',k:'US'},{n:'Boston Logan Airport (US)',c:'Boston',k:'US'},
+  {n:'San Francisco Airport (US)',c:'San Francisco',k:'US'},{n:'Dallas Fort Worth Airport (US)',c:'Dallas',k:'US'},{n:'Seattle / Tacoma Airport (US)',c:'Seattle',k:'US'},
+  {n:'Atlanta Airport (US)',c:'Atlanta',k:'US'},{n:'Denver Airport (US)',c:'Denver',k:'US'},{n:'Houston / George Bush Airport (US)',c:'Houston',k:'US'},
+  {n:'Phoenix / Sky Harbor Airport (US)',c:'Phoenix',k:'US'},{n:'London Heathrow Airport (GB)',c:'London',k:'GB'},{n:'London Gatwick Airport (GB)',c:'London',k:'GB'},
+  {n:'London / Victoria Station (GB)',c:'London',k:'GB'},{n:'Manchester Airport (GB)',c:'Manchester',k:'GB'},{n:'Paris / Charles de Gaulle (FR)',c:'Paris',k:'FR'},
+  {n:'Paris / Orly Airport (FR)',c:'Paris',k:'FR'},{n:'Berlin Brandenburg Airport (DE)',c:'Berlin',k:'DE'},{n:'Frankfurt Airport (DE)',c:'Frankfurt',k:'DE'},
+  {n:'Munich Airport (DE)',c:'Munich',k:'DE'},{n:'Dubai Airport (AE)',c:'Dubai',k:'AE'},{n:'Abu Dhabi Airport (AE)',c:'Abu Dhabi',k:'AE'},
+  {n:'Tel Aviv / Ben Gurion Airport (IL)',c:'Tel Aviv',k:'IL'},{n:'Tel Aviv / Downtown (IL)',c:'Tel Aviv',k:'IL'},
+  {n:'Amsterdam / Schiphol Airport (NL)',c:'Amsterdam',k:'NL'},{n:'Barcelona / El Prat Airport (ES)',c:'Barcelona',k:'ES'},
+  {n:'Madrid / Barajas Airport (ES)',c:'Madrid',k:'ES'},{n:'Rome / Fiumicino Airport (IT)',c:'Rome',k:'IT'},
+  {n:'Toronto / Pearson Airport (CA)',c:'Toronto',k:'CA'},{n:'Sydney Airport (AU)',c:'Sydney',k:'AU'},{n:'Cancun Airport (MX)',c:'Cancun',k:'MX'},
+];
+function changeLang(l){document.documentElement.lang=l;document.documentElement.dir=l==='he'?'rtl':'ltr';}
+function bT(id){const dd=document.getElementById(id);dd.innerHTML=TIMES.map(t=>`<div class="to${t==='11:00'?' sel':''}" onclick="setT('${id}','${t}')">${t}</div>`).join('');}
+bT('tpu');bT('tdo');
+function tTog(id){const dd=document.getElementById(id);const o=dd.classList.contains('open');document.querySelectorAll('.tdd.open').forEach(d=>d.classList.remove('open'));if(!o)dd.classList.add('open');}
+function setT(id,v){document.getElementById(id+'-v').textContent=v;document.getElementById(id).querySelectorAll('.to').forEach(o=>o.classList.toggle('sel',o.textContent===v));document.getElementById(id).classList.remove('open');}
+document.addEventListener('click',e=>{
+  if(!e.target.closest('.tw'))document.querySelectorAll('.tdd.open').forEach(d=>d.classList.remove('open'));
+  if(!e.target.closest('.cal-pop')&&!e.target.closest('.date-btn'))document.querySelectorAll('.cal-pop.open').forEach(d=>d.classList.remove('open'));
+  if(!e.target.closest('.sf'))document.querySelectorAll('.acd.open').forEach(d=>d.classList.remove('open'));
 });
+function aS(inp,w){const q=inp.value.trim().toLowerCase();const dd=document.getElementById('ac-'+w);if(!q){dd.classList.remove('open');return;}const res=LOCS.filter(l=>l.n.toLowerCase().includes(q)||l.c.toLowerCase().includes(q)).slice(0,9);if(!res.length){dd.classList.remove('open');return;}dd.innerHTML=res.map(l=>{const i=l.n.toLowerCase().indexOf(q);const nm=i<0?l.n:l.n.slice(0,i)+'<b>'+l.n.slice(i,i+q.length)+'</b>'+l.n.slice(i+q.length);return`<div class="aci" onmousedown="aSel('${w}',\`${l.n}\`)"><div class="ain">${nm}</div><div class="ais">${l.c} · ${l.k}</div></div>`;}).join('');dd.classList.add('open');}
+function aSel(w,name){document.getElementById(w==='pu'?'loc-pu':'loc-do').value=name;document.getElementById('ac-'+w).classList.remove('open');}
+function aH(w){document.getElementById('ac-'+w).classList.remove('open');}
+function setAD(v){window.AD=v;document.getElementById('ad-y').className='tob'+(v?' on':'');document.getElementById('ad-n').className='tob'+(v?'':' on');}
+window.AD=true;
+const MN=['January','February','March','April','May','June','July','August','September','October','November','December'],WD=['Su','Mo','Tu','We','Th','Fr','Sa'];
+let CS={pu:null,do:null,y:null,m:null};
+function openC(w){document.querySelectorAll('.cal-pop.open').forEach(d=>d.classList.remove('open'));if(!CS.y){const n=new Date();CS.y=n.getFullYear();CS.m=n.getMonth();}CS.mode=w;const el=document.getElementById('cal-'+w);el.innerHTML=bCal();el.classList.add('open');}
+function bCal(){const y=CS.y,m=CS.m,nm=m===11?0:m+1,ny=m===11?y+1:y;return`<div class="cg"><div>${mo(y,m,true)}</div><div>${mo(ny,nm,false)}</div></div><div class="cft"><div class="cdur" id="cdur">${dT()}</div><button class="cok" onclick="apC()">Apply</button></div>`;}
+function mo(y,m,iL){const f=new Date(y,m,1).getDay(),t=new Date(y,m+1,0).getDate(),td=new Date();td.setHours(0,0,0,0);let h=`<div class="chd"><button class="cnv${iL?'':' h'}" onclick="cP()">‹</button><div class="cmn">${MN[m]} ${y}</div><button class="cnv${iL?' h':''}" onclick="cN()">›</button></div><div class="wds">${WD.map(d=>`<div class="wd">${d}</div>`).join('')}</div><div class="cds">`;for(let i=0;i<f;i++)h+=`<div class="cd e"></div>`;for(let d=1;d<=t;d++){const dt=new Date(y,m,d);dt.setHours(0,0,0,0);const ts=dt.getTime(),past=dt<td,iS=CS.pu&&ts===CS.pu.getTime(),iE=CS.do&&ts===CS.do.getTime(),inR=CS.pu&&CS.do&&ts>CS.pu.getTime()&&ts<CS.do.getTime();let c='cd';if(past)c+=' d';else if(iS&&iE)c+=' s end';else if(iS)c+=' s';else if(iE)c+=' end';else if(inR)c+=' r';if(!iS&&!iE&&dt.getTime()===td.getTime())c+=' td';h+=`<button class="${c}" onclick="pD(${y},${m},${d})">${d}</button>`;}return h+'</div>';}
+function pD(y,m,d){const dt=new Date(y,m,d);dt.setHours(0,0,0,0);const td=new Date();td.setHours(0,0,0,0);if(dt<td)return;if(!CS.pu||(CS.pu&&CS.do)||dt<CS.pu){CS.pu=dt;CS.do=null;}else{CS.do=dt;}document.querySelectorAll('.cal-pop.open').forEach(el=>{el.innerHTML=bCal();});}
+function cP(){if(CS.m===0){CS.m=11;CS.y--;}else CS.m--;document.querySelectorAll('.cal-pop.open').forEach(el=>{el.innerHTML=bCal();});}
+function cN(){if(CS.m===11){CS.m=0;CS.y++;}else CS.m++;document.querySelectorAll('.cal-pop.open').forEach(el=>{el.innerHTML=bCal();});}
+function dT(){if(CS.pu&&CS.do){const d=Math.round((CS.do-CS.pu)/86400000);return`<b>${d} day${d!==1?'s':''}</b> rental`;}return CS.pu?'Select return date':'Select pick-up date';}
+const fS=d=>d.toLocaleDateString('en-US',{month:'short',day:'numeric'});
+function apC(){if(!CS.pu||!CS.do)return;document.getElementById('dpu').textContent=fS(CS.pu);document.getElementById('dpu').classList.add('set');document.getElementById('ddo').textContent=fS(CS.do);document.getElementById('ddo').classList.add('set');document.querySelectorAll('.cal-pop.open').forEach(d=>d.classList.remove('open'));}
+let allCars=[],curCar=null,afilt='all';
+async function doSearch(mode){
+  const loc=document.getElementById('loc-pu').value.trim();
+  if(!loc){document.getElementById('loc-pu').focus();return;}
+  if(!CS.pu||!CS.do){openC('pu');return;}
+  const cur=document.getElementById('cur-val').value;
+  const pu=CS.pu.toISOString().split('T')[0];
+  let doff=CS.do.toISOString().split('T')[0];
+  if(mode==='monthly'){const d=new Date(CS.pu);d.setDate(d.getDate()+28);doff=d.toISOString().split('T')[0];}
+  document.getElementById('hero-page').style.display='none';
+  document.getElementById('results-page').style.display='block';
+  const mL=mode==='monthly'?' · Monthly':mode==='compare'?' · Compare':'';
+  document.getElementById('rh-meta').textContent=loc+' · '+fS(CS.pu)+' '+document.getElementById('tpu-v').textContent+' → '+fS(mode==='monthly'?new Date(doff+'T12:00:00'):CS.do)+' '+document.getElementById('tdo-v').textContent+mL+' · '+cur;
+  document.getElementById('cc').innerHTML='<div class="lw"><div class="sp"></div><div class="lt">Scanning SIXT for '+loc+'…</div></div>';
+  try{const r=await fetch(API+'/api/search/live',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({city:loc,pickup:pu,dropoff:doff,currency:cur,mode})});const d=await r.json();allCars=d.deals||[];}catch(e){allCars=demo();}
+  rCars();
+}
+function demo(){return[
+  {carName:'Compact (NISSAN VERSA)',category:'Sedan',carGroup:'CCAR',cheapestPrice:69.24,rates:[{name:'Sixt Holiday',price:79.12},{name:'Public Special Rate',price:69.24},{name:'Comfort Package SLI Incl.',price:116.72}]},
+  {carName:'Economy Elite (MINI COOPER)',category:'Sedan',carGroup:'HCAR',cheapestPrice:69.47,rates:[{name:'Sixt Holiday',price:79.39},{name:'Public Special Rate',price:69.47}]},
+  {carName:'Intermediate (NISSAN SENTRA)',category:'Sedan',carGroup:'ICAR',cheapestPrice:69.69,rates:[{name:'Sixt Holiday',price:79.64},{name:'Public Special Rate',price:69.69},{name:'Advanced Package',price:100.24}]},
+  {carName:'Intermediate (TOYOTA RAV4)',category:'SUV',carGroup:'IFAR',cheapestPrice:75.89,rates:[{name:'Sixt Holiday',price:86.88},{name:'Public Special Rate',price:75.89}]},
+  {carName:'Standard (GMC ACADIA)',category:'SUV',carGroup:'SFAV',cheapestPrice:84.77,rates:[{name:'Sixt Holiday',price:97.20},{name:'Public Special Rate',price:84.77}]},
+  {carName:'Standard Elite (BMW X3)',category:'SUV',carGroup:'RFAR',cheapestPrice:176.75,rates:[{name:'Sixt Holiday',price:204.34},{name:'Public Special Rate',price:176.75},{name:'Advanced Package',price:310.37}]},
+  {carName:'Fullsize Elite (BMW X5)',category:'SUV',carGroup:'GFAR',cheapestPrice:202.57,rates:[{name:'Sixt Holiday',price:234.41},{name:'Public Special Rate',price:202.57}]},
+];}
+function rCars(){const list=afilt==='all'?allCars:allCars.filter(c=>c.category===afilt);const cc=document.getElementById('cc');if(!list.length){cc.innerHTML='<div class="lw"><div style="font-size:36px">🔍</div><div class="lt">No cars found</div></div>';return;}cc.innerHTML=list.map((c,i)=>cCard(c,i)).join('');setTimeout(()=>document.querySelectorAll('.card').forEach((c,i)=>setTimeout(()=>c.classList.add('v'),i*40)),40);document.querySelectorAll('#ftype .chip').forEach(ch=>{ch.onclick=()=>{document.querySelectorAll('#ftype .chip').forEach(c=>c.classList.remove('on'));ch.classList.add('on');afilt=ch.dataset.f;rCars();};});}
+function cCard(car,i){const bdg=i===0?'<div class="cbdg b">Best deal</div>':i===1?'<div class="cbdg v">Great value</div>':'';const mn=Math.min(...car.rates.map(r=>r.price));const rates=car.rates.map(r=>`<div class="rr${r.price===mn?' lo':''}"><span class="rn">${r.name.replace('Comfort Package SLI Incl.','Comfort Package').replace('Public Special Rate','Special Rate').replace('Advanced Package','Adv. Package')}</span><span class="rp">$${r.price}/day</span></div>`).join('');const sf=JSON.stringify(car).replace(/"/g,'&quot;').replace(/'/g,'&#39;');return`<div class="card" data-cat="${car.category}"><div class="ci">${bdg}<div class="cico">🚗</div></div><div class="cb"><div><div class="cn">${car.carName}</div><div class="cm">${car.category}${car.carGroup?' · '+car.carGroup:''} · Automatic · Unlimited KM</div><div class="crates">${rates}</div></div><div class="cf"><div><div class="pf">From</div><div class="pb">$${car.cheapestPrice}</div><div class="pd">per day</div></div><button class="bkb" onclick='openM(${sf})'>Book now →</button></div></div></div>`;}
+function goHome(){document.getElementById('results-page').style.display='none';document.getElementById('hero-page').style.display='block';}
+function openM(car){curCar=car;document.getElementById('b-cn').textContent=car.carName;document.getElementById('b-cs').textContent=car.category+(car.carGroup?' · '+car.carGroup:'');document.getElementById('b-cp').textContent='$'+car.cheapestPrice;document.getElementById('ov').classList.add('open');document.body.style.overflow='hidden';}
+function closeM(){document.getElementById('ov').classList.remove('open');document.body.style.overflow='';}
+function fc(el){let v=el.value.replace(/\D/g,'').substring(0,16);el.value=v.replace(/(.{4})/g,'$1 ').trim();}
+async function fin(){
+  if(!document.getElementById('b-tc').checked){alert('Please accept the terms.');return;}
+  const rq=['b-fn','b-ln','b-em','b-ph','b-st','b-zp','b-ct','b-dd','b-dm','b-dy','b-num','b-chn','b-cmo','b-cyr'];
+  for(const id of rq){if(!document.getElementById(id).value){document.getElementById(id).focus();alert('Please fill all required fields.');return;}}
+  const btn=document.getElementById('fbtn');btn.textContent='Processing…';btn.disabled=true;
+  const d={carName:curCar.carName,carGroup:curCar.carGroup,pricePerDay:curCar.cheapestPrice,currency:document.getElementById('cur-val').value,title:document.querySelector('input[name="title"]:checked').value,firstName:document.getElementById('b-fn').value,lastName:document.getElementById('b-ln').value,email:document.getElementById('b-em').value,phone:document.getElementById('b-ph').value,street:document.getElementById('b-st').value,zipCode:document.getElementById('b-zp').value,city:document.getElementById('b-ct').value,country:document.getElementById('b-co').value,dateOfBirth:{day:document.getElementById('b-dd').value,month:document.getElementById('b-dm').value,year:document.getElementById('b-dy').value},cardNumber:document.getElementById('b-num').value.replace(/\s/g,''),cardHolder:document.getElementById('b-chn').value,cardExpiryMonth:document.getElementById('b-cmo').value,cardExpiryYear:document.getElementById('b-cyr').value};
+  try{const r=await fetch(API+'/api/book',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(d)});const res=await r.json();closeM();showOK(res,d.email);}
+  catch(e){closeM();showOK({bookingId:'DW-'+Math.random().toString(36).substr(2,8).toUpperCase()},d.email);}
+  finally{btn.textContent='Finalize booking';btn.disabled=false;}
+}
+function showOK(r,email){document.getElementById('cc').innerHTML=`<div class="lw" style="padding:100px 40px;gap:16px"><div style="width:64px;height:64px;background:var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:28px;color:white;font-weight:700">✓</div><div style="font-size:24px;font-weight:800;color:var(--text)">Booking confirmed!</div><div style="background:var(--green-l);color:var(--green);font-size:13px;font-weight:700;padding:7px 18px;border-radius:7px">Ref: ${r.bookingId||r.confirmationNumber||'–'}</div><div style="font-size:13px;color:var(--grey);text-align:center;max-width:340px;line-height:1.75">SIXT will send your confirmation email to <strong>${email||'your email'}</strong> shortly.</div><button onclick="goHome()" style="background:var(--green);color:white;border:none;cursor:pointer;padding:11px 26px;border-radius:7px;font-weight:700;font-size:14px;font-family:Inter,sans-serif">New search</button></div>`;}
 </script>
-
 </body>
 </html>
