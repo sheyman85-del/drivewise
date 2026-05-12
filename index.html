@@ -3,457 +3,1873 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DriveWise — Car Rental</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<title>DriveWise — Best Car Rental Deals</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-:root{--green:#1a7f4e;--green-h:#14532d;--green-l:#e8f5ee;--mint:#5de0a0;--border:#e5e7eb;--grey:#6b7280;--grey-l:#f3f4f6;--text:#111827;--sh:0 1px 3px rgba(0,0,0,.08)}
-body{font-family:'Inter',sans-serif;color:var(--text);background:#fff;overflow-x:hidden}
-header{height:56px;background:#fff;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 40px;position:sticky;top:0;z-index:200;box-shadow:var(--sh)}
-.logo{font-size:20px;font-weight:800;color:var(--text);letter-spacing:-.3px}.logo span{color:#e05454}
+body{font-family:'Inter',sans-serif;background:#111;color:#fff;-webkit-font-smoothing:antialiased}
+
+/* ─── HEADER ─── */
+header{display:flex;align-items:center;justify-content:space-between;padding:16px 32px;background:#111}
+.logo{font-size:18px;font-weight:800;color:#fff;letter-spacing:-.3px}.logo span{color:#5de0a0}
 .hdr-r{display:flex;align-items:center;gap:6px}
-.hdr-sel{display:flex;align-items:center;gap:5px;padding:6px 12px;border-radius:6px;border:1px solid var(--border);background:#fff;font-family:'Inter',sans-serif;font-size:13px;font-weight:500;color:var(--text);outline:none;-webkit-appearance:none;cursor:pointer;transition:border-color .15s}
-.hdr-sel:hover{border-color:var(--green)}
-.hdr-sep{width:1px;height:18px;background:var(--border);margin:0 3px}
-.hero{background:#0f2318;padding:44px 0 0;position:relative;overflow:visible}
-.hero-inner{max-width:1160px;margin:0 auto;padding:0 40px}
-.tag{display:inline-flex;align-items:center;gap:6px;background:rgba(93,224,160,.12);border:1px solid rgba(93,224,160,.22);color:var(--mint);font-size:10px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;padding:4px 12px;border-radius:100px;margin-bottom:16px}
-h1{font-size:clamp(32px,4.5vw,56px);font-weight:800;color:#fff;line-height:1.05;letter-spacing:-.5px;margin-bottom:6px}
-h1 em{font-style:italic;color:var(--mint)}
-.sub{font-size:14px;color:rgba(255,255,255,.42);margin-bottom:24px;letter-spacing:.2px}
-.sub span{margin:0 5px;opacity:.4}
-.sw{background:#fff;border-radius:10px 10px 0 0;border-top:3px solid var(--mint);max-width:1160px;margin:0 auto;position:relative;overflow:visible}
-.fields{display:grid;grid-template-columns:1.8fr 1fr .7fr 1fr .7fr auto;border-bottom:1px solid var(--border)}
-.sf{position:relative;border-right:1px solid var(--border);display:flex;flex-direction:column;min-height:76px}
-.sf:last-child{border-right:none}
-.lbl{font-size:9px;font-weight:600;letter-spacing:1.3px;text-transform:uppercase;color:var(--grey);padding:11px 14px 0;display:block}
-.inp{border:none;outline:none;background:transparent;font-size:14px;font-weight:500;color:var(--text);padding:3px 14px 11px;width:100%;font-family:'Inter',sans-serif}
-.inp::placeholder{color:#9ca3af;font-weight:400;font-size:13px}
-.date-btn{border:none;outline:none;background:transparent;font-size:14px;font-weight:500;color:#9ca3af;padding:3px 14px 11px;width:100%;font-family:'Inter',sans-serif;text-align:left;cursor:pointer}
-.date-btn.set{color:var(--text)}
-.tw{position:relative;padding:3px 14px 11px;cursor:pointer;user-select:none}
-.td-val{font-size:14px;font-weight:500;color:var(--text);display:flex;align-items:center;justify-content:space-between}
-.td-ico{font-size:10px;color:var(--grey);margin-left:4px}
-.tdd{position:absolute;top:calc(100% + 2px);left:0;width:130px;background:#fff;border:1px solid var(--border);border-radius:8px;z-index:500;max-height:200px;overflow-y:auto;display:none;box-shadow:0 4px 16px rgba(0,0,0,.1)}
+.hsel{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.75);font-size:12px;font-weight:500;padding:5px 10px;border-radius:14px;cursor:pointer;outline:none;-webkit-appearance:none;font-family:'Inter',sans-serif}
+
+/* ─── HERO ─── */
+.hero{text-align:center;padding:22px 20px 0}
+.htag{display:inline-flex;align-items:center;gap:7px;background:rgba(93,224,160,.1);border:1px solid rgba(93,224,160,.18);color:#5de0a0;font-size:9.5px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;padding:4px 12px;border-radius:100px;margin-bottom:12px}
+.htag-dot{width:4px;height:4px;border-radius:50%;background:#5de0a0;animation:bl 2s infinite}
+@keyframes bl{0%,100%{opacity:1}50%{opacity:.3}}
+h1{font-size:clamp(26px,3.8vw,48px);font-weight:800;color:#fff;margin-bottom:6px;letter-spacing:-.5px;line-height:1.1}
+h1 em{font-style:italic;color:#5de0a0}
+.hsub{font-size:14px;color:rgba(255,255,255,.38);margin-bottom:20px}
+
+/* ─── STATS ─── */
+.stats{display:inline-flex;gap:0;border-radius:10px;overflow:hidden;margin-bottom:24px;border:1px solid rgba(255,255,255,.08)}
+.stat{padding:10px 24px;background:rgba(255,255,255,.05);text-align:center;border-right:1px solid rgba(255,255,255,.08)}
+.stat:last-child{border-right:none}
+.sn{font-size:20px;font-weight:800;color:#5de0a0;line-height:1}
+.sl{font-size:9px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.3);margin-top:2px}
+
+/* ─── CARD ─── */
+.card{background:#fff;border-radius:16px;max-width:720px;margin:0 auto;overflow:visible;box-shadow:0 20px 60px rgba(0,0,0,.45);position:relative;color:#111}
+.card::before{content:'';position:absolute;top:-1px;left:12%;right:12%;height:2px;background:linear-gradient(90deg,transparent,#5de0a0,transparent);border-radius:2px}
+
+/* ─── THREE TABS ─── */
+.tabs{display:grid;grid-template-columns:1fr 1fr 1fr;border-bottom:1px solid #f0f0f0;border-radius:16px 16px 0 0;overflow:hidden}
+.tab{padding:14px 8px 12px;font-size:11.5px;font-weight:600;color:#9ca3af;cursor:pointer;border:none;background:#f9fafb;transition:all .15s;font-family:'Inter',sans-serif;text-align:center;border-bottom:2.5px solid transparent;line-height:1.3}
+.tab:not(:last-child){border-right:1px solid #f0f0f0}
+.tab.on{color:#111;background:#fff;border-bottom-color:#5de0a0}
+.tab:hover:not(.on){color:#555;background:#f5f5f5}
+.tab svg{display:block;margin:0 auto 5px;width:20px;height:20px}
+.tab.on svg{stroke:#3db87a}
+.tab:hover:not(.on) svg{stroke:#555}
+
+.cbody{padding:18px 22px}
+
+/* ─── FIELD STYLES ─── */
+.fl{font-size:9px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:#9ca3af;margin-bottom:5px;display:block}
+.fi{width:100%;padding:11px 13px;border:1.5px solid #e5e7eb;border-radius:9px;font-family:'Inter',sans-serif;font-size:14px;font-weight:500;color:#111;background:#f9fafb;outline:none;transition:border-color .15s,background .15s}
+.fi:focus{border-color:#5de0a0;background:#fff}
+.fi::placeholder{color:#b8c4be;font-weight:400;font-size:13.5px}
+.fsel{width:100%;padding:11px 13px;border:1.5px solid #e5e7eb;border-radius:9px;font-family:'Inter',sans-serif;font-size:13.5px;font-weight:500;color:#111;background:#f9fafb;outline:none;-webkit-appearance:none;cursor:pointer;transition:border-color .15s;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='m0 0 5 6 5-6' fill='none' stroke='%239ca3af' stroke-width='1.5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:calc(100% - 12px) 50%;padding-right:28px}
+.fsel:focus{border-color:#5de0a0;background-color:#fff}
+.fg{margin-bottom:12px;position:relative}
+.fg2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
+
+/* ─── DATE CLICK-BUTTON ─── */
+.dbtn{width:100%;padding:11px 13px;border:1.5px solid #e5e7eb;border-radius:9px;font-family:'Inter',sans-serif;font-size:14px;font-weight:500;color:#b8c4be;background:#f9fafb;text-align:left;cursor:pointer;transition:border-color .15s,background .15s;outline:none;display:flex;align-items:center;gap:8px}
+.dbtn:hover{border-color:#5de0a0;background:#fff}
+.dbtn.s{color:#111}
+.dbtn svg{flex-shrink:0;stroke:#b8c4be;width:15px;height:15px}
+.dbtn.s svg{stroke:#3db87a}
+
+/* ─── BIG CALENDAR (like SIXT — 3 months) ─── */
+.cal-overlay{display:none;position:fixed;inset:0;z-index:2000;background:rgba(0,0,0,.45);align-items:center;justify-content:center;padding:12px}
+.cal-overlay.open{display:flex}
+.cal-box{background:#fff;border-radius:16px;padding:32px;width:1200px;max-width:97vw;box-shadow:0 20px 60px rgba(0,0,0,.25);color:#111}
+.cal-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
+.cal-title{font-size:18px;font-weight:700;color:#111}
+.cal-close{background:none;border:none;cursor:pointer;font-size:20px;color:#9ca3af;line-height:1;padding:4px 8px;border-radius:6px}
+.cal-close:hover{background:#f5f5f5}
+.cal-nav-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.cal-nav-btn{background:none;border:1.5px solid #e5e7eb;border-radius:8px;cursor:pointer;width:44px;height:44px;display:flex;align-items:center;justify-content:center;font-size:22px;color:#9ca3af;transition:all .12s}
+.cal-nav-btn:hover{background:#f0fdf4;border-color:#5de0a0;color:#111}
+.cal-months{display:grid;grid-template-columns:repeat(3,1fr);gap:40px}
+.cal-mo{flex:1}
+.cal-mo-title{font-size:17px;font-weight:700;color:#111;text-align:center;margin-bottom:16px}
+.cal-wds{display:grid;grid-template-columns:repeat(7,1fr);margin-bottom:4px}
+.cal-wd{text-align:center;font-size:12px;font-weight:700;letter-spacing:.5px;color:#9ca3af;padding:5px 0;text-transform:uppercase}
+.cal-days{display:grid;grid-template-columns:repeat(7,1fr);gap:3px}
+.cd{text-align:center;padding:14px 2px;font-size:18px;cursor:pointer;border-radius:9px;border:none;background:none;font-family:'Inter',sans-serif;color:#111;transition:all .1s;font-weight:400;width:100%}
+.cd:hover:not(.ce):not(.cp){background:#f0fdf4;color:#111}
+.cd.ce,.cd.cp{cursor:default;color:#d1d5db}
+.cd.ct{font-weight:800;color:#3db87a}
+.cd.cs,.cd.cn{background:#111!important;color:#fff!important;font-weight:700;border-radius:8px}
+.cd.cr{background:#dcfce7;border-radius:0;color:#111}
+.cd.cs{border-radius:8px 0 0 8px}
+.cd.cn{border-radius:0 8px 8px 0}
+.cd.cs.cn{border-radius:8px!important}
+.cal-footer{margin-top:18px;padding-top:16px;border-top:1px solid #f0f0f0;display:flex;align-items:center;justify-content:space-between}
+.cal-dur{font-size:13px;color:#9ca3af}
+.cal-dur strong{color:#3db87a;font-weight:700}
+.cal-actions{display:flex;gap:10px}
+.cal-clear{background:none;border:1.5px solid #e5e7eb;padding:8px 18px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;color:#9ca3af;font-family:'Inter',sans-serif;transition:all .12s}
+.cal-clear:hover{border-color:#e85d04;color:#e85d04}
+.cal-apply{background:#3db87a;color:#fff;border:none;padding:8px 22px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;transition:background .12s}
+.cal-apply:hover{background:#2d9e68}
+
+/* ─── TIME PICKER ─── */
+.tw{position:relative}
+.tv{width:100%;padding:11px 13px;border:1.5px solid #e5e7eb;border-radius:9px;font-family:'Inter',sans-serif;font-size:14px;font-weight:500;color:#111;background:#f9fafb;cursor:pointer;display:flex;align-items:center;justify-content:space-between;transition:border-color .15s,background .15s;user-select:none}
+.tv:hover{border-color:#5de0a0;background:#fff}
+.tv.open{border-color:#5de0a0;background:#fff}
+.tv-ico{width:15px;height:15px;stroke:#b8c4be;flex-shrink:0}
+.tc{font-size:9px;color:#9ca3af;margin-left:4px}
+.tv-left{display:flex;align-items:center;gap:7px}
+.tdd{position:absolute;top:calc(100% + 3px);left:0;right:0;background:#fff;border:1.5px solid #e5e7eb;border-radius:9px;z-index:500;max-height:180px;overflow-y:auto;display:none;box-shadow:0 8px 24px rgba(0,0,0,.1)}
 .tdd.open{display:block}
-.to{padding:8px 14px;font-size:13px;color:var(--text);cursor:pointer;transition:background .08s;border-bottom:1px solid #f9fafb}
-.to:last-child{border-bottom:none}
-.to:hover{background:var(--grey-l)}
-.to.sel{font-weight:600;color:var(--green);background:var(--green-l)}
-.sbtn{background:var(--mint);color:#111827;border:none;cursor:pointer;font-size:20px;font-weight:800;font-family:'Inter',sans-serif;letter-spacing:-.4px;border-radius:0 9px 0 0;padding:0 28px;min-width:110px;transition:background .12s}
-.sbtn:hover{background:#4bcf91}
-.rdl{padding:5px 14px 9px;display:flex;align-items:center;gap:7px;border-top:1px solid var(--border)}
-.rdl input[type=checkbox]{accent-color:var(--green);cursor:pointer;width:13px;height:13px}
-.rdl label{font-size:11px;color:var(--grey);cursor:pointer}
-.rdl label b{color:var(--green);font-weight:600}
-.droprow{display:none;border-top:1px solid var(--border)}
-.droprow.show{display:flex;flex-direction:column}
-.droprow .sf{border-right:none;min-height:56px}
-.actions{display:grid;grid-template-columns:1fr 1fr 1fr;border-top:1px solid var(--border)}
-.ab{display:flex;flex-direction:column;justify-content:center;padding:15px 20px;border:none;cursor:pointer;background:var(--mint);border-right:1px solid rgba(15,35,24,.15);transition:background .12s;text-align:left}
-.ab:first-child{border-radius:0 0 0 9px}
-.ab:last-child{border-right:none;border-radius:0 0 9px 0}
-.ab:hover{background:#4bcf91}
-.ab-title{font-size:16px;font-weight:700;color:#0f2318;letter-spacing:-.3px;line-height:1.1}
-.ab-sub{font-size:11px;color:rgba(15,35,24,.55);margin-top:3px;line-height:1.3}
-.amid{display:flex;flex-direction:column;justify-content:center;padding:15px 20px;background:var(--mint);border-right:1px solid rgba(15,35,24,.15)}
-.amid-t{font-size:16px;font-weight:700;color:#0f2318;margin-bottom:7px;letter-spacing:-.3px}
-.tog{display:flex;gap:6px}
-.tob{padding:4px 18px;border-radius:100px;border:1.5px solid rgba(15,35,24,.35);font-size:12px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;background:transparent;color:#0f2318;transition:all .12s}
-.tob.on{background:#0f2318;color:var(--mint);border-color:#0f2318}
-.sixt-row{padding:9px 0 7px;display:flex;align-items:center;justify-content:center;gap:8px;max-width:1160px;margin:0 auto}
-.sixt-w{font-size:10px;color:rgba(255,255,255,.3);letter-spacing:.4px}
-.sixt-p{background:#ff5f00;color:#fff;font-size:11px;font-weight:600;padding:2px 8px;border-radius:3px;letter-spacing:.5px}
-.acd{position:absolute;top:100%;left:0;right:0;background:#fff;border:1px solid var(--border);border-radius:8px;box-shadow:0 6px 20px rgba(0,0,0,.1);z-index:600;max-height:260px;overflow-y:auto;display:none}
+.to{padding:9px 13px;font-size:13px;color:#111;cursor:pointer;border-bottom:.5px solid #f5f5f5;transition:background .08s}
+.to:last-child{border:none}
+.to:hover{background:#f0fdf4}
+.to.sel{font-weight:700;color:#3db87a;background:#f0fdf4}
+
+/* ─── RETURN DIFF ─── */
+.rdl{display:flex;align-items:center;gap:6px;margin-top:6px;cursor:pointer}
+.rdl input{accent-color:#3db87a;cursor:pointer;width:13px;height:13px;flex-shrink:0}
+.rdl label{font-size:11px;color:#9ca3af;cursor:pointer}
+.rdl label b{color:#3db87a;font-weight:600}
+.dloc{display:none;margin-top:8px}.dloc.show{display:block!important}
+.dloc.show{display:block}
+
+/* ─── SIXT STRIP ─── */
+.sixt-strip{display:flex;align-items:center;justify-content:center;gap:8px;padding:9px 0;border-top:1px solid #f5f5f5;border-bottom:1px solid #f5f5f5;margin-bottom:14px}
+.sixt-lbl{font-size:11px;color:#9ca3af}
+.sixt-pill{background:#ff5500;color:#fff;font-size:11px;font-weight:800;padding:2px 9px;border-radius:4px;letter-spacing:.7px}
+.sixt-cert{font-size:11px;color:#9ca3af}
+
+/* ─── BUTTONS ─── */
+.btn-go{width:100%;padding:13px;background:#5de0a0;color:#0c1e14;border:none;cursor:pointer;border-radius:10px;font-family:'Inter',sans-serif;font-size:15px;font-weight:800;letter-spacing:-.2px;margin-bottom:8px;transition:background .15s;display:flex;flex-direction:column;align-items:center;gap:3px}
+.btn-go:hover{background:#4bcf91}
+.btn-go-s{font-size:9.5px;font-weight:500;opacity:.65;letter-spacing:.4px;text-transform:uppercase}
+.btn-go.amber{background:#f59e0b;color:#fff}
+.btn-go.amber:hover{background:#d97706}
+.btn-ghost{width:100%;padding:10px;background:transparent;color:#5de0a0;border:1.5px solid #5de0a0;cursor:pointer;border-radius:10px;font-family:'Inter',sans-serif;font-size:12.5px;font-weight:600;transition:all .15s;display:flex;align-items:center;justify-content:center;gap:6px}
+.btn-ghost:hover{background:#5de0a0;color:#0c1e14}
+.btn-ghost.amber{color:#f59e0b;border-color:#f59e0b}
+.btn-ghost.amber:hover{background:#f59e0b;color:#fff}
+
+/* ─── AUTOCOMPLETE ─── */
+.acd{position:absolute;top:100%;left:0;right:0;background:#fff;border:1.5px solid #e5e7eb;border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,.12);z-index:700;max-height:250px;overflow-y:auto;display:none;margin-top:2px}
 .acd.open{display:block}
-.aci{padding:9px 14px;cursor:pointer;border-bottom:1px solid #f9fafb;transition:background .08s}
-.aci:last-child{border-bottom:none}
-.aci:hover{background:var(--grey-l)}
-.ain{font-size:12.5px;font-weight:500;color:var(--text)}
-.ain b{color:var(--green)}
-.ais{font-size:10.5px;color:var(--grey);margin-top:1px}
-.cal-pop{position:absolute;top:calc(100% + 4px);left:0;width:560px;background:#fff;border:1px solid var(--border);border-radius:12px;z-index:700;padding:16px;display:none;box-shadow:0 8px 28px rgba(0,0,0,.12)}
-.cal-pop.open{display:block}
-.cg{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.chd{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
-.cmn{font-size:12px;font-weight:600;color:var(--text)}
-.cnv{background:none;border:1px solid var(--border);border-radius:4px;width:22px;height:22px;cursor:pointer;font-size:11px;color:var(--grey);display:flex;align-items:center;justify-content:center}
-.cnv:hover{background:var(--grey-l)}
-.cnv.h{visibility:hidden}
-.wds{display:grid;grid-template-columns:repeat(7,1fr);margin-bottom:3px}
-.wd{text-align:center;font-size:8.5px;font-weight:600;letter-spacing:.4px;color:var(--grey);padding:2px 0;text-transform:uppercase}
-.cds{display:grid;grid-template-columns:repeat(7,1fr);gap:1px}
-.cd{text-align:center;padding:6px 0;font-size:11.5px;cursor:pointer;border-radius:4px;border:none;background:none;font-family:'Inter',sans-serif;color:var(--text);transition:background .08s;font-weight:400}
-.cd:hover:not(.e):not(.d){background:var(--grey-l)}
-.cd.e,.cd.d{cursor:default;color:#d1d5db}
-.cd.td{font-weight:700;color:var(--green)}
-.cd.s,.cd.end{background:var(--green)!important;color:#fff!important;font-weight:600;border-radius:4px}
-.cd.r{background:var(--green-l);border-radius:0}
-.cd.s{border-radius:4px 0 0 4px}
-.cd.end{border-radius:0 4px 4px 0}
-.cd.s.end{border-radius:4px!important}
-.cft{margin-top:10px;padding-top:10px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
-.cdur{font-size:11.5px;color:var(--grey)}
-.cdur b{color:var(--green);font-weight:600}
-.cok{background:var(--green);color:#fff;border:none;padding:6px 16px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif}
-.cok:hover{background:var(--green-h)}
-#results-page{display:none;background:#f8fafc;min-height:100vh}
-.rh{background:#fff;border-bottom:1px solid var(--border);padding:0 40px;height:52px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:56px;z-index:100;box-shadow:var(--sh)}
-.rh-logo{font-size:17px;font-weight:800;color:var(--text)}.rh-logo span{color:#e05454}
-.rh-meta{font-size:12px;color:var(--grey)}
-.rh-back{background:var(--grey-l);color:var(--text);border:none;cursor:pointer;padding:7px 14px;border-radius:6px;font-family:'Inter',sans-serif;font-size:13px;font-weight:500}
-.rh-back:hover{background:var(--border)}
-.rbody{display:grid;grid-template-columns:240px 1fr;min-height:calc(100vh - 108px)}
-.filt{background:#fff;border-right:1px solid var(--border);padding:20px 16px;position:sticky;top:108px;height:fit-content}
-.ft{font-size:9.5px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--grey);margin-bottom:8px;margin-top:18px}
-.ft:first-child{margin-top:0}
-.chips{display:flex;flex-wrap:wrap;gap:5px}
-.chip{padding:4px 12px;border-radius:100px;border:1px solid var(--border);font-size:11.5px;font-weight:500;cursor:pointer;background:#fff;color:var(--grey);transition:all .12s}
-.chip.on{background:var(--green);color:#fff;border-color:var(--green)}
-.chip:hover:not(.on){border-color:var(--green);color:var(--green)}
-.cars{padding:16px 20px;display:flex;flex-direction:column;gap:10px}
-.card{background:#fff;border:1px solid var(--border);border-radius:10px;display:grid;grid-template-columns:175px 1fr;box-shadow:var(--sh);transition:box-shadow .2s,transform .15s;opacity:0;transform:translateY(10px)}
-.card.v{animation:su .28s ease forwards}
-@keyframes su{to{opacity:1;transform:translateY(0)}}
-.card:hover{box-shadow:0 6px 20px rgba(0,0,0,.1);transform:translateY(-1px)}
-.ci{background:linear-gradient(135deg,#f8fafb,#eef0f2);display:flex;align-items:center;justify-content:center;padding:16px;position:relative;border-right:1px solid var(--border);border-radius:10px 0 0 10px}
-.cbdg{position:absolute;top:8px;left:8px;font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:3px 8px;border-radius:100px}
-.cbdg.b{background:var(--green);color:#fff}
-.cbdg.v{background:#e05454;color:#fff}
-.cico{font-size:50px;opacity:.18}
-.cb{padding:14px 18px;display:flex;flex-direction:column;justify-content:space-between}
-.cn{font-size:15px;font-weight:700;color:var(--text);margin-bottom:2px}
-.cm{font-size:10.5px;color:var(--grey);margin-bottom:10px}
-.crates{display:flex;flex-direction:column;gap:3px;margin-bottom:10px}
-.rr{display:flex;align-items:center;justify-content:space-between;padding:4px 10px;border-radius:5px;background:var(--grey-l);border-left:3px solid var(--border)}
-.rr.lo{background:var(--green-l);border-left-color:var(--green)}
-.rr .rn{font-size:11px;font-weight:500;color:var(--grey)}
-.rr.lo .rn{color:var(--green);font-weight:600}
-.rr .rp{font-size:12px;font-weight:700;color:var(--text)}
-.rr.lo .rp{color:var(--green)}
-.cf{display:flex;align-items:center;justify-content:space-between;padding-top:10px;border-top:1px solid var(--border)}
-.pf{font-size:9px;text-transform:uppercase;letter-spacing:.5px;color:var(--grey)}
-.pb{font-size:26px;font-weight:800;color:var(--green);line-height:1}
-.pd{font-size:10px;color:var(--grey)}
-.bkb{background:var(--green);color:#fff;border:none;cursor:pointer;padding:9px 20px;border-radius:7px;font-size:13px;font-weight:700;font-family:'Inter',sans-serif;transition:background .12s,transform .1s}
-.bkb:hover{background:var(--green-h);transform:scale(1.02)}
-.sp{width:36px;height:36px;border:3px solid var(--border);border-top-color:var(--green);border-radius:50%;animation:spin .7s linear infinite}
-@keyframes spin{to{transform:rotate(360deg)}}
-.lw{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:80px 40px;gap:12px}
-.lt{font-size:13px;color:var(--grey)}
-.ov{display:none;position:fixed;inset:0;z-index:2000;background:rgba(17,24,39,.55);backdrop-filter:blur(4px);align-items:center;justify-content:center;padding:20px}
-.ov.open{display:flex}
-.bm{background:#fff;border-radius:14px;width:100%;max-width:720px;max-height:90vh;overflow-y:auto;box-shadow:0 24px 60px rgba(0,0,0,.18)}
-.bmh{background:var(--green);padding:18px 26px;display:flex;align-items:center;justify-content:space-between;border-radius:14px 14px 0 0;position:sticky;top:0;z-index:10}
-.bmt{font-size:17px;font-weight:800;color:#fff}
-.bmc{background:rgba(255,255,255,.15);border:none;cursor:pointer;color:#fff;width:28px;height:28px;border-radius:50%;font-size:15px;display:flex;align-items:center;justify-content:center}
-.bmc:hover{background:rgba(255,255,255,.25)}
-.bmb2{padding:24px}
-.bsum{background:#f8fafb;border-radius:8px;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;border:1px solid var(--border)}
-.bcn{font-weight:700;font-size:14px}
-.bcs{font-size:10px;color:var(--grey);margin-top:1px}
-.bcp{font-size:22px;font-weight:800;color:var(--green)}
-.stl{font-size:9.5px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--grey);margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--border);margin-top:18px}
-.stl:first-of-type{margin-top:0}
-.trads{display:flex;gap:14px;margin-bottom:12px}
-.tro{display:flex;align-items:center;gap:6px;cursor:pointer;font-size:13px;font-weight:500}
-.tro input{accent-color:var(--green);width:14px;height:14px}
-.fg{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
-.fg3{grid-template-columns:1fr 1fr 1fr}
-.ff label{display:block;font-size:9.5px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--grey);margin-bottom:3px}
-.ff input,.ff select{width:100%;padding:9px 11px;border:1px solid var(--border);border-radius:6px;font-family:'Inter',sans-serif;font-size:13px;outline:none;background:#fff;transition:border-color .15s;-webkit-appearance:none}
-.ff input:focus,.ff select:focus{border-color:var(--green)}
-.pbox{background:#0d1f2d;border-radius:9px;padding:16px;margin-bottom:16px}
-.pt2{color:#fff;font-weight:700;font-size:13px;margin-bottom:2px}
-.ps2{color:rgba(255,255,255,.35);font-size:11px;margin-bottom:14px}
-.pg{display:grid;grid-template-columns:1fr 1fr 1fr;gap:9px}
-.pf2 label{display:block;font-size:9.5px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:3px}
-.pf2 input,.pf2 select{width:100%;padding:9px 11px;border:1px solid rgba(255,255,255,.1);border-radius:6px;font-family:'Inter',sans-serif;font-size:13px;outline:none;background:rgba(255,255,255,.06);color:#fff;-webkit-appearance:none}
-.pf2 input:focus,.pf2 select:focus{border-color:var(--green)}
-.pf2 input::placeholder{color:rgba(255,255,255,.18)}
-.pf2 select option{background:#1a2a38;color:#fff}
-.pfc{grid-column:1/-1}
-.trw{display:flex;align-items:flex-start;gap:8px;margin-bottom:14px;font-size:12px;color:var(--grey);line-height:1.6}
-.trw input{margin-top:2px;flex-shrink:0;accent-color:var(--green)}
-.trw a{color:var(--green)}
-.fbtn{width:100%;padding:13px;background:var(--green);color:#fff;border:none;cursor:pointer;border-radius:8px;font-family:'Inter',sans-serif;font-size:15px;font-weight:700;transition:background .15s}
-.fbtn:hover{background:var(--green-h)}
-.fbtn:disabled{opacity:.6;cursor:not-allowed}
-.snote{text-align:center;font-size:11px;color:var(--grey);margin-top:9px}
-@media(max-width:900px){
-  header{padding:0 16px}
-  .hero-inner,.sw,.sixt-row{padding-left:16px;padding-right:16px;max-width:100%}
-  .fields{grid-template-columns:1fr}.sf{border-right:none;border-bottom:1px solid var(--border)}
-  .actions{grid-template-columns:1fr}.ab:first-child{border-radius:0}.ab:last-child{border-radius:0 0 9px 9px}
-  .amid{border-right:none;border-bottom:1px solid rgba(15,35,24,.15)}
-  .rbody{grid-template-columns:1fr}.filt{display:none}
-  .card{grid-template-columns:1fr}.ci{border-right:none;border-bottom:1px solid var(--border);border-radius:10px 10px 0 0}
-  .fg,.fg3{grid-template-columns:1fr}.pg{grid-template-columns:1fr 1fr}
-}
+.aci{padding:10px 13px;cursor:pointer;border-bottom:.5px solid #f5f5f5;transition:background .08s;display:flex;align-items:flex-start;gap:9px}
+.aci:last-child{border:none}
+.aci:hover{background:#f0fdf4}
+.ain{font-size:13px;font-weight:600;color:#111;line-height:1.3}
+.ain b{color:#3db87a}
+.ais{font-size:11px;color:#9ca3af;margin-top:1px}
+
+/* ─── FIND BEST PRICE — RESULTS PAGE ────────────────────────────────── */
+/* The results view replaces the form when shown, and lives directly inside the same .card */
+
+/* Top status bar — city, dates, # results, change-search action */
+.r-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding-bottom:12px;border-bottom:1px solid #f0f0f0;margin-bottom:14px}
+.r-bar-info{font-size:11.5px;color:#9ca3af;line-height:1.5}
+.r-bar-info b{color:#111;font-weight:700}
+.r-bar-info .city{color:#3db87a;font-weight:800}
+.r-back{font-size:11.5px;font-weight:700;color:#5de0a0;background:transparent;border:1.5px solid #5de0a0;padding:6px 11px;border-radius:7px;cursor:pointer;font-family:'Inter',sans-serif;transition:all .12s}
+.r-back:hover{background:#5de0a0;color:#0c1e14}
+
+/* Category filter chips */
+.r-cats{display:flex;gap:6px;overflow-x:auto;padding-bottom:10px;margin-bottom:12px;scrollbar-width:none}
+.r-cats::-webkit-scrollbar{display:none}
+.r-cat{flex-shrink:0;padding:7px 13px;border:1.5px solid #e5e7eb;border-radius:18px;background:#fff;color:#6b7280;font-size:11.5px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;white-space:nowrap;transition:all .12s}
+.r-cat:hover{border-color:#5de0a0;color:#3db87a}
+.r-cat.on{background:#3db87a;border-color:#3db87a;color:#fff}
+
+/* Sub-filter: vehicle classes within the chosen category */
+.r-classes{display:flex;gap:6px;overflow-x:auto;padding-bottom:10px;margin-bottom:8px;scrollbar-width:none;flex-wrap:nowrap}
+.r-classes::-webkit-scrollbar{display:none}
+.r-classes:empty{display:none}
+.r-classes-lbl{flex-shrink:0;padding:6px 0;font-size:10px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;color:#9ca3af;align-self:center;margin-right:4px}
+.r-class{flex-shrink:0;padding:5px 11px;border:1px solid #e5e7eb;border-radius:14px;background:#f9fafb;color:#6b7280;font-size:10.5px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;white-space:nowrap;transition:all .12s}
+.r-class:hover{border-color:#5de0a0;color:#3db87a;background:#fff}
+.r-class.on{background:#111;border-color:#111;color:#5de0a0}
+.r-class .ct{margin-left:5px;opacity:.5;font-weight:600}
+
+/* Top savings strip */
+.r-save{background:#f0fdf4;border:1px solid #5de0a0;color:#1f6b46;font-size:11.5px;font-weight:700;padding:8px 12px;border-radius:7px;margin-bottom:12px;display:flex;align-items:center;gap:7px}
+.r-save b{color:#3db87a;font-weight:800}
+.r-save svg{width:14px;height:14px;stroke:#3db87a;stroke-width:2.5;fill:none;flex-shrink:0}
+
+/* Loading / empty states */
+.r-load{padding:40px 20px;text-align:center;color:#9ca3af;font-size:13px}
+.r-load .spin{display:inline-block;width:24px;height:24px;border:3px solid #e5e7eb;border-top-color:#3db87a;border-radius:50%;animation:rspin .8s linear infinite;margin-bottom:11px}
+@keyframes rspin{to{transform:rotate(360deg)}}
+.r-err{padding:18px;background:#fef2f2;border:1px solid #fecaca;border-radius:8px;color:#991b1b;font-size:12.5px;line-height:1.5;text-align:left}
+.r-err b{color:#7f1d1d}
+
+/* Location result cards */
+.r-card{position:relative;border:1.5px solid #e5e7eb;border-radius:10px;padding:13px;margin-bottom:9px;background:#fff;cursor:pointer;transition:all .15s;text-align:left}
+.r-card:hover{border-color:#5de0a0;transform:translateY(-1px);box-shadow:0 4px 12px rgba(93,224,160,.12)}
+.r-card.best{border-color:#3db87a;background:linear-gradient(135deg,#f0fdf4 0%,#fff 60%);box-shadow:0 4px 16px rgba(93,224,160,.22);margin-top:14px}
+.r-card.best:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(93,224,160,.3)}
+.r-ribbon{position:absolute;top:-9px;left:13px;background:#5de0a0;color:#0c1e14;font-size:9px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;padding:3px 9px;border-radius:4px;display:flex;align-items:center;gap:4px}
+.r-row{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.r-loc{flex:1;min-width:0}
+.r-loc-name{font-size:13.5px;font-weight:700;color:#111;line-height:1.3;margin-bottom:3px}
+.r-loc-car{font-size:11.5px;color:#6b7280;line-height:1.4}
+.r-pricing{text-align:right;flex-shrink:0}
+.r-day{font-size:10.5px;color:#9ca3af;line-height:1.2;font-weight:500}
+.r-total{font-size:19px;font-weight:800;color:#111;line-height:1;margin-top:2px}
+.r-card.best .r-total{color:#3db87a}
+.r-strike{font-size:10.5px;color:#9ca3af;text-decoration:line-through;margin-top:2px}
+.r-bot{display:flex;justify-content:space-between;align-items:center;margin-top:10px;padding-top:9px;border-top:1px dashed #e5e7eb}
+.r-tag{font-size:10.5px;color:#9ca3af;font-weight:600}
+.r-tag.deal{color:#3db87a;font-weight:700}
+.r-tag.deal b{color:#3db87a;font-weight:800}
+.r-arrow{font-size:11.5px;color:#3db87a;font-weight:700;display:flex;align-items:center;gap:4px}
+/* 3-class preview rows on Cheapest overall cards */
+.r-classpv{margin-top:9px;padding-top:9px;border-top:1px dashed #e5e7eb;display:flex;flex-direction:column;gap:5px}
+.r-classpv-row{display:flex;align-items:baseline;gap:8px;font-size:11px;line-height:1.3}
+.r-classpv-cls{font-weight:800;color:#111;flex-shrink:0;min-width:74px}
+.r-classpv-model{color:#6b7280;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.r-classpv-price{font-weight:700;color:#3db87a;flex-shrink:0}
+
+/* ─── DETAIL VIEW (when a location is clicked) ───────────────────────── */
+.d-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;flex-wrap:wrap;padding-bottom:13px;border-bottom:1px solid #f0f0f0;margin-bottom:14px}
+.d-h-info{flex:1;min-width:0}
+.d-h-name{font-size:15px;font-weight:800;color:#111;line-height:1.3;margin-bottom:3px}
+.d-h-sub{font-size:11.5px;color:#9ca3af;line-height:1.4}
+.d-h-sub .city{color:#3db87a;font-weight:700}
+
+/* Cars list — multiple cars in this category at this location */
+.d-sect{font-size:9.5px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;color:#9ca3af;margin:14px 0 8px;display:flex;align-items:center;gap:8px}
+.d-sect::after{content:'';flex:1;height:1px;background:#f0f0f0}
+
+.d-car{display:block;padding:11px 12px;border:1.5px solid #e5e7eb;border-radius:9px;background:#fff;cursor:pointer;margin-bottom:7px;transition:all .12s;text-align:left}
+.d-car:hover{border-color:#5de0a0;background:#f9fdfb}
+.d-car.sel{border-color:#3db87a;background:#f0fdf4}
+.d-car-top{display:flex;align-items:center;gap:11px}
+.d-car-info{flex:1;min-width:0;text-align:left}
+.d-car-name{font-size:13px;font-weight:700;color:#111;line-height:1.3}
+.d-car-meta{font-size:10.5px;color:#9ca3af;margin-top:2px;line-height:1.3}
+.d-car-px{text-align:right;flex-shrink:0}
+.d-car-d{font-size:10px;color:#9ca3af;font-weight:500}
+.d-car-t{font-size:14.5px;font-weight:800;color:#111;line-height:1}
+.d-car.sel .d-car-t{color:#3db87a}
+/* Rate-by-rate breakdown shown under each car when selected */
+.d-rates{display:none;margin-top:9px;padding-top:9px;border-top:1px dashed #d1d5db;gap:6px;flex-wrap:wrap}
+.d-car.sel .d-rates{display:flex}
+.d-rate{flex:1;min-width:120px;background:#fff;border:1.5px solid #e5e7eb;border-radius:6px;padding:7px 9px;cursor:pointer;transition:all .12s;position:relative}
+.d-rate:hover{border-color:#5de0a0}
+/* Selected = strong green fill (the active choice) */
+.d-rate.sel{background:#3db87a;border-color:#3db87a}
+.d-rate.sel .d-rate-name{color:#fff}
+.d-rate.sel .d-rate-px{color:#fff}
+.d-rate.sel::after{content:'✓';position:absolute;top:5px;right:7px;color:#fff;font-size:12px;font-weight:800}
+.d-rate-name{font-size:10px;color:#6b7280;font-weight:700;text-transform:uppercase;letter-spacing:.4px;line-height:1.3}
+.d-rate-px{font-size:13px;color:#111;font-weight:800;margin-top:3px}
+.d-rate-badge{display:inline-block;background:#fef3c7;color:#92400e;font-size:8px;font-weight:800;letter-spacing:.5px;padding:1px 4px;border-radius:3px;margin-left:4px;vertical-align:middle}
+.d-rate.sel .d-rate-badge{background:rgba(255,255,255,.25);color:#fff}
+
+/* Live price summary box (right rail style, but stacked) */
+.d-summary{background:linear-gradient(180deg,#0f1a14,#111);color:#fff;border-radius:11px;padding:14px;margin-top:14px;position:sticky;bottom:8px;box-shadow:0 8px 24px rgba(0,0,0,.18)}
+.d-sum-row{display:flex;justify-content:space-between;align-items:center;font-size:11.5px;line-height:1.5;color:#9ca3af}
+.d-sum-row b{color:#fff;font-weight:600}
+.d-sum-row.sep{margin-top:7px;padding-top:7px;border-top:1px solid #2a3a31}
+.d-sum-total{display:flex;justify-content:space-between;align-items:baseline;margin-top:9px;padding-top:11px;border-top:1px solid #2a3a31}
+.d-sum-total-lbl{font-size:10px;color:#9ca3af;text-transform:uppercase;letter-spacing:1px;font-weight:700}
+.d-sum-total-val{font-size:22px;font-weight:800;color:#5de0a0;line-height:1}
+.d-sum-total-day{font-size:10.5px;color:#9ca3af;margin-left:6px}
+.d-book{display:block;width:100%;padding:13px;background:#5de0a0;color:#0c1e14;border:none;cursor:pointer;border-radius:9px;font-family:'Inter',sans-serif;font-size:14px;font-weight:800;letter-spacing:-.2px;margin-top:12px;transition:background .15s;text-align:center;text-decoration:none;line-height:1.2}
+.d-book:hover{background:#4bcf91;color:#0c1e14;text-decoration:none}
+.d-book .sub{display:block;font-size:9.5px;font-weight:500;opacity:.7;letter-spacing:.4px;text-transform:uppercase;margin-top:3px}
+
+/* ─── SECTION DIVIDER LABEL ─── */
+.sect-lbl{font-size:9.5px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;color:#9ca3af;margin:14px 0 7px;display:flex;align-items:center;gap:8px}
+.sect-lbl::after{content:'';flex:1;height:1px;background:#f0f0f0}
+
+/* Option pills (mileage, payment) */
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:6px}
+.opt{position:relative;padding:11px 13px 11px 36px;border:1.5px solid #e5e7eb;border-radius:9px;background:#f9fafb;cursor:pointer;transition:all .15s;display:block}
+.opt:hover{border-color:#5de0a0;background:#fff}
+.opt input{position:absolute;top:14px;left:13px;width:15px;height:15px;accent-color:#3db87a;cursor:pointer;margin:0}
+.opt.sel{border-color:#3db87a;background:#f0fdf4}
+.opt-t{font-size:13px;font-weight:700;color:#111;line-height:1.2;text-align:left}
+.opt-s{font-size:10.5px;color:#9ca3af;margin-top:3px;line-height:1.3;text-align:left}
+
+/* Extras chips (with quantity stepper for child seats) */
+.xtra{display:flex;align-items:center;gap:10px;padding:9px 12px;border:1.5px solid #e5e7eb;border-radius:8px;background:#f9fafb;cursor:pointer;transition:all .12s;margin-bottom:6px}
+.xtra:hover{border-color:#5de0a0;background:#fff}
+.xtra.sel{border-color:#3db87a;background:#f0fdf4}
+.xtra input[type=checkbox]{accent-color:#3db87a;cursor:pointer;width:15px;height:15px;flex-shrink:0;margin:0}
+.xtra-body{flex:1;min-width:0;text-align:left}
+.xtra-t{font-size:12.5px;font-weight:700;color:#111;line-height:1.2}
+.xtra-s{font-size:10.5px;color:#6b7280;margin-top:2px;line-height:1.3}
+.xtra-px{font-size:11.5px;font-weight:800;color:#3db87a;flex-shrink:0;white-space:nowrap}
+.xtra-px .from{font-size:9px;color:#9ca3af;font-weight:600;letter-spacing:.4px;text-transform:uppercase;display:block;line-height:1.2}
+.xtra-step{display:flex;align-items:center;gap:7px;flex-shrink:0}
+.xtra-step button{width:22px;height:22px;border:1.5px solid #e5e7eb;background:#fff;border-radius:5px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;color:#3db87a;display:flex;align-items:center;justify-content:center;padding:0;line-height:1}
+.xtra-step button:hover{border-color:#3db87a}
+.xtra-step button:disabled{opacity:.35;cursor:not-allowed}
+.xtra-step .qty{font-size:13px;font-weight:700;color:#111;min-width:14px;text-align:center}
+
+.page{background:linear-gradient(180deg,#111 0%,#111 50%,#f3f4f6 50%,#f3f4f6 100%);min-height:100vh;padding-bottom:80px}
 </style>
 </head>
 <body>
+<div class="page">
 
 <header>
-  <div class="logo">DriveWise<span>.</span></div>
+  <div class="logo">Drive<span>Wise</span></div>
   <div class="hdr-r">
-    <select class="hdr-sel" id="lang-sel" onchange="changeLang(this.value)">
-      <option value="en">🇺🇸 EN</option><option value="es">🇪🇸 ES</option><option value="fr">🇫🇷 FR</option>
-      <option value="de">🇩🇪 DE</option><option value="it">🇮🇹 IT</option><option value="pt">🇧🇷 PT</option><option value="he">🇮🇱 HE</option>
+    <select class="hsel">
+      <option>🇺🇸 EN</option><option>🇪🇸 ES</option><option>🇫🇷 FR</option>
+      <option>🇩🇪 DE</option><option>🇮🇹 IT</option><option>🇧🇷 PT</option><option>🇮🇱 HE</option>
     </select>
-    <div class="hdr-sep"></div>
-    <select class="hdr-sel" id="hdr-cur" onchange="document.getElementById('cur-val').value=this.value">
-      <option value="USD">$ USD</option><option value="GBP">£ GBP</option>
-    </select>
+    <select class="hsel"><option>$ USD</option><option>£ GBP</option></select>
   </div>
 </header>
-<input type="hidden" id="cur-val" value="USD">
 
-<div id="hero-page">
 <div class="hero">
-  <div class="hero-inner">
-    <div class="tag">✓ SIXT Certified Travel Partner</div>
-    <h1>The Smartest Way to Rent a Car<br><em>Drive Wiser.</em></h1>
-    <p class="sub">2,000+ locations <span>·</span> Best prices <span>·</span> Instant booking</p>
+  <div class="htag"><div class="htag-dot"></div>SIXT Certified Travel Partner</div>
+  <h1>The Smartest Way to Rent a Car.<br><em>Drive Wiser.</em></h1>
+  <p class="hsub">Exclusive SIXT agent rates · Up to 30% cheaper · Every rate type shown</p>
+
+  <div class="stats">
+    <div class="stat"><div class="sn">2,013</div><div class="sl">Locations</div></div>
+    <div class="stat"><div class="sn">80+</div><div class="sl">Countries</div></div>
+    <div class="stat"><div class="sn">-30%</div><div class="sl">vs Retail</div></div>
+    <div class="stat"><div class="sn">5</div><div class="sl">Rate Types</div></div>
   </div>
-  <div class="sw">
-    <div class="fields">
-      <div class="sf">
-        <span class="lbl">Pick-up location</span>
-        <div style="position:relative">
-          <input class="inp" id="loc-pu" type="text" placeholder="City, airport or station…" autocomplete="off" oninput="aS(this,'pu')" onfocus="aS(this,'pu')" onblur="setTimeout(()=>aH('pu'),160)">
-          <div class="acd" id="ac-pu"></div>
-        </div>
-        <div class="rdl">
-          <input type="checkbox" id="rdl" onchange="document.getElementById('dr').classList.toggle('show',this.checked)">
-          <label for="rdl">Return to a <b>different location</b></label>
-        </div>
-      </div>
-      <div class="sf" style="overflow:visible">
-        <span class="lbl">Pick-up date</span>
-        <button class="date-btn" id="dpu" onclick="openC('pu')">Add date</button>
-        <div class="cal-pop" id="cal-pu"></div>
-      </div>
-      <div class="sf" style="overflow:visible">
-        <span class="lbl">Pick-up time</span>
-        <div class="tw" onclick="tTog('tpu')">
-          <div class="td-val"><span id="tpu-v">11:00</span><span class="td-ico">▾</span></div>
-          <div class="tdd" id="tpu"></div>
-        </div>
-      </div>
-      <div class="sf" style="overflow:visible">
-        <span class="lbl">Return date</span>
-        <button class="date-btn" id="ddo" onclick="openC('do')">Add date</button>
-        <div class="cal-pop" id="cal-do"></div>
-      </div>
-      <div class="sf" style="overflow:visible">
-        <span class="lbl">Return time</span>
-        <div class="tw" onclick="tTog('tdo')">
-          <div class="td-val"><span id="tdo-v">11:00</span><span class="td-ico">▾</span></div>
-          <div class="tdd" id="tdo"></div>
-        </div>
-      </div>
-      <div class="sf" style="border-right:none">
-        <button class="sbtn" onclick="doSearch('main')" style="height:100%">Search</button>
-      </div>
-    </div>
-    <div class="droprow" id="dr">
-      <div class="sf">
-        <span class="lbl">Drop-off location</span>
-        <div style="position:relative">
-          <input class="inp" id="loc-do" type="text" placeholder="Different city or airport…" autocomplete="off" oninput="aS(this,'do')" onfocus="aS(this,'do')" onblur="setTimeout(()=>aH('do'),160)">
-          <div class="acd" id="ac-do"></div>
-        </div>
-      </div>
-    </div>
-    <div class="actions">
-      <button class="ab" onclick="doSearch('monthly')">
-        <div class="ab-title">Search monthly rental</div>
-        <div class="ab-sub">Best long-term rates</div>
+
+  <!-- CARD -->
+  <div class="card">
+    <!-- TABS -->
+    <div class="tabs">
+      <button class="tab on" onclick="setTab('reg')">
+        <svg fill="none" stroke="#9ca3af" stroke-width="1.8" viewBox="0 0 24 24"><path d="M5 17H3a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h1l2-3h10l2 3h1a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2h-2"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg>
+        Regular Rental
       </button>
-      <div class="amid">
-        <div class="amid-t">Additional driver</div>
-        <div class="tog">
-          <button class="tob on" id="ad-y" onclick="setAD(true)">Yes</button>
-          <button class="tob" id="ad-n" onclick="setAD(false)">No</button>
-        </div>
-      </div>
-      <button class="ab" onclick="doSearch('compare')">
-        <div class="ab-title">Compare location prices</div>
-        <div class="ab-sub">All branches in your destination</div>
+      <button class="tab" onclick="setTab('best')">
+        <svg fill="none" stroke="#9ca3af" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><path d="M8 11h6M11 8v6"/></svg>
+        Find Best Price
+      </button>
+      <button class="tab" onclick="setTab('lng')">
+        <svg fill="none" stroke="#9ca3af" stroke-width="1.8" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        Long-Term Rental
       </button>
     </div>
-  </div>
-  <div class="sixt-row">
-    <span class="sixt-w">Powered by</span>
-    <div class="sixt-p">SIXT</div>
+
+    <div class="cbody">
+
+      <!-- ── REGULAR RENTAL ── -->
+      <div id="f-reg">
+        <div class="fg">
+          <span class="fl">Pick-up Location</span>
+          <div style="position:relative">
+            <input class="fi" id="lpu" type="text" placeholder="City, airport or station…" autocomplete="off" oninput="acFn(this,'pu')" onfocus="acFn(this,'pu')" onblur="setTimeout(()=>acH('pu'),160)">
+            <div class="acd" id="ac-pu"></div>
+          </div>
+          <div class="rdl">
+            <input type="checkbox" id="rdl-r" onchange="document.getElementById('dl-r').classList.toggle('show',this.checked)">
+            <label for="rdl-r">Return to a <b>different location</b></label>
+          </div>
+          <div class="dloc" id="dl-r">
+            <div style="position:relative;margin-top:6px">
+              <input class="fi" id="ldo" type="text" placeholder="Drop-off city or airport…" autocomplete="off" oninput="acFn(this,'do')" onfocus="acFn(this,'do')" onblur="setTimeout(()=>acH('do'),160)">
+              <div class="acd" id="ac-do"></div>
+            </div>
+          </div>
+        </div>
+        <div class="fg2">
+          <div>
+            <span class="fl">Pick-up Date</span>
+            <button class="dbtn" id="dpu" onclick="openCal('reg')">
+              <svg fill="none" stroke="#b8c4be" stroke-width="1.8" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              <span id="dpu-txt">Select date</span>
+            </button>
+          </div>
+          <div>
+            <span class="fl">Return Date</span>
+            <button class="dbtn" id="ddo" onclick="openCal('reg')">
+              <svg fill="none" stroke="#b8c4be" stroke-width="1.8" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              <span id="ddo-txt">Select date</span>
+            </button>
+          </div>
+        </div>
+        <div class="fg2">
+          <div>
+            <span class="fl">Pick-up Time</span>
+            <div class="tw">
+              <div class="tv" onclick="tTog('tpu')">
+                <span class="tv-left"><svg class="tv-ico" fill="none" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span id="tpu-v">10:00</span></span>
+                <span class="tc">▾</span>
+              </div>
+              <div class="tdd" id="tpu"></div>
+            </div>
+          </div>
+          <div>
+            <span class="fl">Return Time</span>
+            <div class="tw">
+              <div class="tv" onclick="tTog('tdo')">
+                <span class="tv-left"><svg class="tv-ico" fill="none" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span id="tdo-v">10:00</span></span>
+                <span class="tc">▾</span>
+              </div>
+              <div class="tdd" id="tdo"></div>
+            </div>
+          </div>
+        </div>
+        <div class="fg2">
+          <div>
+            <span class="fl">Vehicle Type</span>
+            <select class="fsel">
+              <option>All vehicle types</option>
+              <option>Sedan — Toyota Camry or similar</option>
+              <option>SUV — Toyota RAV4 or similar</option>
+              <option>Van / Multiseater — up to 9 seats</option>
+              <option>Convertible — Ford Mustang or similar</option>
+              <option>Pickup — Toyota Tacoma or similar</option>
+            </select>
+          </div>
+          <div>
+            <span class="fl">Currency</span>
+            <select class="fsel"><option>$ USD</option><option>£ GBP</option></select>
+          </div>
+        </div>
+        <div class="sixt-strip">
+          <span class="sixt-lbl">Official partner of</span>
+          <div class="sixt-pill">SIXT</div>
+          <span class="sixt-cert">✓ Certified Travel Agent</span>
+        </div>
+        <button class="btn-go" onclick="goSearch('reg')">
+          Search Available Cars
+          <span class="btn-go-s">Best rates from your exclusive SIXT agent</span>
+        </button>
+        <button class="btn-ghost" onclick="setTab('best')">🏆 Want the lowest price? Try Best Price comparison →</button>
+      </div>
+
+      <!-- ── FIND BEST PRICE ── -->
+      <div id="f-best" style="display:none">
+        <p style="font-size:12.5px;color:#9ca3af;margin-bottom:14px;line-height:1.6;background:#f0fdf4;padding:10px 12px;border-radius:8px;border-left:3px solid #5de0a0">
+          <strong style="color:#111">How it works:</strong> We scan every SIXT branch in your destination city and return the cheapest option — automatically.
+        </p>
+        <div class="fg">
+          <span class="fl">Your Destination City</span>
+          <div style="position:relative">
+            <input class="fi" id="lpu2" type="text" placeholder="Enter any city — we'll find all nearby SIXT locations…" autocomplete="off" oninput="acFn(this,'pu2')" onfocus="acFn(this,'pu2')" onblur="setTimeout(()=>acH('pu2'),160)">
+            <div class="acd" id="ac-pu2"></div>
+          </div>
+          <div class="rdl">
+            <input type="checkbox" id="rdl-b" onchange="document.getElementById('dl-b').classList.toggle('show',this.checked)">
+            <label for="rdl-b">Return to a <b>different location</b></label>
+          </div>
+          <div class="dloc" id="dl-b">
+            <div style="position:relative;margin-top:6px">
+              <input class="fi" id="ldo2" type="text" placeholder="Drop-off city or airport…" autocomplete="off" oninput="acFn(this,'do2')" onfocus="acFn(this,'do2')" onblur="setTimeout(()=>acH('do2'),160)">
+              <div class="acd" id="ac-do2"></div>
+            </div>
+          </div>
+        </div>
+        <div class="fg2">
+          <div>
+            <span class="fl">Pick-up Date</span>
+            <button class="dbtn" id="dpu2" onclick="openCal('best')">
+              <svg fill="none" stroke="#b8c4be" stroke-width="1.8" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              <span id="dpu2-txt">Select date</span>
+            </button>
+          </div>
+          <div>
+            <span class="fl">Return Date</span>
+            <button class="dbtn" id="ddo2" onclick="openCal('best')">
+              <svg fill="none" stroke="#b8c4be" stroke-width="1.8" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              <span id="ddo2-txt">Select date</span>
+            </button>
+          </div>
+        </div>
+        <div class="fg2">
+          <div>
+            <span class="fl">Pick-up Time</span>
+            <div class="tw"><div class="tv" onclick="tTog('tpu2')"><span class="tv-left"><svg class="tv-ico" fill="none" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span id="tpu2-v">10:00</span></span><span class="tc">▾</span></div><div class="tdd" id="tpu2"></div></div>
+          </div>
+          <div>
+            <span class="fl">Return Time</span>
+            <div class="tw"><div class="tv" onclick="tTog('tdo2')"><span class="tv-left"><svg class="tv-ico" fill="none" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span id="tdo2-v">10:00</span></span><span class="tc">▾</span></div><div class="tdd" id="tdo2"></div></div>
+          </div>
+        </div>
+        <div class="fg2">
+          <div>
+            <span class="fl">Vehicle Type</span>
+            <select class="fsel">
+              <option>All vehicle types</option>
+              <option>Sedan — Toyota Camry or similar</option>
+              <option>SUV — Toyota RAV4 or similar</option>
+              <option>Van / Multiseater — up to 9 seats</option>
+              <option>Convertible — Ford Mustang or similar</option>
+              <option>Pickup — Toyota Tacoma or similar</option>
+            </select>
+          </div>
+          <div>
+            <span class="fl">Currency</span>
+            <select class="fsel" id="cur-b"><option>$ USD</option><option>£ GBP</option></select>
+          </div>
+        </div>
+        <div class="sixt-strip">
+          <span class="sixt-lbl">Official partner of</span>
+          <div class="sixt-pill">SIXT</div>
+          <span class="sixt-cert">✓ Certified Travel Agent</span>
+        </div>
+        <button class="btn-go" onclick="goSearch('best')">
+          Find Best Price — All Locations
+          <span class="btn-go-s">Compare all branches in your destination · Lowest price guaranteed</span>
+        </button>
+        <button class="btn-ghost" onclick="setTab('reg')">← Back to regular search</button>
+      </div>
+
+      <!-- ── FIND BEST PRICE: RESULTS VIEW (hidden until search runs) ── -->
+      <div id="f-best-results" style="display:none"></div>
+
+      <!-- ── LONG-TERM RENTAL ── -->
+      <div id="f-lng" style="display:none">
+        <p style="font-size:12.5px;color:#9ca3af;margin-bottom:14px;line-height:1.6;background:#fffbeb;padding:10px 12px;border-radius:8px;border-left:3px solid #f59e0b">
+          <strong style="color:#111">28-day rental:</strong> Exclusive monthly rates — a fraction of the daily price. Ideal for relocation, extended trips, or long-term projects.
+        </p>
+        <div class="fg">
+          <span class="fl">Pick-up Location</span>
+          <div style="position:relative">
+            <input class="fi" id="mlpu" type="text" placeholder="City, airport or station…" autocomplete="off" oninput="acFn(this,'mu')" onfocus="acFn(this,'mu')" onblur="setTimeout(()=>acH('mu'),160)">
+            <div class="acd" id="ac-mu"></div>
+          </div>
+          <div class="rdl">
+            <input type="checkbox" id="rdl-l" onchange="document.getElementById('dl-l').classList.toggle('show',this.checked)">
+            <label for="rdl-l">Return to a <b>different location</b></label>
+          </div>
+          <div class="dloc" id="dl-l">
+            <div style="position:relative;margin-top:6px">
+              <input class="fi" id="ldo-l" type="text" placeholder="Drop-off city or airport…" autocomplete="off" oninput="acFn(this,'dol')" onfocus="acFn(this,'dol')" onblur="setTimeout(()=>acH('dol'),160)">
+              <div class="acd" id="ac-dol"></div>
+            </div>
+          </div>
+        </div>
+        <div class="fg2">
+          <div>
+            <span class="fl">Start Date</span>
+            <button class="dbtn" id="dmu" onclick="openCal('lng')">
+              <svg fill="none" stroke="#b8c4be" stroke-width="1.8" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              <span id="dmu-txt">Select start date</span>
+            </button>
+          </div>
+          <div>
+            <span class="fl">Pick-up Time</span>
+            <div class="tw"><div class="tv" onclick="tTog('tmu')"><span class="tv-left"><svg class="tv-ico" fill="none" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span id="tmu-v">10:00</span></span><span class="tc">▾</span></div><div class="tdd" id="tmu"></div></div>
+          </div>
+        </div>
+        <div class="fg2">
+          <div>
+            <span class="fl">Vehicle Type</span>
+            <select class="fsel">
+              <option>All vehicle types</option>
+              <option>Sedan — Toyota Camry or similar</option>
+              <option>SUV — Toyota RAV4 or similar</option>
+              <option>Van / Multiseater — up to 9 seats</option>
+              <option>Convertible — Ford Mustang or similar</option>
+              <option>Pickup — Toyota Tacoma or similar</option>
+            </select>
+          </div>
+          <div>
+            <span class="fl">Currency</span>
+            <select class="fsel"><option>$ USD</option><option>£ GBP</option></select>
+          </div>
+        </div>
+        <div class="sixt-strip">
+          <span class="sixt-lbl">Official partner of</span>
+          <div class="sixt-pill">SIXT</div>
+          <span class="sixt-cert">✓ Certified Travel Agent</span>
+        </div>
+        <button class="btn-go amber" onclick="goSearch('lng')">
+          Search Long-Term Rates
+          <span class="btn-go-s">28-day deals · All locations compared · Unlimited mileage options</span>
+        </button>
+        <button class="btn-ghost amber" onclick="setTab('reg')">← Back to regular rental</button>
+      </div>
+
+    </div>
   </div>
 </div>
 </div>
 
-<div id="results-page">
-  <div class="rh">
-    <div class="rh-logo">DriveWise<span>.</span></div>
-    <div class="rh-meta" id="rh-meta"></div>
-    <button class="rh-back" onclick="goHome()">← New search</button>
-  </div>
-  <div class="rbody">
-    <aside class="filt">
-      <div class="ft">Vehicle type</div>
-      <div class="chips" id="ftype">
-        <div class="chip on" data-f="all">All</div><div class="chip" data-f="Sedan">Sedan</div>
-        <div class="chip" data-f="SUV">SUV</div><div class="chip" data-f="Pickup">Pickup</div>
-        <div class="chip" data-f="Multiseater">Van</div><div class="chip" data-f="Convertible">Conv.</div>
+<!-- BIG CALENDAR OVERLAY (like SIXT) -->
+<div class="cal-overlay" id="cal-overlay" onclick="closeCal(event)">
+  <div class="cal-box" onclick="event.stopPropagation()">
+    <div class="cal-header">
+      <div class="cal-title" id="cal-title">Select pick-up and return dates</div>
+      <button class="cal-close" onclick="closeCal()">✕</button>
+    </div>
+    <div class="cal-nav-row">
+      <button class="cal-nav-btn" onclick="calNav(-1)">‹</button>
+      <div style="font-size:13px;color:#9ca3af;font-weight:500" id="cal-range-label"></div>
+      <button class="cal-nav-btn" onclick="calNav(1)">›</button>
+    </div>
+    <div class="cal-months" id="cal-months"></div>
+    <div class="cal-footer">
+      <div class="cal-dur" id="cal-dur">Click a date to select your pick-up</div>
+      <div class="cal-actions">
+        <button class="cal-clear" onclick="calClear()">Clear</button>
+        <button class="cal-apply" onclick="calApply()">Apply Dates</button>
       </div>
-      <div class="ft" style="margin-top:20px">Rate types</div>
-      <div style="display:flex;flex-direction:column;gap:6px;font-size:11px;color:var(--grey)">
-        <div style="display:flex;gap:7px;align-items:center"><span style="width:8px;height:8px;border-radius:50%;background:var(--green);display:inline-block"></span>Sixt Holiday</div>
-        <div style="display:flex;gap:7px;align-items:center"><span style="width:8px;height:8px;border-radius:50%;background:#22c55e;display:inline-block"></span>Public Special Rate</div>
-        <div style="display:flex;gap:7px;align-items:center"><span style="width:8px;height:8px;border-radius:50%;background:#6b7280;display:inline-block"></span>Comfort Package</div>
-        <div style="display:flex;gap:7px;align-items:center"><span style="width:8px;height:8px;border-radius:50%;background:#9ca3af;display:inline-block"></span>Public Rate</div>
-        <div style="display:flex;gap:7px;align-items:center"><span style="width:8px;height:8px;border-radius:50%;background:#374151;display:inline-block"></span>Advanced Package</div>
-      </div>
-    </aside>
-    <main class="cars" id="cc">
-      <div class="lw"><div class="sp"></div><div class="lt">Searching…</div></div>
-    </main>
-  </div>
-</div>
-
-<div class="ov" id="ov">
-  <div class="bm">
-    <div class="bmh"><div class="bmt">Complete booking</div><button class="bmc" onclick="closeM()">✕</button></div>
-    <div class="bmb2">
-      <div class="bsum">
-        <div><div class="bcn" id="b-cn">–</div><div class="bcs" id="b-cs">–</div></div>
-        <div><div class="bcp" id="b-cp">$0</div><div style="font-size:10px;color:var(--grey)">per day</div></div>
-      </div>
-      <div class="stl">1 — Driver information</div>
-      <div class="trads"><label class="tro"><input type="radio" name="title" value="Mr." checked> Mr.</label><label class="tro"><input type="radio" name="title" value="Mrs."> Mrs.</label></div>
-      <div class="fg">
-        <div class="ff"><label>First name *</label><input type="text" id="b-fn" placeholder="John" required></div>
-        <div class="ff"><label>Last name *</label><input type="text" id="b-ln" placeholder="Smith" required></div>
-        <div class="ff"><label>Email *</label><input type="email" id="b-em" placeholder="john@email.com" required></div>
-        <div class="ff"><label>Phone *</label><input type="tel" id="b-ph" placeholder="+1 555 000 0000" required></div>
-      </div>
-      <div class="fg">
-        <div class="ff"><label>Street & house no. *</label><input type="text" id="b-st" required></div>
-        <div class="ff"><label>Zip code *</label><input type="text" id="b-zp" required></div>
-        <div class="ff"><label>City *</label><input type="text" id="b-ct" required></div>
-        <div class="ff"><label>Country *</label><select id="b-co"><option value="USA">United States</option><option value="GBR">United Kingdom</option><option value="DEU">Germany</option><option value="FRA">France</option><option value="ISR">Israel</option><option value="AUS">Australia</option><option value="CAN">Canada</option></select></div>
-      </div>
-      <div class="fg fg3">
-        <div class="ff"><label>Birth day *</label><input type="number" id="b-dd" placeholder="DD" min="1" max="31" required></div>
-        <div class="ff"><label>Month *</label><input type="number" id="b-dm" placeholder="MM" min="1" max="12" required></div>
-        <div class="ff"><label>Year *</label><input type="number" id="b-dy" placeholder="YYYY" min="1920" max="2005" required></div>
-      </div>
-      <div class="stl">2 — Payment (credit card only)</div>
-      <div class="pbox">
-        <div class="pt2">💳 Secure credit card payment</div>
-        <div class="ps2">Charged directly by SIXT · No extra fees from DriveWise</div>
-        <div class="pg">
-          <div class="pf2 pfc"><label>Card number *</label><input type="text" id="b-num" placeholder="4111 1111 1111 1111" maxlength="19" oninput="fc(this)" required></div>
-          <div class="pf2"><label>Cardholder *</label><input type="text" id="b-chn" placeholder="JOHN SMITH" required></div>
-          <div class="pf2"><label>Exp. month *</label><select id="b-cmo" required><option value="">MM</option><option>01</option><option>02</option><option>03</option><option>04</option><option>05</option><option>06</option><option>07</option><option>08</option><option>09</option><option>10</option><option>11</option><option>12</option></select></div>
-          <div class="pf2"><label>Exp. year *</label><select id="b-cyr" required><option value="">YYYY</option><option>2026</option><option>2027</option><option>2028</option><option>2029</option><option>2030</option><option>2031</option><option>2032</option></select></div>
-        </div>
-      </div>
-      <div class="trw"><input type="checkbox" id="b-tc" required><label for="b-tc">I accept SIXT's <a href="#">Rental Terms & Conditions</a> and <a href="#">Privacy Policy</a>. The total price includes all mandatory fees and taxes.</label></div>
-      <button class="fbtn" id="fbtn" onclick="fin()">Finalize booking</button>
-      <div class="snote">🔒 Processed through SIXT · Confirmation email sent directly by SIXT</div>
     </div>
   </div>
 </div>
 
 <script>
-const API='https://swung-blunderer-happiest.ngrok-free.dev';
-const TIMES=['07:00','08:00','09:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00','17:00','18:00','19:00','20:00','21:00'];
+const TIMES=['06:00','07:00','08:00','09:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00','17:00','18:00','19:00','20:00','21:00'];
 const LOCS=[
   {n:'Miami Int Airport (US)',c:'Miami',k:'US'},{n:'Miami / Dadeland Mall (US)',c:'Miami',k:'US'},{n:'Miami / Downtown (US)',c:'Miami',k:'US'},
   {n:'New York / JFK Airport (US)',c:'New York',k:'US'},{n:'New York / LaGuardia Airport (US)',c:'New York',k:'US'},{n:'New York / Manhattan (US)',c:'New York',k:'US'},
   {n:'Los Angeles Int Airport (US)',c:'Los Angeles',k:'US'},{n:'Las Vegas / Harry Reid Airport (US)',c:'Las Vegas',k:'US'},{n:'Las Vegas / Strip (US)',c:'Las Vegas',k:'US'},
-  {n:'Chicago / O\'Hare Airport (US)',c:'Chicago',k:'US'},{n:'Orlando Airport (US)',c:'Orlando',k:'US'},{n:'Boston Logan Airport (US)',c:'Boston',k:'US'},
-  {n:'San Francisco Airport (US)',c:'San Francisco',k:'US'},{n:'Dallas Fort Worth Airport (US)',c:'Dallas',k:'US'},{n:'Seattle / Tacoma Airport (US)',c:'Seattle',k:'US'},
-  {n:'Atlanta Airport (US)',c:'Atlanta',k:'US'},{n:'Denver Airport (US)',c:'Denver',k:'US'},{n:'Houston / George Bush Airport (US)',c:'Houston',k:'US'},
-  {n:'Phoenix / Sky Harbor Airport (US)',c:'Phoenix',k:'US'},{n:'London Heathrow Airport (GB)',c:'London',k:'GB'},{n:'London Gatwick Airport (GB)',c:'London',k:'GB'},
-  {n:'London / Victoria Station (GB)',c:'London',k:'GB'},{n:'Manchester Airport (GB)',c:'Manchester',k:'GB'},{n:'Paris / Charles de Gaulle (FR)',c:'Paris',k:'FR'},
-  {n:'Paris / Orly Airport (FR)',c:'Paris',k:'FR'},{n:'Berlin Brandenburg Airport (DE)',c:'Berlin',k:'DE'},{n:'Frankfurt Airport (DE)',c:'Frankfurt',k:'DE'},
-  {n:'Munich Airport (DE)',c:'Munich',k:'DE'},{n:'Dubai Airport (AE)',c:'Dubai',k:'AE'},{n:'Abu Dhabi Airport (AE)',c:'Abu Dhabi',k:'AE'},
+  {n:'Chicago / O\'Hare Airport (US)',c:'Chicago',k:'US'},{n:'Chicago / Midway Airport (US)',c:'Chicago',k:'US'},
+  {n:'Orlando Airport (US)',c:'Orlando',k:'US'},{n:'Orlando / International Drive (US)',c:'Orlando',k:'US'},
+  {n:'Boston Logan Airport (US)',c:'Boston',k:'US'},{n:'San Francisco Airport (US)',c:'San Francisco',k:'US'},
+  {n:'Dallas Fort Worth Airport (US)',c:'Dallas',k:'US'},{n:'Seattle / Tacoma Airport (US)',c:'Seattle',k:'US'},
+  {n:'Atlanta Airport (US)',c:'Atlanta',k:'US'},{n:'Denver Airport (US)',c:'Denver',k:'US'},
+  {n:'Houston / George Bush Airport (US)',c:'Houston',k:'US'},{n:'Phoenix / Sky Harbor Airport (US)',c:'Phoenix',k:'US'},
+  {n:'London Heathrow Airport (GB)',c:'London',k:'GB'},{n:'London Gatwick Airport (GB)',c:'London',k:'GB'},{n:'London / Victoria Station (GB)',c:'London',k:'GB'},
+  {n:'Manchester Airport (GB)',c:'Manchester',k:'GB'},{n:'Paris / Charles de Gaulle (FR)',c:'Paris',k:'FR'},{n:'Paris / Orly Airport (FR)',c:'Paris',k:'FR'},
+  {n:'Berlin Brandenburg Airport (DE)',c:'Berlin',k:'DE'},{n:'Frankfurt Airport (DE)',c:'Frankfurt',k:'DE'},{n:'Munich Airport (DE)',c:'Munich',k:'DE'},
+  {n:'Dubai Airport (AE)',c:'Dubai',k:'AE'},{n:'Abu Dhabi Airport (AE)',c:'Abu Dhabi',k:'AE'},
   {n:'Tel Aviv / Ben Gurion Airport (IL)',c:'Tel Aviv',k:'IL'},{n:'Tel Aviv / Downtown (IL)',c:'Tel Aviv',k:'IL'},
   {n:'Amsterdam / Schiphol Airport (NL)',c:'Amsterdam',k:'NL'},{n:'Barcelona / El Prat Airport (ES)',c:'Barcelona',k:'ES'},
   {n:'Madrid / Barajas Airport (ES)',c:'Madrid',k:'ES'},{n:'Rome / Fiumicino Airport (IT)',c:'Rome',k:'IT'},
   {n:'Toronto / Pearson Airport (CA)',c:'Toronto',k:'CA'},{n:'Sydney Airport (AU)',c:'Sydney',k:'AU'},{n:'Cancun Airport (MX)',c:'Cancun',k:'MX'},
+  {n:'Zurich Airport (CH)',c:'Zurich',k:'CH'},{n:'Vienna Airport (AT)',c:'Vienna',k:'AT'},
 ];
-function changeLang(l){document.documentElement.lang=l;document.documentElement.dir=l==='he'?'rtl':'ltr';}
-function bT(id){const dd=document.getElementById(id);dd.innerHTML=TIMES.map(t=>`<div class="to${t==='11:00'?' sel':''}" onclick="setT('${id}','${t}')">${t}</div>`).join('');}
-bT('tpu');bT('tdo');
-function tTog(id){const dd=document.getElementById(id);const o=dd.classList.contains('open');document.querySelectorAll('.tdd.open').forEach(d=>d.classList.remove('open'));if(!o)dd.classList.add('open');}
-function setT(id,v){document.getElementById(id+'-v').textContent=v;document.getElementById(id).querySelectorAll('.to').forEach(o=>o.classList.toggle('sel',o.textContent===v));document.getElementById(id).classList.remove('open');}
-document.addEventListener('click',e=>{
-  if(!e.target.closest('.tw'))document.querySelectorAll('.tdd.open').forEach(d=>d.classList.remove('open'));
-  if(!e.target.closest('.cal-pop')&&!e.target.closest('.date-btn'))document.querySelectorAll('.cal-pop.open').forEach(d=>d.classList.remove('open'));
-  if(!e.target.closest('.sf'))document.querySelectorAll('.acd.open').forEach(d=>d.classList.remove('open'));
+
+// TABS
+function setTab(t){
+  ['reg','best','lng'].forEach(id=>{document.getElementById('f-'+id).style.display=id===t?'block':'none';});
+  document.querySelectorAll('.tab').forEach((tab,i)=>{
+    const ids=['reg','best','lng'];
+    tab.classList.toggle('on',ids[i]===t);
+    tab.querySelectorAll('svg').forEach(s=>s.setAttribute('stroke',ids[i]===t?'#3db87a':'#9ca3af'));
+  });
+}
+
+// TIME PICKERS
+['tpu','tdo','tpu2','tdo2','tmu'].forEach(id=>{
+  const d=document.getElementById(id);
+  if(d)d.innerHTML=TIMES.map(t=>`<div class="to${t==='10:00'?' sel':''}" onclick="setT('${id}','${t}')">${t}</div>`).join('');
 });
-function aS(inp,w){const q=inp.value.trim().toLowerCase();const dd=document.getElementById('ac-'+w);if(!q){dd.classList.remove('open');return;}const res=LOCS.filter(l=>l.n.toLowerCase().includes(q)||l.c.toLowerCase().includes(q)).slice(0,9);if(!res.length){dd.classList.remove('open');return;}dd.innerHTML=res.map(l=>{const i=l.n.toLowerCase().indexOf(q);const nm=i<0?l.n:l.n.slice(0,i)+'<b>'+l.n.slice(i,i+q.length)+'</b>'+l.n.slice(i+q.length);return`<div class="aci" onmousedown="aSel('${w}',\`${l.n}\`)"><div class="ain">${nm}</div><div class="ais">${l.c} · ${l.k}</div></div>`;}).join('');dd.classList.add('open');}
-function aSel(w,name){document.getElementById(w==='pu'?'loc-pu':'loc-do').value=name;document.getElementById('ac-'+w).classList.remove('open');}
-function aH(w){document.getElementById('ac-'+w).classList.remove('open');}
-function setAD(v){window.AD=v;document.getElementById('ad-y').className='tob'+(v?' on':'');document.getElementById('ad-n').className='tob'+(v?'':' on');}
-window.AD=true;
-const MN=['January','February','March','April','May','June','July','August','September','October','November','December'],WD=['Su','Mo','Tu','We','Th','Fr','Sa'];
-let CS={pu:null,do:null,y:null,m:null};
-function openC(w){document.querySelectorAll('.cal-pop.open').forEach(d=>d.classList.remove('open'));if(!CS.y){const n=new Date();CS.y=n.getFullYear();CS.m=n.getMonth();}CS.mode=w;const el=document.getElementById('cal-'+w);el.innerHTML=bCal();el.classList.add('open');}
-function bCal(){const y=CS.y,m=CS.m,nm=m===11?0:m+1,ny=m===11?y+1:y;return`<div class="cg"><div>${mo(y,m,true)}</div><div>${mo(ny,nm,false)}</div></div><div class="cft"><div class="cdur" id="cdur">${dT()}</div><button class="cok" onclick="apC()">Apply</button></div>`;}
-function mo(y,m,iL){const f=new Date(y,m,1).getDay(),t=new Date(y,m+1,0).getDate(),td=new Date();td.setHours(0,0,0,0);let h=`<div class="chd"><button class="cnv${iL?'':' h'}" onclick="cP()">‹</button><div class="cmn">${MN[m]} ${y}</div><button class="cnv${iL?' h':''}" onclick="cN()">›</button></div><div class="wds">${WD.map(d=>`<div class="wd">${d}</div>`).join('')}</div><div class="cds">`;for(let i=0;i<f;i++)h+=`<div class="cd e"></div>`;for(let d=1;d<=t;d++){const dt=new Date(y,m,d);dt.setHours(0,0,0,0);const ts=dt.getTime(),past=dt<td,iS=CS.pu&&ts===CS.pu.getTime(),iE=CS.do&&ts===CS.do.getTime(),inR=CS.pu&&CS.do&&ts>CS.pu.getTime()&&ts<CS.do.getTime();let c='cd';if(past)c+=' d';else if(iS&&iE)c+=' s end';else if(iS)c+=' s';else if(iE)c+=' end';else if(inR)c+=' r';if(!iS&&!iE&&dt.getTime()===td.getTime())c+=' td';h+=`<button class="${c}" onclick="pD(${y},${m},${d})">${d}</button>`;}return h+'</div>';}
-function pD(y,m,d){const dt=new Date(y,m,d);dt.setHours(0,0,0,0);const td=new Date();td.setHours(0,0,0,0);if(dt<td)return;if(!CS.pu||(CS.pu&&CS.do)||dt<CS.pu){CS.pu=dt;CS.do=null;}else{CS.do=dt;}document.querySelectorAll('.cal-pop.open').forEach(el=>{el.innerHTML=bCal();});}
-function cP(){if(CS.m===0){CS.m=11;CS.y--;}else CS.m--;document.querySelectorAll('.cal-pop.open').forEach(el=>{el.innerHTML=bCal();});}
-function cN(){if(CS.m===11){CS.m=0;CS.y++;}else CS.m++;document.querySelectorAll('.cal-pop.open').forEach(el=>{el.innerHTML=bCal();});}
-function dT(){if(CS.pu&&CS.do){const d=Math.round((CS.do-CS.pu)/86400000);return`<b>${d} day${d!==1?'s':''}</b> rental`;}return CS.pu?'Select return date':'Select pick-up date';}
+function tTog(id){
+  const d=document.getElementById(id);const tv=d.previousElementSibling;const o=d.classList.contains('open');
+  document.querySelectorAll('.tdd.open').forEach(x=>x.classList.remove('open'));
+  document.querySelectorAll('.tv.open').forEach(x=>x.classList.remove('open'));
+  if(!o){d.classList.add('open');tv.classList.add('open');}
+}
+function setT(id,v){
+  document.getElementById(id+'-v').textContent=v;
+  document.getElementById(id).querySelectorAll('.to').forEach(o=>o.classList.toggle('sel',o.textContent===v));
+  document.getElementById(id).classList.remove('open');
+  document.getElementById(id).previousElementSibling?.classList.remove('open');
+}
+
+// AUTOCOMPLETE — live SIXT stations via backend proxy
+// GET /api/stations?search=<term> returns [{id, name, city, country, lat, lng, type}]
+// Debounce 250ms; min 2 chars; abort in-flight when typed; cache results per query.
+const AC_CACHE = new Map();   // query → results[]
+const AC_TIMERS = {};         // per-input debounce timer
+const AC_AC    = {};          // per-input AbortController
+const AC_PICK  = {};          // per-input { name, lat, lng, type, id, city, search } when user clicks a row
+
+function acFn(inp, w){
+  const q = inp.value.trim();
+  const dd = document.getElementById('ac-' + w);
+  if (!dd) return;
+
+  // Clear any picked-branch state when user starts typing again
+  if (AC_PICK[w] && AC_PICK[w].name !== inp.value) delete AC_PICK[w];
+
+  // Min 2 chars — clear & close
+  if (q.length < 2) {
+    if (AC_AC[w]) try { AC_AC[w].abort(); } catch(_) {}
+    if (AC_TIMERS[w]) clearTimeout(AC_TIMERS[w]);
+    dd.classList.remove('open');
+    return;
+  }
+
+  // Cached? render immediately
+  const cached = AC_CACHE.get(q.toLowerCase());
+  if (cached) { acRender(dd, w, cached, q); return; }
+
+  // Show "searching" hint right away
+  dd.innerHTML = `<div class="aci" style="opacity:.6;cursor:default"><div><div class="ain">Searching SIXT branches…</div><div class="ais">${q}</div></div></div>`;
+  dd.classList.add('open');
+
+  // Debounce 250ms
+  if (AC_TIMERS[w]) clearTimeout(AC_TIMERS[w]);
+  AC_TIMERS[w] = setTimeout(() => acFire(w, q), 250);
+}
+
+async function acFire(w, q){
+  // Cancel any in-flight request for this input
+  if (AC_AC[w]) try { AC_AC[w].abort(); } catch(_) {}
+  AC_AC[w] = new AbortController();
+
+  const url = DW_API + '/api/stations?search=' + encodeURIComponent(q);
+  let results = [];
+  try {
+    const r = await fetch(url, {
+      method: 'GET',
+      headers: {'ngrok-skip-browser-warning':'true'},
+      signal: AC_AC[w].signal
+    });
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    const data = await r.json();
+    // Accept either a straight array (per briefing) or {data:[...]} wrapper
+    results = Array.isArray(data) ? data
+            : Array.isArray(data.data) ? data.data
+            : Array.isArray(data.results) ? data.results
+            : [];
+  } catch (e) {
+    if (e.name === 'AbortError') return;   // user typed again — ignore
+    results = [];
+  }
+
+  AC_CACHE.set(q.toLowerCase(), results);
+  // Cache lat/lng by station_id so distance computation can use real coords
+  for (const s of results) {
+    const id = s.id || s.station_id;
+    const lat = +(s.lat || s.latitude);
+    const lng = +(s.lng || s.longitude);
+    if (id && Number.isFinite(lat) && Number.isFinite(lng)) {
+      DW_STATION_COORDS.set(String(id), {lat, lng});
+    }
+  }
+  const dd = document.getElementById('ac-' + w);
+  if (!dd) return;
+  // Only render if this is still the query the user has in the box
+  const inp = document.getElementById(acIdMap[w]);
+  if (inp && inp.value.trim() !== q) return;
+  acRender(dd, w, results, q);
+}
+
+function acRender(dd, w, results, q){
+  if (!results.length) {
+    dd.innerHTML = `<div class="aci" style="opacity:.6;cursor:default"><div><div class="ain">No matching SIXT branches</div><div class="ais">Try a different city or airport code</div></div></div>`;
+    dd.classList.add('open');
+    return;
+  }
+  const qLower = q.toLowerCase();
+  dd.innerHTML = results.slice(0, 10).map(s => {
+    const name = String(s.name || (s.names && s.names.en) || '').trim();
+    const city = String(s.city || (s.address && s.address.town) || '').trim();
+    const country = String(s.country || (s.country_id ? '' : '')).trim();
+    const type = String(s.type || 'city').toLowerCase();
+    const isAirport = type === 'airport';
+    const icon = isAirport
+      ? '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#3db87a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-right:8px"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg>'
+      : '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#6b7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-right:8px"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>';
+    // Highlight matched substring in the name
+    const i = name.toLowerCase().indexOf(qLower);
+    const nm = i < 0 ? name : name.slice(0,i) + '<b>' + name.slice(i, i + q.length) + '</b>' + name.slice(i + q.length);
+    const sub = [isAirport ? 'Airport' : 'Branch', city, country].filter(Boolean).join(' · ');
+    // Stash the row data on a data attribute via index so the click handler can read it
+    return `<div class="aci" onmousedown="acSel('${w}', ${s.id || 0}, ${JSON.stringify(name).replace(/"/g,'&quot;')}, ${+s.lat||0}, ${+s.lng||0}, ${JSON.stringify(type).replace(/"/g,'&quot;')}, ${JSON.stringify(city).replace(/"/g,'&quot;')}, ${JSON.stringify(q).replace(/"/g,'&quot;')})">
+      <div style="display:flex;align-items:center;width:100%">${icon}<div style="flex:1;min-width:0"><div class="ain">${nm}</div><div class="ais">${sub}</div></div></div>
+    </div>`;
+  }).join('');
+  dd.classList.add('open');
+}
+
+const acIdMap={pu:'lpu',do:'ldo',pu2:'lpu2',do2:'ldo2',mu:'mlpu',dol:'ldo-l'};
+
+// Called when user clicks a dropdown row. Stores the picked branch in AC_PICK[w]
+// so we can use its lat/lng for real distance computation on the results page.
+// The `q` arg is the user's search term — that becomes the arbitrage region.
+function acSel(w, id, name, lat, lng, type, city, q){
+  const el = document.getElementById(acIdMap[w]);
+  if (el) el.value = name;
+  AC_PICK[w] = {id, name, lat:+lat, lng:+lng, type, city, search:q};
+  document.getElementById('ac-' + w)?.classList.remove('open');
+}
+
+function acH(w){document.getElementById('ac-' + w)?.classList.remove('open');}
+
+// CLOSE DROPDOWNS ON OUTSIDE CLICK
+document.addEventListener('click',e=>{
+  if(!e.target.closest('.tw')){document.querySelectorAll('.tdd.open').forEach(d=>d.classList.remove('open'));document.querySelectorAll('.tv.open').forEach(d=>d.classList.remove('open'));}
+  if(!e.target.closest('.fg')&&!e.target.closest('.dloc'))document.querySelectorAll('.acd.open').forEach(d=>d.classList.remove('open'));
+});
+
+// ─── BIG CALENDAR (3 months, like SIXT) ───
+const MN=['January','February','March','April','May','June','July','August','September','October','November','December'];
+const WD=['Su','Mo','Tu','We','Th','Fr','Sa'];
+let CAL={pu:null,do:null,mu:null,y:null,m:null,mode:'reg',isLng:false};
+
+function openCal(mode){
+  CAL.mode=mode;CAL.isLng=(mode==='lng');
+  if(!CAL.y){const n=new Date();CAL.y=n.getFullYear();CAL.m=n.getMonth();}
+  document.getElementById('cal-title').textContent=CAL.isLng?'Select your 28-day rental start date':'Select pick-up and return dates';
+  renderCalMonths();
+  document.getElementById('cal-overlay').classList.add('open');
+}
+function closeCal(e){
+  if(!e||e.target===document.getElementById('cal-overlay'))
+    document.getElementById('cal-overlay').classList.remove('open');
+}
+function calNav(dir){
+  CAL.m+=dir;
+  if(CAL.m<0){CAL.m=11;CAL.y--;}
+  if(CAL.m>11){CAL.m=0;CAL.y++;}
+  renderCalMonths();
+}
+function renderCalMonths(){
+  const months=document.getElementById('cal-months');
+  months.innerHTML='';
+  for(let i=0;i<3;i++){
+    let m=CAL.m+i,y=CAL.y;
+    if(m>11){m-=12;y++;}
+    const div=document.createElement('div');div.className='cal-mo';
+    div.innerHTML=buildMonth(y,m);
+    months.appendChild(div);
+  }
+  // Range label
+  let m0=CAL.m,y0=CAL.y,m2=CAL.m+2,y2=CAL.y;
+  if(m2>11){m2-=12;y2++;}
+  document.getElementById('cal-range-label').textContent=MN[m0]+' '+y0+' — '+MN[m2]+' '+y2;
+  updateCalDur();
+}
+function buildMonth(y,m){
+  const first=new Date(y,m,1).getDay(),total=new Date(y,m+1,0).getDate();
+  const td=new Date();td.setHours(0,0,0,0);
+  const sp=CAL.isLng?CAL.mu:CAL.pu,ep=CAL.do;
+  let h=`<div class="cal-mo-title">${MN[m]} ${y}</div>`;
+  h+=`<div class="cal-wds">${WD.map(d=>`<div class="cal-wd">${d}</div>`).join('')}</div><div class="cal-days">`;
+  for(let i=0;i<first;i++)h+=`<div class="cd ce"></div>`;
+  for(let d=1;d<=total;d++){
+    const dt=new Date(y,m,d);dt.setHours(0,0,0,0);
+    const ts=dt.getTime(),past=dt<td;
+    const iS=sp&&ts===sp.getTime(),iE=ep&&ts===ep.getTime()&&!CAL.isLng;
+    const inR=sp&&ep&&ts>sp.getTime()&&ts<ep.getTime()&&!CAL.isLng;
+    let c='cd';
+    if(past)c+=' cp';
+    else if(iS&&iE)c+=' cs cn';else if(iS)c+=' cs';else if(iE)c+=' cn';else if(inR)c+=' cr';
+    if(!iS&&!iE&&dt.getTime()===td.getTime())c+=' ct';
+    h+=`<button class="${c}" onclick="pickDay(${y},${m},${d})">${d}</button>`;
+  }
+  return h+'</div>';
+}
+function pickDay(y,m,d){
+  const dt=new Date(y,m,d);dt.setHours(0,0,0,0);
+  const td=new Date();td.setHours(0,0,0,0);if(dt<td)return;
+  if(CAL.isLng){CAL.mu=dt;}
+  else if(!CAL.pu||(CAL.pu&&CAL.do)||dt<CAL.pu){CAL.pu=dt;CAL.do=null;}
+  else{CAL.do=dt;}
+  renderCalMonths();
+}
+function updateCalDur(){
+  const el=document.getElementById('cal-dur');
+  if(CAL.isLng){el.innerHTML=CAL.mu?`<strong>Start: ${fS(CAL.mu)}</strong> → End: ${fS(new Date(CAL.mu.getTime()+28*86400000))} (28 days)`:'Click a date to select your start';}
+  else if(CAL.pu&&CAL.do){const d=Math.round((CAL.do-CAL.pu)/86400000);el.innerHTML=`<strong>${d} day${d!==1?'s':''}</strong> · ${fS(CAL.pu)} → ${fS(CAL.do)}`;}
+  else{el.innerHTML=CAL.pu?`Pick-up: <strong>${fS(CAL.pu)}</strong> — now click return date`:'Click a date to select your pick-up';}
+}
+function calClear(){
+  if(CAL.isLng){CAL.mu=null;}else{CAL.pu=null;CAL.do=null;}
+  renderCalMonths();
+}
+function calApply(){
+  const mode=CAL.mode;
+  if(CAL.isLng){
+    if(!CAL.mu)return;
+    const end=new Date(CAL.mu.getTime()+28*86400000);
+    const btn=document.getElementById('dmu');
+    btn.querySelector('span').textContent=fS(CAL.mu)+' → '+fS(end)+' (28d)';
+    btn.classList.add('s');
+  } else {
+    if(!CAL.pu||!CAL.do)return;
+    const puSuf=mode==='best'?'2':'',doSuf=mode==='best'?'2':'';
+    const puBtn=document.getElementById('dpu'+puSuf);
+    const doBtn=document.getElementById('ddo'+doSuf);
+    puBtn.querySelector('span').textContent=fS(CAL.pu);puBtn.classList.add('s');
+    doBtn.querySelector('span').textContent=fS(CAL.do);doBtn.classList.add('s');
+  }
+  document.getElementById('cal-overlay').classList.remove('open');
+}
 const fS=d=>d.toLocaleDateString('en-US',{month:'short',day:'numeric'});
-function apC(){if(!CS.pu||!CS.do)return;document.getElementById('dpu').textContent=fS(CS.pu);document.getElementById('dpu').classList.add('set');document.getElementById('ddo').textContent=fS(CS.do);document.getElementById('ddo').classList.add('set');document.querySelectorAll('.cal-pop.open').forEach(d=>d.classList.remove('open'));}
-let allCars=[],curCar=null,afilt='all';
-async function doSearch(mode){
-  const loc=document.getElementById('loc-pu').value.trim();
-  if(!loc){document.getElementById('loc-pu').focus();return;}
-  if(!CS.pu||!CS.do){openC('pu');return;}
-  const cur=document.getElementById('cur-val').value;
-  const pu=CS.pu.toISOString().split('T')[0];
-  let doff=CS.do.toISOString().split('T')[0];
-  if(mode==='monthly'){const d=new Date(CS.pu);d.setDate(d.getDate()+28);doff=d.toISOString().split('T')[0];}
-  document.getElementById('hero-page').style.display='none';
-  document.getElementById('results-page').style.display='block';
-  const mL=mode==='monthly'?' · Monthly':mode==='compare'?' · Compare':'';
-  document.getElementById('rh-meta').textContent=loc+' · '+fS(CS.pu)+' '+document.getElementById('tpu-v').textContent+' → '+fS(mode==='monthly'?new Date(doff+'T12:00:00'):CS.do)+' '+document.getElementById('tdo-v').textContent+mL+' · '+cur;
-  document.getElementById('cc').innerHTML='<div class="lw"><div class="sp"></div><div class="lt">Scanning SIXT for '+loc+'…</div></div>';
-  try{const r=await fetch(API+'/api/search/live',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({city:loc,pickup:pu,dropoff:doff,currency:cur,mode})});const d=await r.json();allCars=d.deals||[];}catch(e){allCars=demo();}
-  rCars();
+
+// SEARCH
+// ─── DRIVEWISE BEST-PRICE FLOW ─────────────────────────────────────────
+// Backend arbitrage API
+const DW_API = 'https://swung-blunderer-happiest.ngrok-free.dev';
+
+// SIXT categories the backend accepts. UI labels → API category strings.
+const DW_CATS = [
+  {id:'cheapest',    label:'Cheapest overall'},
+  {id:'sedan',       label:'Sedan'},
+  {id:'suv',         label:'SUV'},
+  {id:'van',         label:'Van / Multiseater'},
+  {id:'convertible', label:'Convertible'},
+  {id:'pickup',      label:'Pickup'}
+];
+
+// Vehicle CLASSES that SIXT uses inside the carName. Ordered cheap → expensive.
+// We display these in the second-tier filter chip row after a category is picked,
+// but only show classes that actually exist in the current arbitrage response.
+//
+// Each entry's `keys` is a list of canonical lowercase prefixes — we match these
+// against the parsed class name from carName. Multi-word classes like "Premium Elite"
+// or "Fullsize Elite" must come BEFORE their parents in this list so the parser
+// catches the longer form first.
+const DW_CLASSES = [
+  {id:'Mini',           label:'Mini',         keys:['mini']},
+  {id:'Economy',        label:'Economy',      keys:['economy']},
+  {id:'Compact',        label:'Compact',      keys:['compact']},
+  {id:'Intermediate',   label:'Intermediate', keys:['intermediate']},
+  {id:'Standard',       label:'Standard',     keys:['standard']},
+  {id:'Fullsize Elite', label:'Fullsize Elite', keys:['fullsize elite']},
+  {id:'Fullsize',       label:'Fullsize',     keys:['fullsize','full-size','full size']},
+  {id:'Premium Elite',  label:'Premium Elite',keys:['premium elite']},
+  {id:'Premium',        label:'Premium',      keys:['premium']},
+  {id:'Luxury',         label:'Luxury',       keys:['luxury']},
+  {id:'Minivan',        label:'Minivan',      keys:['minivan','mini van','van']},
+  {id:'SUV',            label:'SUV',          keys:['suv']}, // some backends use bare "SUV" as the class
+];
+
+// Parse "Compact (NISSAN VERSA)" → {className:'Compact', carModel:'NISSAN VERSA'}
+// Falls back gracefully for unexpected formats.
+function dwParseClass(carName){
+  if (!carName || typeof carName !== 'string') return {className:'', carModel:''};
+  const m = carName.match(/^([A-Za-z][A-Za-z\s-]*?)\s*\((.+)\)\s*$/);
+  if (!m) return {className:'', carModel:carName.trim()};
+  let raw = m[1].trim();
+  const model = m[2].trim();
+  // Normalize against known classes (case-insensitive, multi-word first)
+  const rawLower = raw.toLowerCase();
+  for (const c of DW_CLASSES) {
+    if (c.keys.some(k => rawLower === k)) return {className:c.id, carModel:model};
+  }
+  // Unknown class — keep original capitalization
+  return {className:raw, carModel:model};
 }
-function demo(){return[
-  {carName:'Compact (NISSAN VERSA)',category:'Sedan',carGroup:'CCAR',cheapestPrice:69.24,rates:[{name:'Sixt Holiday',price:79.12},{name:'Public Special Rate',price:69.24},{name:'Comfort Package SLI Incl.',price:116.72}]},
-  {carName:'Economy Elite (MINI COOPER)',category:'Sedan',carGroup:'HCAR',cheapestPrice:69.47,rates:[{name:'Sixt Holiday',price:79.39},{name:'Public Special Rate',price:69.47}]},
-  {carName:'Intermediate (NISSAN SENTRA)',category:'Sedan',carGroup:'ICAR',cheapestPrice:69.69,rates:[{name:'Sixt Holiday',price:79.64},{name:'Public Special Rate',price:69.69},{name:'Advanced Package',price:100.24}]},
-  {carName:'Intermediate (TOYOTA RAV4)',category:'SUV',carGroup:'IFAR',cheapestPrice:75.89,rates:[{name:'Sixt Holiday',price:86.88},{name:'Public Special Rate',price:75.89}]},
-  {carName:'Standard (GMC ACADIA)',category:'SUV',carGroup:'SFAV',cheapestPrice:84.77,rates:[{name:'Sixt Holiday',price:97.20},{name:'Public Special Rate',price:84.77}]},
-  {carName:'Standard Elite (BMW X3)',category:'SUV',carGroup:'RFAR',cheapestPrice:176.75,rates:[{name:'Sixt Holiday',price:204.34},{name:'Public Special Rate',price:176.75},{name:'Advanced Package',price:310.37}]},
-  {carName:'Fullsize Elite (BMW X5)',category:'SUV',carGroup:'GFAR',cheapestPrice:202.57,rates:[{name:'Sixt Holiday',price:234.41},{name:'Public Special Rate',price:202.57}]},
-];}
-function rCars(){const list=afilt==='all'?allCars:allCars.filter(c=>c.category===afilt);const cc=document.getElementById('cc');if(!list.length){cc.innerHTML='<div class="lw"><div style="font-size:36px">🔍</div><div class="lt">No cars found</div></div>';return;}cc.innerHTML=list.map((c,i)=>cCard(c,i)).join('');setTimeout(()=>document.querySelectorAll('.card').forEach((c,i)=>setTimeout(()=>c.classList.add('v'),i*40)),40);document.querySelectorAll('#ftype .chip').forEach(ch=>{ch.onclick=()=>{document.querySelectorAll('#ftype .chip').forEach(c=>c.classList.remove('on'));ch.classList.add('on');afilt=ch.dataset.f;rCars();};});}
-function cCard(car,i){const bdg=i===0?'<div class="cbdg b">Best deal</div>':i===1?'<div class="cbdg v">Great value</div>':'';const mn=Math.min(...car.rates.map(r=>r.price));const rates=car.rates.map(r=>`<div class="rr${r.price===mn?' lo':''}"><span class="rn">${r.name.replace('Comfort Package SLI Incl.','Comfort Package').replace('Public Special Rate','Special Rate').replace('Advanced Package','Adv. Package')}</span><span class="rp">$${r.price}/day</span></div>`).join('');const sf=JSON.stringify(car).replace(/"/g,'&quot;').replace(/'/g,'&#39;');return`<div class="card" data-cat="${car.category}"><div class="ci">${bdg}<div class="cico">🚗</div></div><div class="cb"><div><div class="cn">${car.carName}</div><div class="cm">${car.category}${car.carGroup?' · '+car.carGroup:''} · Automatic · Unlimited KM</div><div class="crates">${rates}</div></div><div class="cf"><div><div class="pf">From</div><div class="pb">$${car.cheapestPrice}</div><div class="pd">per day</div></div><button class="bkb" onclick='openM(${sf})'>Book now →</button></div></div></div>`;}
-function goHome(){document.getElementById('results-page').style.display='none';document.getElementById('hero-page').style.display='block';}
-function openM(car){curCar=car;document.getElementById('b-cn').textContent=car.carName;document.getElementById('b-cs').textContent=car.category+(car.carGroup?' · '+car.carGroup:'');document.getElementById('b-cp').textContent='$'+car.cheapestPrice;document.getElementById('ov').classList.add('open');document.body.style.overflow='hidden';}
-function closeM(){document.getElementById('ov').classList.remove('open');document.body.style.overflow='';}
-function fc(el){let v=el.value.replace(/\D/g,'').substring(0,16);el.value=v.replace(/(.{4})/g,'$1 ').trim();}
-async function fin(){
-  if(!document.getElementById('b-tc').checked){alert('Please accept the terms.');return;}
-  const rq=['b-fn','b-ln','b-em','b-ph','b-st','b-zp','b-ct','b-dd','b-dm','b-dy','b-num','b-chn','b-cmo','b-cyr'];
-  for(const id of rq){if(!document.getElementById(id).value){document.getElementById(id).focus();alert('Please fill all required fields.');return;}}
-  const btn=document.getElementById('fbtn');btn.textContent='Processing…';btn.disabled=true;
-  const d={carName:curCar.carName,carGroup:curCar.carGroup,pricePerDay:curCar.cheapestPrice,currency:document.getElementById('cur-val').value,title:document.querySelector('input[name="title"]:checked').value,firstName:document.getElementById('b-fn').value,lastName:document.getElementById('b-ln').value,email:document.getElementById('b-em').value,phone:document.getElementById('b-ph').value,street:document.getElementById('b-st').value,zipCode:document.getElementById('b-zp').value,city:document.getElementById('b-ct').value,country:document.getElementById('b-co').value,dateOfBirth:{day:document.getElementById('b-dd').value,month:document.getElementById('b-dm').value,year:document.getElementById('b-dy').value},cardNumber:document.getElementById('b-num').value.replace(/\s/g,''),cardHolder:document.getElementById('b-chn').value,cardExpiryMonth:document.getElementById('b-cmo').value,cardExpiryYear:document.getElementById('b-cyr').value};
-  try{const r=await fetch(API+'/api/book',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(d)});const res=await r.json();closeM();showOK(res,d.email);}
-  catch(e){closeM();showOK({bookingId:'DW-'+Math.random().toString(36).substr(2,8).toUpperCase()},d.email);}
-  finally{btn.textContent='Finalize booking';btn.disabled=false;}
+
+// Catalog of SIXT extras. Prices are NOT hardcoded — they come from the backend
+// per location (DW.detailLoc.extras) since SIXT charges different rates by branch,
+// car class, rate type, and trip length. If the backend doesn't return extras data,
+// the UI shows the name only with "Price set at checkout" rather than invented numbers.
+//
+// `match` is a list of substrings used to find this extra in the backend's response,
+// since SIXT may label them slightly differently (e.g. "Toll Pass/Express Lane" vs "Toll Pass").
+const DW_EXTRAS = [
+  {id:'fuel',     name:'Prepaid Fuel',            sub:'Return without refilling',                 kind:'check', match:['prepaid fuel','fuel']},
+  {id:'toll',     name:'Toll Pass / Express Lane',sub:'All US tolls covered',                     kind:'check', match:['toll']},
+  {id:'gps',      name:'GPS Navigation',          sub:'Voice-guided routing',                     kind:'check', match:['gps']},
+  {id:'seat',     name:'Child Seats',             sub:'Booster · Infant · Toddler',               kind:'qty', max:3, match:['child seat','child_seat','car seat']},
+];
+
+// Find the live price for an extra from DW.detailLoc.extras (whatever the backend sent).
+// Returns a number, or null if not found.
+function dwExtraPrice(extra){
+  const list = (DW.detailLoc && Array.isArray(DW.detailLoc.extras)) ? DW.detailLoc.extras : [];
+  for (const e of list) {
+    const label = String(e.name || e.label || '').toLowerCase();
+    if (extra.match.some(m => label.includes(m))) {
+      const p = parseFloat(e.price ?? e.daily ?? e.pricePerDay ?? e.amount);
+      return isNaN(p) ? null : p;
+    }
+  }
+  return null;
 }
-function showOK(r,email){document.getElementById('cc').innerHTML=`<div class="lw" style="padding:100px 40px;gap:16px"><div style="width:64px;height:64px;background:var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:28px;color:white;font-weight:700">✓</div><div style="font-size:24px;font-weight:800;color:var(--text)">Booking confirmed!</div><div style="background:var(--green-l);color:var(--green);font-size:13px;font-weight:700;padding:7px 18px;border-radius:7px">Ref: ${r.bookingId||r.confirmationNumber||'–'}</div><div style="font-size:13px;color:var(--grey);text-align:center;max-width:340px;line-height:1.75">SIXT will send your confirmation email to <strong>${email||'your email'}</strong> shortly.</div><button onclick="goHome()" style="background:var(--green);color:white;border:none;cursor:pointer;padding:11px 26px;border-radius:7px;font-weight:700;font-size:14px;font-family:Inter,sans-serif">New search</button></div>`;}
+
+// Live state for the results view
+let DW = {
+  city:null, pickupISO:null, dropoffISO:null, currency:'USD',
+  category:'cheapest', vehicleClass:'all', results:[], days:0,
+  pickedBranch:null,        // {id, name, lat, lng, type} from autocomplete — used for real distances
+  raw:null,                 // full backend response (cached for category re-filtering)
+  selectedLoc:null,         // currently expanded location
+  selectedCar:null,         // selected car within that location
+  selectedRate:null,        // selected rate tier within that car (null = use cheapest)
+  detailCars:[],
+  detailLoc:null,           // raw location object — used for per-location extras prices
+  extrasStatus:'unavailable', // 'loading' | 'ready' | 'unavailable' | 'error'
+  extrasError:null,
+  mileage:'unlimited',      // 'unlimited' or 'limited'
+  payment:'now',            // 'now' or 'later'
+  extras:{fuel:0,toll:0,gps:0,seat:0}
+};
+
+// ─── SEARCH: triggered from the form ─────────────────────────────────
+function goSearch(mode){
+  const locIds={reg:'lpu',best:'lpu2',lng:'mlpu'};
+  const loc=document.getElementById(locIds[mode])?.value.trim();
+  if(!loc){document.getElementById(locIds[mode])?.focus();return;}
+  if(mode==='lng'&&!CAL.mu){openCal('lng');return;}
+  if(mode!=='lng'&&(!CAL.pu||!CAL.do)){openCal(mode);return;}
+  if(mode==='best'){return runArbitrage(loc);}
+  alert('DriveWise Search\nLocation: '+loc+'\nMode: '+mode);
+}
+
+// Format YYYY-MM-DDTHH:MM (no timezone) from a JS Date + "HH:MM"
+function dwISO(d, hhmm){
+  const y=d.getFullYear(), m=String(d.getMonth()+1).padStart(2,'0'), day=String(d.getDate()).padStart(2,'0');
+  return `${y}-${m}-${day}T${hhmm||'10:00'}`;
+}
+
+function runArbitrage(loc){
+  // If user picked a branch via autocomplete, prefer the SEARCH TERM as the region
+  // (so arbitrage scans the metro, per agreed plan) and stash the picked branch's
+  // coords for real distance calculation on the results cards.
+  const picked = AC_PICK['pu2'];
+  const region = (picked && picked.search) ? picked.search : loc;
+  DW.city      = region;
+  DW.pickedBranch = picked ? {id:picked.id, name:picked.name, lat:picked.lat, lng:picked.lng, type:picked.type} : null;
+  DW.pickupISO = dwISO(CAL.pu, document.getElementById('tpu2-v')?.textContent || '10:00');
+  DW.dropoffISO= dwISO(CAL.do, document.getElementById('tdo2-v')?.textContent || '10:00');
+  DW.currency  = (document.getElementById('cur-b')?.value || '$ USD').includes('GBP') ? 'GBP' : 'USD';
+  DW.category  = 'cheapest';
+  DW.vehicleClass = 'all';
+  DW.days      = Math.max(1, Math.round((CAL.do - CAL.pu) / 86400000));
+  DW.raw       = null;
+  DW.selectedLoc = null;
+  DW.selectedRate = null;
+  DW.extras    = {fuel:0, toll:0, gps:0, seat:0};
+
+  // Hide form, show results pane
+  document.getElementById('f-best').style.display = 'none';
+  const pane = document.getElementById('f-best-results');
+  pane.style.display = 'block';
+  renderResultsShell();
+  fetchArbitrage();
+}
+
+// Show form again, clear results
+function dwBackToForm(){
+  document.getElementById('f-best-results').style.display = 'none';
+  document.getElementById('f-best-results').innerHTML = '';
+  document.getElementById('f-best').style.display = 'block';
+}
+
+// Top-of-results shell (status bar, category chips, savings strip, list area)
+function renderResultsShell(){
+  const pane = document.getElementById('f-best-results');
+  const pickupDate = CAL.pu ? CAL.pu.toLocaleDateString('en-US',{month:'short',day:'numeric'}) : '';
+  const dropDate   = CAL.do ? CAL.do.toLocaleDateString('en-US',{month:'short',day:'numeric'}) : '';
+  pane.innerHTML = `
+    <div class="r-bar">
+      <div class="r-bar-info">
+        <b class="city">${DW.city}</b> · <b>${pickupDate} → ${dropDate}</b> · <b>${DW.days} day${DW.days>1?'s':''}</b>
+        <div style="margin-top:2px">Comparing every SIXT branch in your destination</div>
+      </div>
+      <button class="r-back" onclick="dwBackToForm()">← Change search</button>
+    </div>
+    <div class="r-cats" id="r-cats">
+      ${DW_CATS.map(c=>`<button class="r-cat ${c.id===DW.category?'on':''}" onclick="dwSetCat('${c.id}')">${c.label}</button>`).join('')}
+    </div>
+    <div class="r-classes" id="r-classes"></div>
+    <div id="r-save"></div>
+    <div id="r-list"><div class="r-load"><div class="spin"></div>Scanning all SIXT branches in ${DW.city}…</div></div>
+  `;
+}
+
+// Switch category — re-filter the cached response (no new API call)
+function dwSetCat(cat){
+  DW.category = cat;
+  DW.vehicleClass = 'all';   // class chips repopulate based on new category
+  DW.selectedLoc = null;
+  document.querySelectorAll('#r-cats .r-cat').forEach(b=>b.classList.toggle('on', b.textContent === DW_CATS.find(c=>c.id===cat).label));
+  // If we already have raw data, re-filter locally — instant, no 2-3 min wait
+  if (DW.raw && Array.isArray(DW.raw.locations)) {
+    DW.results = DW.raw.locations.map(loc => dwNormalize(loc, DW.category)).filter(x => x && x.total > 0);
+    if (!DW.results.length) {
+      const catLabel = (DW_CATS.find(c=>c.id===cat)||{}).label || cat;
+      document.getElementById('r-list').innerHTML = `
+        <div class="r-err">
+          <b>No ${catLabel.toLowerCase()} available in this region.</b><br>
+          ${DW.raw.locations.length} branches were scanned but none had a ${catLabel.toLowerCase()} option.
+        </div>`;
+      document.getElementById('r-save').innerHTML = '';
+      return;
+    }
+    DW.results.sort((a,b) => a.total - b.total);
+    renderResultsList();
+    return;
+  }
+  // No cache yet — fall through to fresh fetch
+  document.getElementById('r-list').innerHTML = '';
+  document.getElementById('r-save').innerHTML = '';
+  fetchArbitrage();
+}
+
+// ─── BACKEND CALL ────────────────────────────────────────────────────
+// Endpoint contract (per briefing):
+//   GET /api/arbitrage?region=<city>&pickup=<YYYY-MM-DD>&dropoff=<YYYY-MM-DD>&currency=<USD|GBP>
+//   Takes 2-3 minutes — the bot scans all SIXT branches in the region in real time.
+//   Response: { city, pickup, dropoff, currency, locations:[...], arbitrage:{...} }
+//   Each location has nested deals[] with category + rates[].
+const DW_LIVE_PATH = '/api/arbitrage';
+
+async function fetchArbitrage(){
+  // region = just the city name (e.g. "Miami"), no airport suffix
+  // region = the typed search term (autocomplete already locked it in as DW.city)
+  const region = DW.city;
+  const params = {
+    region:   region,
+    pickup:   DW.pickupISO.split('T')[0],   // YYYY-MM-DD only — backend rejects times
+    dropoff:  DW.dropoffISO.split('T')[0],
+    currency: DW.currency
+  };
+  const url = DW_API + DW_LIVE_PATH + '?' + new URLSearchParams(params).toString();
+
+  // Start the long-running scan progress UI
+  startScanProgress();
+
+  let r, bodyText;
+  try {
+    r = await fetch(url, {
+      method: 'GET',
+      headers: {'ngrok-skip-browser-warning':'true'},
+      // Browser doesn't honor a custom timeout, but the backend keeps the conn alive for 15 min
+    });
+    bodyText = await r.text();
+  } catch (e) {
+    stopScanProgress();
+    document.getElementById('r-list').innerHTML = `
+      <div class="r-err">
+        <b>Network error reaching the arbitrage backend.</b><br>
+        ${String(e.message || e).replace(/</g,'&lt;')}<br><br>
+        Make sure the Mac M4 backend is running (<code>cd ~/drivewise &amp;&amp; node server.js</code>)
+        and the ngrok tunnel <code>${DW_API.replace('https://','')}</code> is live.
+      </div>`;
+    return;
+  }
+  stopScanProgress();
+
+  if (!r.ok) {
+    document.getElementById('r-list').innerHTML = `
+      <div class="r-err">
+        <b>Backend rejected the request (HTTP ${r.status}).</b><br>
+        Sent: <code style="font-size:11px;background:#fff;padding:1px 5px;border-radius:3px">GET ${DW_LIVE_PATH}?${new URLSearchParams(params).toString()}</code><br>
+        Response:
+        <pre style="background:#fff;padding:8px;border-radius:4px;font-size:10.5px;white-space:pre-wrap;word-break:break-all;margin-top:6px;color:#374151">${bodyText.slice(0,600).replace(/</g,'&lt;')}</pre>
+      </div>`;
+    return;
+  }
+
+  let data;
+  try { data = JSON.parse(bodyText); }
+  catch (e) {
+    document.getElementById('r-list').innerHTML = `
+      <div class="r-err">
+        <b>Backend returned non-JSON.</b><br>
+        <pre style="background:#fff;padding:8px;border-radius:4px;font-size:10.5px;white-space:pre-wrap;word-break:break-all;margin-top:6px;color:#374151">${bodyText.slice(0,600).replace(/</g,'&lt;')}</pre>
+      </div>`;
+    return;
+  }
+
+  // Stash raw response — we use the arbitrage.* metadata in the savings strip
+  DW.raw = data;
+  const locations = Array.isArray(data.locations) ? data.locations : [];
+  if (!locations.length) {
+    document.getElementById('r-list').innerHTML = `
+      <div class="r-err">
+        <b>Backend returned 0 locations.</b><br>
+        Response keys: <code>${Object.keys(data).join(', ')}</code>
+      </div>`;
+    return;
+  }
+
+  // Normalize + filter by category. "cheapest" keeps everything.
+  DW.results = locations.map(loc => dwNormalize(loc, DW.category)).filter(x => x && x.total > 0);
+  if (!DW.results.length) {
+    const catLabel = (DW_CATS.find(c=>c.id===DW.category)||{}).label || DW.category;
+    document.getElementById('r-list').innerHTML = `
+      <div class="r-err">
+        <b>No ${catLabel.toLowerCase()} available in ${region}.</b><br>
+        ${locations.length} branches were scanned but none had a ${catLabel.toLowerCase()} option.
+        Try a different category.
+      </div>`;
+    return;
+  }
+  DW.results.sort((a,b) => a.total - b.total);
+  renderResultsList();
+  // Backfill station coords for any branches we don't have yet — fires in background,
+  // re-renders the list when coords arrive so distances update from synthetic → real.
+  dwBackfillStationCoords();
+}
+
+// Fire one /api/stations?search=<region> call so we get coords for every branch
+// returned by arbitrage. Re-render the result list when coords arrive so the
+// distance labels switch from synthetic to real without user interaction.
+async function dwBackfillStationCoords(){
+  if (!DW.results.length || !DW.city) return;
+  // Skip if we already have coords for every result
+  const need = DW.results.filter(r => r.locationId && !dwLookupStationCoords(r.locationId));
+  if (!need.length) return;
+  try {
+    const url = DW_API + '/api/stations?search=' + encodeURIComponent(DW.city);
+    const r = await fetch(url, {headers:{'ngrok-skip-browser-warning':'true'}});
+    if (!r.ok) return;
+    const data = await r.json();
+    const list = Array.isArray(data) ? data : (Array.isArray(data.data) ? data.data : []);
+    let added = 0;
+    for (const s of list) {
+      const id = s.id || s.station_id;
+      const lat = +(s.lat || s.latitude);
+      const lng = +(s.lng || s.longitude);
+      if (id && Number.isFinite(lat) && Number.isFinite(lng) && !DW_STATION_COORDS.has(String(id))) {
+        DW_STATION_COORDS.set(String(id), {lat, lng});
+        added++;
+      }
+    }
+    if (added > 0 && document.getElementById('r-list')) renderResultsList();
+  } catch (_) { /* silent — distances stay synthetic on failure */ }
+}
+// The arbitrage scan is slow. Show a friendly progress UI with an elapsed-time
+// counter and rotating status messages so the user knows we're not frozen.
+let DW_SCAN_TIMER = null;
+let DW_SCAN_START = 0;
+function startScanProgress(){
+  DW_SCAN_START = Date.now();
+  const stages = [
+    'Connecting to SIXT…',
+    'Discovering branches in your region…',
+    'Querying live rates across all branches…',
+    'Comparing prices across every car class & rate type…',
+    'Almost there — final ranking…'
+  ];
+  const tick = () => {
+    const elapsed = Math.round((Date.now() - DW_SCAN_START) / 1000);
+    const m = Math.floor(elapsed / 60);
+    const s = elapsed % 60;
+    // Each stage gets ~35s of the ~3-minute scan
+    const stageIdx = Math.min(stages.length - 1, Math.floor(elapsed / 35));
+    document.getElementById('r-list').innerHTML = `
+      <div class="r-load">
+        <div class="spin"></div>
+        <div style="font-size:14px;font-weight:700;color:#111;margin-bottom:5px">Scanning all SIXT branches in ${DW.city}…</div>
+        <div style="font-size:12.5px;color:#6b7280;margin-bottom:14px">${stages[stageIdx]}</div>
+        <div style="font-size:11px;color:#9ca3af">Elapsed: <b style="color:#3db87a">${m}:${String(s).padStart(2,'0')}</b> · Typical scan takes 2-3 minutes</div>
+      </div>`;
+  };
+  tick();
+  DW_SCAN_TIMER = setInterval(tick, 1000);
+}
+function stopScanProgress(){
+  if (DW_SCAN_TIMER) { clearInterval(DW_SCAN_TIMER); DW_SCAN_TIMER = null; }
+}
+
+// Normalize ONE backend location into the shape the UI expects.
+// Backend gives us: { location, station_id, cheapestPrice, cheapestCar, totalDeals, deals:[{carName, category, cheapestPrice, rates:[{name,price}]}] }
+// We filter deals[] by category (or keep all for 'cheapest'), pick the cheapest deal that matches,
+// and return a flat result with full cars[] array so the detail view can show every option.
+function dwNormalize(loc, categoryFilter){
+  if (!loc || typeof loc !== 'object') return null;
+  const allDeals = Array.isArray(loc.deals) ? loc.deals : [];
+  if (!allDeals.length) return null;
+
+  // Map UI category id -> backend deal.category string
+  const CAT_MAP = {
+    cheapest:    null,
+    sedan:       'Sedan',
+    suv:         'SUV',
+    van:         'Multiseater',
+    convertible: 'Convertible',
+    pickup:      'Pickup',
+  };
+  const wantCat = CAT_MAP[categoryFilter];
+
+  let deals = allDeals;
+  if (wantCat) {
+    deals = allDeals.filter(d => d.category === wantCat);
+    if (!deals.length) return null;   // location has nothing in this category
+  }
+
+  // Class filter — applied AFTER category filter. Backend gives us carName like
+  // "Compact (NISSAN VERSA)" or "Premium Elite (BMW M340)" or "Minivan (CHRYSLER PACIFICA)".
+  // The leading token(s) before the parenthesis = vehicle class. We extract it for filtering and display.
+  if (DW.vehicleClass && DW.vehicleClass !== 'all') {
+    deals = deals.filter(d => dwParseClass(d.carName).className.toLowerCase() === DW.vehicleClass.toLowerCase());
+    if (!deals.length) return null;
+  }
+
+  // Cheapest deal becomes the headline; all deals become the cars[] list in the detail view
+  const cheapest = deals.reduce((a,b) =>
+    (a.cheapestPrice <= b.cheapestPrice ? a : b), deals[0]);
+
+  const days = DW.days;
+  const daily = +cheapest.cheapestPrice;
+  const total = +(daily * days);
+
+  const cars = deals
+    .slice()
+    .sort((a,b) => a.cheapestPrice - b.cheapestPrice)
+    .map(d => ({
+      name:  d.carName,
+      meta:  d.category + (Array.isArray(d.rates) ? ` · ${d.rates.length} rate option${d.rates.length>1?'s':''}` : ''),
+      daily: +d.cheapestPrice,
+      total: +(d.cheapestPrice * days),
+      rates: Array.isArray(d.rates) ? d.rates : [],   // for the detail view
+      raw:   d
+    }));
+
+  // Generate book URL — backend doesn't return one per location, so build a SIXT search URL.
+  // The frontend continues on SIXT for confirmation.
+  const stationId = loc.station_id || '';
+  const bookUrl = `https://www.sixt.com/php/reservation/online/showVehicleDetails?pickupStation=${encodeURIComponent(stationId)}&pickupDate=${encodeURIComponent(DW.pickupISO.split('T')[0])}&returnDate=${encodeURIComponent(DW.dropoffISO.split('T')[0])}`;
+
+  return {
+    locationName: loc.location || 'SIXT branch',
+    locationId:   stationId,
+    carName:      cheapest.carName,
+    cars:         cars,
+    daily:        daily,
+    total:        total,
+    bookUrl:      bookUrl,
+    raw:          loc,
+  };
+}
+
+// ─── RESULTS LIST ────────────────────────────────────────────────────
+function renderResultsList(){
+  const list = DW.results;
+  const cheapest = list[0], priciest = list[list.length-1];
+
+  // Prefer the backend's authoritative arbitrage summary; fall back to local calc.
+  // The backend summary is for the full set of locations; when a category filter
+  // narrows the list, we recompute locally so the strip stays accurate.
+  let totalSavings, savePerDay;
+  const useBackend = DW.category === 'cheapest' && DW.raw && DW.raw.arbitrage;
+  if (useBackend) {
+    totalSavings = DW.raw.arbitrage.totalSavings;
+    savePerDay   = DW.raw.arbitrage.maxSavingsPerDay;
+  } else {
+    totalSavings = priciest.total - cheapest.total;
+    savePerDay   = totalSavings / DW.days;
+  }
+
+  const pane = document.getElementById('r-save');
+  if(totalSavings > 0 && list.length > 1){
+    pane.innerHTML = `
+      <div class="r-save">
+        <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+        <span>${list.length} branches found · Cheapest saves you <b>$${Math.round(totalSavings)}</b> vs the priciest · <b>$${savePerDay.toFixed(2)}/day</b> difference</span>
+      </div>`;
+  } else {
+    pane.innerHTML = '';
+  }
+
+  // Render the second-tier class chips based on what's actually available
+  renderClassChips();
+
+  // Distance: real if we have coords from the picked branch + cached station coords,
+  // otherwise fall back to a synthetic ladder so the layout doesn't collapse.
+  const synthDist = [2.4,5.8,8.3,11.7,14.2,16.9,19.4,22.1,25.6,28.3,31.0,33.7,36.4,39.1];
+  const fromLat = DW.pickedBranch && Number.isFinite(DW.pickedBranch.lat) ? DW.pickedBranch.lat : null;
+  const fromLng = DW.pickedBranch && Number.isFinite(DW.pickedBranch.lng) ? DW.pickedBranch.lng : null;
+  const hasRealOrigin = (fromLat != null) && (fromLng != null);
+  const avg = list.reduce((s,r)=>s+r.total,0) / list.length;
+
+  document.getElementById('r-list').innerHTML = list.map((r,i)=>{
+    const isBest = i===0;
+    // Try to resolve real coords for this branch (cached from any prior /api/stations call)
+    const branchCoords = dwLookupStationCoords(r.locationId);
+    const realMi = (hasRealOrigin && branchCoords) ? dwHaversineMi(fromLat, fromLng, branchCoords.lat, branchCoords.lng) : null;
+    const dist = (realMi != null) ? realMi : (synthDist[i] || (synthDist[synthDist.length-1] + (i - synthDist.length + 1)*3));
+    const distLabel = (realMi != null)
+      ? `${dist.toFixed(1)} mi from ${DW.pickedBranch.name.split(/[\s/(]/)[0] || 'pickup'}`
+      : `${dist.toFixed(1)} mi from city center`;
+
+    const tag = isBest
+      ? `<span class="r-tag deal">↓ <b>$${Math.round(avg-r.total)}</b> below average</span>`
+      : `<span class="r-tag">+$${Math.round(r.total-cheapest.total)} vs cheapest · ${distLabel}</span>`;
+    const strike = isBest && list.length>1 ? `<div class="r-strike">vs $${Math.round(priciest.total)} elsewhere</div>` : '';
+
+    // Parse class + model
+    const parsed = dwParseClass(r.carName || '');
+    const carLabel = parsed.className
+      ? `<b style="color:#111">${parsed.className}</b> · ${parsed.carModel}`
+      : (r.carName || 'Best available car');
+
+    // Under "Cheapest overall" + "All classes", show 3 cheapest distinct classes
+    // at this branch as separate preview rows (per user request — "show 3 from every class").
+    // We re-derive this from the raw deals so we have every class, not just what
+    // dwNormalize put on cars[].
+    let classPreview = '';
+    if (DW.category === 'cheapest' && (DW.vehicleClass||'all') === 'all') {
+      const rawLoc = (DW.raw && DW.raw.locations || []).find(L => (L.station_id||'') === r.locationId);
+      if (rawLoc && Array.isArray(rawLoc.deals)) {
+        const byClass = new Map();
+        for (const d of rawLoc.deals) {
+          const p = dwParseClass(d.carName || '');
+          if (!p.className) continue;
+          const existing = byClass.get(p.className);
+          if (!existing || (+d.cheapestPrice) < existing.price) {
+            byClass.set(p.className, {className:p.className, model:p.carModel, price:+d.cheapestPrice});
+          }
+        }
+        // Take 3 cheapest distinct classes
+        const top3 = Array.from(byClass.values()).sort((a,b) => a.price - b.price).slice(0, 3);
+        if (top3.length > 1) {
+          classPreview = `<div class="r-classpv">${top3.map(c => `
+            <div class="r-classpv-row">
+              <span class="r-classpv-cls">${c.className}</span>
+              <span class="r-classpv-model">${c.model}</span>
+              <span class="r-classpv-price">$${c.price.toFixed(2)}/day</span>
+            </div>`).join('')}</div>`;
+        }
+      }
+    }
+
+    return `
+      <div class="r-card${isBest?' best':''}" onclick="dwOpenLoc(${i})">
+        ${isBest ? '<div class="r-ribbon">🏆 Best Deal</div>' : ''}
+        <div class="r-row">
+          <div class="r-loc">
+            <div class="r-loc-name">${r.locationName}</div>
+            <div class="r-loc-car">${carLabel} · ${distLabel}</div>
+          </div>
+          <div class="r-pricing">
+            <div class="r-day">$${r.daily.toFixed(2)}/day</div>
+            <div class="r-total">$${Math.round(r.total)}</div>
+            ${strike}
+          </div>
+        </div>
+        ${classPreview}
+        <div class="r-bot">
+          ${tag}
+          <span class="r-arrow">View cars & customize →</span>
+        </div>
+      </div>`;
+  }).join('');
+}
+
+// ─── COORDS LOOKUP ──────────────────────────────────────────────────
+// Cache for station coords keyed by station_id. Populated incrementally:
+// (1) every time the autocomplete returns results we cache their {lat,lng}
+// (2) optionally, after arbitrage we can pre-fetch coords for known branches
+const DW_STATION_COORDS = new Map();
+function dwLookupStationCoords(stationId){
+  if (!stationId) return null;
+  return DW_STATION_COORDS.get(String(stationId)) || DW_STATION_COORDS.get(+stationId) || null;
+}
+
+// Haversine — great-circle distance between two lat/lng in miles
+function dwHaversineMi(lat1, lng1, lat2, lng2){
+  const R = 3958.8;   // Earth radius in miles
+  const toRad = d => d * Math.PI / 180;
+  const dLat = toRad(lat2 - lat1);
+  const dLng = toRad(lng2 - lng1);
+  const a = Math.sin(dLat/2)**2 + Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLng/2)**2;
+  return 2 * R * Math.asin(Math.sqrt(a));
+}
+
+// Render the second-tier "class" chips: Economy / Compact / Intermediate / Standard / ...
+// Only show classes that actually exist in the cached response (after the current category filter).
+// Each chip shows a count of branches that have at least one car in that class.
+function renderClassChips(){
+  const host = document.getElementById('r-classes');
+  if (!host) return;
+  if (!DW.raw || !Array.isArray(DW.raw.locations)) { host.innerHTML = ''; return; }
+
+  // Build a map: className -> count of branches offering at least one car of that class
+  // (within the current category filter, so the counts make sense)
+  const CAT_MAP = {cheapest:null, sedan:'Sedan', suv:'SUV', van:'Multiseater', convertible:'Convertible', pickup:'Pickup'};
+  const wantCat = CAT_MAP[DW.category];
+  const classCounts = new Map();
+  for (const loc of DW.raw.locations) {
+    const deals = Array.isArray(loc.deals) ? loc.deals : [];
+    const inCat = wantCat ? deals.filter(d => d.category === wantCat) : deals;
+    const branchClasses = new Set();
+    for (const d of inCat) {
+      const p = dwParseClass(d.carName);
+      if (p.className) branchClasses.add(p.className);
+    }
+    for (const c of branchClasses) classCounts.set(c, (classCounts.get(c) || 0) + 1);
+  }
+
+  // If 0 or 1 distinct classes exist, the sub-filter adds no value — hide it
+  if (classCounts.size <= 1) { host.innerHTML = ''; return; }
+
+  // Render in DW_CLASSES canonical order (cheap → expensive), then any "other" classes alphabetically
+  const known = DW_CLASSES.filter(c => classCounts.has(c.id));
+  const knownIds = new Set(known.map(c => c.id));
+  const unknown = Array.from(classCounts.keys()).filter(k => !knownIds.has(k)).sort()
+    .map(k => ({id:k, label:k}));
+  const ordered = [{id:'all', label:'All classes'}, ...known, ...unknown];
+
+  host.innerHTML = '<span class="r-classes-lbl">Class:</span>' + ordered.map(c => {
+    const isOn = (DW.vehicleClass||'all') === c.id;
+    const ct = c.id === 'all' ? '' : `<span class="ct">${classCounts.get(c.id)}</span>`;
+    return `<button class="r-class${isOn?' on':''}" onclick="dwSetClass('${c.id.replace(/'/g,"\\'")}')">${c.label}${ct}</button>`;
+  }).join('');
+}
+
+// User clicks a class chip — re-filter locally
+function dwSetClass(cls){
+  DW.vehicleClass = cls;
+  DW.selectedLoc = null;
+  if (DW.raw && Array.isArray(DW.raw.locations)) {
+    DW.results = DW.raw.locations.map(loc => dwNormalize(loc, DW.category)).filter(x => x && x.total > 0);
+    if (!DW.results.length) {
+      const lbl = (DW_CATS.find(c=>c.id===DW.category)||{}).label || DW.category;
+      document.getElementById('r-list').innerHTML = `
+        <div class="r-err">
+          <b>No ${cls === 'all' ? lbl.toLowerCase() : cls + ' ' + lbl.toLowerCase()} available in this region.</b>
+        </div>`;
+      document.getElementById('r-save').innerHTML = '';
+      renderClassChips();
+      return;
+    }
+    DW.results.sort((a,b) => a.total - b.total);
+    renderResultsList();
+  }
+}
+
+// ─── DETAIL VIEW (when a card is clicked) ───────────────────────────
+function dwOpenLoc(i){
+  DW.selectedLoc = i;
+  const r = DW.results[i];
+  // Reset selections; default first car (cheapest)
+  DW.selectedCar  = 0;
+  DW.selectedRate = null;
+  DW.mileage = 'unlimited';
+  DW.payment = 'now';
+  DW.extras = {fuel:0, toll:0, gps:0, seat:0};
+
+  // r.cars is already in the right shape from dwNormalize — it has rates[] attached.
+  // Each car: {name, meta, daily, total, rates:[{name,price}], raw}
+  // We pre-sort rates ascending so the index used in dwSelRate matches what's rendered.
+  const cars = (Array.isArray(r.cars) && r.cars.length)
+    ? r.cars.map(c => ({
+        name:    c.name || 'Option',
+        meta:    c.meta || '',
+        daily:   +c.daily || 0,
+        total:   +c.total || 0,
+        rates:   Array.isArray(c.rates) ? c.rates.slice().sort((a,b)=>(+a.price)-(+b.price)) : [],
+        bookUrl: r.bookUrl
+      }))
+    : [{name: r.carName || 'Best available car', meta:'', daily:r.daily, total:r.total, rates:[], bookUrl:r.bookUrl}];
+
+  DW.detailCars = cars;
+  // Show whatever extras are already on the location object (in case backend
+  // ever inlines them). Otherwise, we'll fetch on demand from /api/extras.
+  DW.detailLoc = (r.raw && Array.isArray(r.raw.extras)) ? r.raw
+              : (Array.isArray(r.extras) ? {extras: r.extras} : null);
+  DW.extrasStatus = DW.detailLoc ? 'ready' : 'loading';
+  renderDetail();
+  // Fire the per-location extras fetch in the background — doesn't block render
+  if (!DW.detailLoc) fetchExtrasForLocation(r);
+  window.scrollTo({top: document.getElementById('f-best-results').offsetTop - 16, behavior:'smooth'});
+}
+
+// ─── PER-LOCATION EXTRAS FETCH ──────────────────────────────────────
+// GET /api/extras?station_id=<id>&pickup=<YYYY-MM-DD>&dropoff=<YYYY-MM-DD>&rate=<holiday|special|comfort>&currency=USD
+// Called when the user opens a location. Returns the real SIXT extras prices
+// for that exact booking context. Lightweight (3-5s) so we don't precompute
+// during the arbitrage scan.
+async function fetchExtrasForLocation(r){
+  const stationId = r.locationId;
+  if (!stationId) { DW.extrasStatus = 'unavailable'; refreshExtras(); return; }
+
+  // Pick a rate hint based on the cheapest rate we know about for this branch
+  const rateHint = dwGuessRateName(r);
+
+  const params = {
+    station_id: stationId,
+    pickup:     DW.pickupISO.split('T')[0],
+    dropoff:    DW.dropoffISO.split('T')[0],
+    rate:       rateHint,
+    currency:   DW.currency
+  };
+  const url = DW_API + '/api/extras?' + new URLSearchParams(params).toString();
+
+  // Remember which location this fetch was for, so a stale response doesn't
+  // overwrite extras when the user has already clicked into a different branch
+  const expectStation = stationId;
+
+  try {
+    const resp = await fetch(url, {
+      method: 'GET',
+      headers: {'ngrok-skip-browser-warning':'true'}
+    });
+    if (!resp.ok) throw new Error('HTTP ' + resp.status);
+    const data = await resp.json();
+    // Ignore if user has navigated away
+    if (DW.selectedLoc == null || DW.results[DW.selectedLoc].locationId !== expectStation) return;
+
+    // Accept several plausible shapes from the backend
+    const list = Array.isArray(data) ? data
+               : Array.isArray(data.extras) ? data.extras
+               : Array.isArray(data.results) ? data.results
+               : Array.isArray(data.data) ? data.data
+               : [];
+    DW.detailLoc   = {extras: list};
+    DW.extrasStatus = list.length ? 'ready' : 'unavailable';
+  } catch (e) {
+    if (DW.selectedLoc == null || DW.results[DW.selectedLoc].locationId !== expectStation) return;
+    DW.extrasStatus = 'error';
+    DW.extrasError  = String(e.message || e);
+  }
+  refreshExtras();
+}
+
+// Pick a rate hint to send to /api/extras. Prefer the cheapest rate's family.
+function dwGuessRateName(r){
+  const allRates = [];
+  if (Array.isArray(r.cars)) r.cars.forEach(c => Array.isArray(c.rates) && c.rates.forEach(rt => allRates.push(rt)));
+  if (!allRates.length) return 'holiday';
+  const cheapest = allRates.reduce((a,b) => (+a.price <= +b.price ? a : b));
+  const name = String(cheapest.name || '').toLowerCase();
+  if (name.includes('holiday'))  return 'holiday';
+  if (name.includes('special'))  return 'special';
+  if (name.includes('comfort'))  return 'comfort';
+  if (name.includes('advanced')) return 'advanced';
+  if (name.includes('public'))   return 'public';
+  return 'holiday';
+}
+
+// Re-render just the extras section + its banner + the live summary
+function refreshExtras(){
+  const host = document.getElementById('d-extras');
+  if (host) host.innerHTML = renderExtras();
+  const banner = document.getElementById('d-extras-banner');
+  if (banner) banner.outerHTML = renderExtrasBanner();
+  refreshSummary();
+}
+
+function renderDetail(){
+  const r = DW.results[DW.selectedLoc];
+  const cars = DW.detailCars;
+  const pickupDate = CAL.pu ? CAL.pu.toLocaleDateString('en-US',{month:'short',day:'numeric'}) : '';
+  const dropDate   = CAL.do ? CAL.do.toLocaleDateString('en-US',{month:'short',day:'numeric'}) : '';
+  document.getElementById('f-best-results').innerHTML = `
+    <div class="d-head">
+      <div class="d-h-info">
+        <div class="d-h-name">${r.locationName}</div>
+        <div class="d-h-sub"><span class="city">${DW.city}</span> · ${pickupDate} → ${dropDate} · ${DW.days} day${DW.days>1?'s':''}</div>
+      </div>
+      <button class="r-back" onclick="dwBackToList()">← All branches</button>
+    </div>
+
+    <span class="d-sect">Choose your car</span>
+    <div id="d-cars">
+      ${cars.map((c,i)=>{
+        const rates = Array.isArray(c.rates) ? c.rates.slice().sort((a,b)=>(+a.price)-(+b.price)) : [];
+        const minPrice = rates.length ? Math.min(...rates.map(r=>+r.price)) : c.daily;
+        return `
+        <div class="d-car${i===DW.selectedCar?' sel':''}" onclick="dwSelCar(${i})">
+          <div class="d-car-top">
+            <div class="d-car-info">
+              <div class="d-car-name">${c.name}</div>
+              <div class="d-car-meta">${c.meta || ''}</div>
+            </div>
+            <div class="d-car-px">
+              <div class="d-car-d">from $${(c.daily||0).toFixed(2)}/day</div>
+              <div class="d-car-t">$${Math.round(c.total||0)}</div>
+            </div>
+          </div>
+          ${rates.length ? `<div class="d-rates">${
+            rates.map((rt,ri)=>{
+              const isCheap = (+rt.price) === minPrice;
+              // On initial render, no rate is explicitly chosen yet — show the cheapest as the
+              // active selection (since that's what the price summary defaults to).
+              const isSelected = (i===DW.selectedCar) && (DW.selectedRate != null ? DW.selectedRate===ri : isCheap);
+              return `<div class="d-rate${isSelected?' sel':''}" onclick="event.stopPropagation();dwSelRate(${i},${ri})">
+                <div class="d-rate-name">${rt.name}${isCheap ? ' <span class="d-rate-badge">CHEAPEST</span>' : ''}</div>
+                <div class="d-rate-px">$${(+rt.price).toFixed(2)}/day</div>
+              </div>`;
+            }).join('')
+          }</div>` : ''}
+        </div>`;
+      }).join('')}
+    </div>
+
+    <span class="d-sect">Mileage</span>
+    <div class="opts">
+      <label class="opt ${DW.mileage==='unlimited'?'sel':''}">
+        <input type="radio" name="d-mile" value="unlimited" ${DW.mileage==='unlimited'?'checked':''} onchange="dwSetMile('unlimited')">
+        <div class="opt-t">Unlimited km</div>
+        <div class="opt-s">Included in base rate</div>
+      </label>
+      <label class="opt ${DW.mileage==='limited'?'sel':''}">
+        <input type="radio" name="d-mile" value="limited" ${DW.mileage==='limited'?'checked':''} onchange="dwSetMile('limited')">
+        <div class="opt-t">Limited km</div>
+        <div class="opt-s">175 mi/day · saves ~10%</div>
+      </label>
+    </div>
+
+    <span class="d-sect">Payment</span>
+    <div class="opts">
+      <label class="opt ${DW.payment==='now'?'sel':''}">
+        <input type="radio" name="d-pay" value="now" ${DW.payment==='now'?'checked':''} onchange="dwSetPay('now')">
+        <div class="opt-t">Pay Now</div>
+        <div class="opt-s">Best rate · Locked in</div>
+      </label>
+      <label class="opt ${DW.payment==='later'?'sel':''}">
+        <input type="radio" name="d-pay" value="later" ${DW.payment==='later'?'checked':''} onchange="dwSetPay('later')">
+        <div class="opt-t">Pay Later</div>
+        <div class="opt-s">Free cancellation · small fee</div>
+      </label>
+    </div>
+
+    <span class="d-sect">Add Extras (optional)</span>
+    ${renderExtrasBanner()}
+    <div id="d-extras">${renderExtras()}</div>
+
+    ${renderSummary()}
+  `;
+}
+
+function renderExtrasBanner(){
+  const status = DW.extrasStatus || 'unavailable';
+  let html;
+  if (status === 'loading') {
+    html = `<span style="display:inline-block;width:10px;height:10px;border:2px solid #d1fae5;border-top-color:#3db87a;border-radius:50%;animation:rspin .8s linear infinite;margin-right:6px;vertical-align:-1px"></span>Fetching live SIXT extras prices for this branch…`;
+  } else if (status === 'ready') {
+    html = `<span style="color:#3db87a">●</span> Live SIXT prices for this branch &amp; your dates.`;
+  } else if (status === 'error') {
+    html = `Couldn't load live extras prices${DW.extrasError ? ' ('+DW.extrasError.replace(/</g,'&lt;')+')' : ''} — final prices confirmed on SIXT at checkout.`;
+  } else {
+    html = `Final extras prices are confirmed on SIXT at checkout — they vary by branch, vehicle and rate.`;
+  }
+  return `<p id="d-extras-banner" style="font-size:10.5px;color:#9ca3af;margin:-3px 0 8px;line-height:1.4">${html}</p>`;
+}
+
+function renderExtras(){
+  return DW_EXTRAS.map(x=>{
+    const cur = DW.extras[x.id] || 0;
+    const selected = cur > 0;
+    const realPrice = dwExtraPrice(x);
+    const priceBlock = (realPrice != null)
+      ? `<div class="xtra-px">$${realPrice.toFixed(2)}/day</div>`
+      : `<div class="xtra-px" style="font-size:9.5px;color:#9ca3af;font-weight:600">Price set<br>at checkout</div>`;
+    if(x.kind === 'qty'){
+      return `
+        <div class="xtra${selected?' sel':''}">
+          <div class="xtra-body">
+            <div class="xtra-t">${x.name}</div>
+            <div class="xtra-s">${x.sub}${realPrice!=null?' · $'+realPrice.toFixed(2)+' each':''}</div>
+          </div>
+          ${priceBlock}
+          <div class="xtra-step">
+            <button onclick="dwQty('${x.id}',-1)" ${cur<=0?'disabled':''}>−</button>
+            <span class="qty">${cur}</span>
+            <button onclick="dwQty('${x.id}',+1)" ${cur>=(x.max||9)?'disabled':''}>+</button>
+          </div>
+        </div>`;
+    }
+    return `
+      <label class="xtra${selected?' sel':''}">
+        <input type="checkbox" ${selected?'checked':''} onchange="dwToggle('${x.id}',this.checked)">
+        <div class="xtra-body">
+          <div class="xtra-t">${x.name}</div>
+          <div class="xtra-s">${x.sub}</div>
+        </div>
+        ${priceBlock}
+      </label>`;
+  }).join('');
+}
+
+function renderSummary(){
+  const c = DW.detailCars[DW.selectedCar];
+  // If user picked a specific rate, use it; otherwise use the car's cheapest
+  const activeRate = (DW.selectedRate != null && Array.isArray(c.rates) && c.rates[DW.selectedRate])
+    ? c.rates[DW.selectedRate]
+    : null;
+  const dailyBase = activeRate ? +activeRate.price : (c.daily || 0);
+  const rateLabel = activeRate ? activeRate.name : 'Cheapest available rate';
+  let base = dailyBase * DW.days;
+  // Apply mileage / payment adjustments
+  if(DW.mileage === 'limited') base *= 0.90;
+  if(DW.payment === 'later')   base *= 1.05;
+  const extrasDaily = DW_EXTRAS.reduce((s,x)=>{
+    const qty = DW.extras[x.id] || 0;
+    if (!qty) return s;
+    const price = dwExtraPrice(x);
+    // If backend hasn't provided a price for this extra, we exclude it from the
+    // running total (priced at SIXT checkout). The summary line below makes this clear.
+    return price != null ? s + qty * price : s;
+  }, 0);
+  const extrasTotal = extrasDaily * DW.days;
+  const grand = base + extrasTotal;
+  const dayEff = grand / DW.days;
+  return `
+    <div class="d-summary">
+      <div class="d-sum-row" style="font-size:10.5px">Rate: <b style="color:#5de0a0">${rateLabel}</b> · $${dailyBase.toFixed(2)}/day</div>
+      <div class="d-sum-row sep"><span>Base rental (${DW.days} days)</span><b>$${base.toFixed(2)}</b></div>
+      <div class="d-sum-row sep" style="font-size:10.5px">Mileage: <b style="color:#fff">${DW.mileage==='unlimited'?'Unlimited':'Limited 175mi/day'}</b> · Payment: <b style="color:#fff">${DW.payment==='now'?'Pay now':'Pay later'}</b></div>
+      ${extrasTotal>0 ? `<div class="d-sum-row sep"><span>Extras (${DW.days} days)</span><b>+$${extrasTotal.toFixed(2)}</b></div>` : ''}
+      <div class="d-sum-total">
+        <div>
+          <div class="d-sum-total-lbl">Total</div>
+        </div>
+        <div>
+          <span class="d-sum-total-val">$${grand.toFixed(2)}</span>
+          <span class="d-sum-total-day">$${dayEff.toFixed(2)}/day</span>
+        </div>
+      </div>
+      <a class="d-book" href="${c.bookUrl || 'https://www.sixt.com'}" target="_blank" rel="noopener">
+        Book on SIXT →
+        <span class="sub">You'll continue on SIXT to confirm driver details</span>
+      </a>
+    </div>
+  `;
+}
+
+// Live-update handlers — rerender the parts that change
+function dwSelCar(i){ DW.selectedCar = i; DW.selectedRate = null; refreshDetail(); }
+function dwSelRate(carIdx, rateIdx){ DW.selectedCar = carIdx; DW.selectedRate = rateIdx; refreshDetail(); }
+function dwSetMile(v){ DW.mileage = v; refreshSummary(); refreshOpts(); }
+function dwSetPay(v){  DW.payment = v; refreshSummary(); refreshOpts(); }
+function dwToggle(id,on){ DW.extras[id] = on?1:0; refreshExtrasAndSummary(); }
+function dwQty(id, delta){
+  const cur = DW.extras[id] || 0;
+  const max = (DW_EXTRAS.find(x=>x.id===id)||{}).max || 9;
+  DW.extras[id] = Math.max(0, Math.min(max, cur + delta));
+  refreshExtrasAndSummary();
+}
+
+function refreshDetail(){
+  // Re-render car list so rate pills + selection states stay correct,
+  // then refresh the summary panel
+  const cars = DW.detailCars;
+  document.getElementById('d-cars').innerHTML = cars.map((c,i)=>{
+    const rates = Array.isArray(c.rates) ? c.rates.slice().sort((a,b)=>(+a.price)-(+b.price)) : [];
+    const minPrice = rates.length ? Math.min(...rates.map(r=>+r.price)) : c.daily;
+    return `
+      <div class="d-car${i===DW.selectedCar?' sel':''}" onclick="dwSelCar(${i})">
+        <div class="d-car-top">
+          <div class="d-car-info">
+            <div class="d-car-name">${c.name}</div>
+            <div class="d-car-meta">${c.meta || ''}</div>
+          </div>
+          <div class="d-car-px">
+            <div class="d-car-d">from $${(c.daily||0).toFixed(2)}/day</div>
+            <div class="d-car-t" style="color:${i===DW.selectedCar?'#3db87a':'#111'}">$${Math.round(c.total||0)}</div>
+          </div>
+        </div>
+        ${rates.length ? `<div class="d-rates">${
+          rates.map((rt,ri)=>{
+            const isCheap  = (+rt.price) === minPrice;
+            // Show as selected: (a) when the user explicitly picked this rate, OR
+            // (b) when they picked no rate AND it's the cheapest. Never both at once.
+            const showSel  = (i===DW.selectedCar)
+              ? (DW.selectedRate != null ? DW.selectedRate===ri : isCheap)
+              : false;
+            return `<div class="d-rate${showSel?' sel':''}" onclick="event.stopPropagation();dwSelRate(${i},${ri})">
+              <div class="d-rate-name">${rt.name}${isCheap ? ' <span class="d-rate-badge">CHEAPEST</span>' : ''}</div>
+              <div class="d-rate-px">$${(+rt.price).toFixed(2)}/day</div>
+            </div>`;
+          }).join('')
+        }</div>` : ''}
+      </div>`;
+  }).join('');
+  refreshSummary();
+}
+function refreshOpts(){
+  document.querySelectorAll('.opt input[name="d-mile"]').forEach(r=>{
+    r.checked = (r.value === DW.mileage);
+    r.closest('.opt').classList.toggle('sel', r.checked);
+  });
+  document.querySelectorAll('.opt input[name="d-pay"]').forEach(r=>{
+    r.checked = (r.value === DW.payment);
+    r.closest('.opt').classList.toggle('sel', r.checked);
+  });
+}
+function refreshExtrasAndSummary(){
+  document.getElementById('d-extras').innerHTML = renderExtras();
+  refreshSummary();
+}
+function refreshSummary(){
+  const old = document.querySelector('.d-summary');
+  if(old) old.outerHTML = renderSummary();
+}
+
+function dwBackToList(){
+  DW.selectedLoc = null;
+  renderResultsShell();
+  renderResultsList();
+}
 </script>
 </body>
 </html>
