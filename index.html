@@ -134,6 +134,32 @@ h1 em{font-style:italic;color:#5de0a0}
 .btn-go-s{font-size:9.5px;font-weight:500;opacity:.65;letter-spacing:.4px;text-transform:uppercase}
 .btn-go.amber{background:#f59e0b;color:#fff}
 .btn-go.amber:hover{background:#d97706}
+
+/* ─── LONG-TERM: duration chips + month-length toggle + live math ───── */
+.lt-months{display:grid;grid-template-columns:repeat(6, 1fr);gap:6px;margin-top:6px}
+.lt-month{padding:10px 0;border:1.5px solid #e5e7eb;border-radius:8px;background:#fff;color:#374151;font-size:12px;font-weight:800;cursor:pointer;font-family:'Inter',sans-serif;transition:all .12s;text-align:center;line-height:1.1}
+.lt-month:hover{border-color:#f59e0b;color:#b45309}
+.lt-month.on{background:#f59e0b;border-color:#f59e0b;color:#fff;box-shadow:0 2px 8px rgba(245,158,11,.3)}
+.lt-month .lt-month-n{font-size:14px;font-weight:900;display:block}
+.lt-month .lt-month-lbl{font-size:9.5px;font-weight:700;opacity:.7;letter-spacing:.4px;text-transform:uppercase;display:block;margin-top:1px}
+.lt-month.on .lt-month-lbl{opacity:.85}
+@media (max-width:520px){
+  .lt-months{grid-template-columns:repeat(4, 1fr)}
+}
+
+.lt-mlen{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:6px}
+.lt-mlen-opt{padding:11px 14px;border:1.5px solid #e5e7eb;border-radius:8px;background:#fff;cursor:pointer;font-family:'Inter',sans-serif;text-align:left;display:flex;flex-direction:column;gap:2px;transition:all .12s}
+.lt-mlen-opt:hover{border-color:#f59e0b}
+.lt-mlen-opt.on{background:#fffbeb;border-color:#f59e0b;box-shadow:0 0 0 1px #f59e0b inset}
+.lt-mlen-opt b{font-size:13px;font-weight:800;color:#111}
+.lt-mlen-opt span{font-size:10.5px;color:#9ca3af;font-weight:600}
+.lt-mlen-opt.on span{color:#b45309;font-weight:700}
+
+.lt-math{margin-top:12px;background:#f9fafb;border:1px dashed #d1d5db;border-radius:8px;padding:10px 13px;font-size:12px;color:#6b7280;font-weight:600;text-align:center;line-height:1.4}
+.lt-math.ready{background:#fffbeb;border-color:#f59e0b;border-style:solid;color:#111}
+.lt-math b{color:#b45309;font-weight:800}
+.lt-math .lt-math-end{display:block;margin-top:3px;font-size:11px;color:#9ca3af;font-weight:700}
+.lt-math.ready .lt-math-end{color:#6b7280}
 .btn-ghost{width:100%;padding:10px;background:transparent;color:#5de0a0;border:1.5px solid #5de0a0;cursor:pointer;border-radius:10px;font-family:'Inter',sans-serif;font-size:12.5px;font-weight:600;transition:all .15s;display:flex;align-items:center;justify-content:center;gap:6px}
 .btn-ghost:hover{background:#5de0a0;color:#0c1e14}
 .btn-ghost.amber{color:#f59e0b;border-color:#f59e0b}
@@ -216,6 +242,34 @@ h1 em{font-style:italic;color:#5de0a0}
 .r-classpv-model{color:#6b7280;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .r-classpv-price{font-weight:700;color:#3db87a;flex-shrink:0}
 
+/* ─── REGULAR RENTAL: per-car list ─────────────────────────────────────
+   Compact row per car at the picked branch. Click row to expand and see
+   all rate tiers (Sixt Holiday / Comfort SLI / Public Special Rate). */
+.rcar{background:#fff;border:1px solid #e5e7eb;border-radius:9px;margin-bottom:8px;transition:border-color .12s,box-shadow .12s;overflow:hidden}
+.rcar:hover{border-color:#5de0a0}
+.rcar.open{border-color:#3db87a;box-shadow:0 4px 14px rgba(61,184,122,.12)}
+.rcar-head{display:flex;align-items:center;gap:10px;padding:11px 13px;cursor:pointer;user-select:none}
+.rcar-info{flex:1;min-width:0}
+.rcar-name{font-size:13px;color:#111;line-height:1.3;margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rcar-name b{font-weight:800;color:#111;margin-right:6px}
+.rcar-model{color:#374151;font-weight:600}
+.rcar-sub{display:flex;align-items:center;gap:6px;font-size:10.5px;color:#6b7280}
+.rcar-cat{font-weight:800;text-transform:uppercase;letter-spacing:.4px;color:#3db87a;background:#d1fae5;padding:2px 6px;border-radius:3px;font-size:9.5px}
+.rcar-rates-count{color:#9ca3af;font-weight:600}
+.rcar-price{text-align:right;flex-shrink:0}
+.rcar-day{font-size:13px;font-weight:800;color:#3db87a;line-height:1.2}
+.rcar-total{font-size:10.5px;color:#9ca3af;font-weight:700;margin-top:1px}
+.rcar-toggle{flex-shrink:0;font-size:14px;color:#9ca3af;transition:transform .15s;line-height:1;padding:0 4px}
+.rcar.open .rcar-toggle{transform:rotate(180deg);color:#3db87a}
+.rcar-rates{display:none;background:#f9fafb;padding:8px 13px;border-top:1px dashed #e5e7eb;gap:6px;flex-direction:column}
+.rcar.open .rcar-rates{display:flex}
+.rcar-rate{display:flex;align-items:center;justify-content:space-between;gap:10px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;padding:7px 10px;font-size:11.5px}
+.rcar-rate.on{background:#d1fae5;border-color:#3db87a}
+.rcar-rate-name{font-weight:700;color:#111;flex:1;min-width:0;display:flex;align-items:center;gap:6px}
+.rcar-rate-badge{font-size:8.5px;font-weight:800;color:#fff;background:#3db87a;padding:1px 5px;border-radius:3px;letter-spacing:.4px}
+.rcar-rate-price{font-weight:800;color:#3db87a;flex-shrink:0}
+.rcar-rate-empty{font-size:11px;color:#6b7280;padding:6px 0}
+
 /* ─── DETAIL VIEW (when a location is clicked) ───────────────────────── */
 .d-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;flex-wrap:wrap;padding-bottom:13px;border-bottom:1px solid #f0f0f0;margin-bottom:14px}
 .d-h-info{flex:1;min-width:0}
@@ -226,6 +280,15 @@ h1 em{font-style:italic;color:#5de0a0}
 /* Cars list — multiple cars in this category at this location */
 .d-sect{font-size:9.5px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;color:#9ca3af;margin:14px 0 8px;display:flex;align-items:center;gap:8px}
 .d-sect::after{content:'';flex:1;height:1px;background:#f0f0f0}
+
+/* Category filter inside the detail view — narrows the visible cars without losing the full list */
+.d-cat-filter{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+.d-cat-filter:empty{display:none}
+.d-cat{padding:5px 11px;border:1px solid #e5e7eb;border-radius:14px;background:#fff;color:#6b7280;font-size:10.5px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;white-space:nowrap;transition:all .12s}
+.d-cat:hover{border-color:#5de0a0;color:#3db87a}
+.d-cat.on{background:#3db87a;border-color:#3db87a;color:#fff}
+.d-cat .ct{margin-left:5px;opacity:.6;font-weight:600}
+.d-cat.on .ct{opacity:.85}
 
 .d-car{display:block;padding:11px 12px;border:1.5px solid #e5e7eb;border-radius:9px;background:#fff;cursor:pointer;margin-bottom:7px;transition:all .12s;text-align:left}
 .d-car:hover{border-color:#5de0a0;background:#f9fdfb}
@@ -513,7 +576,7 @@ h1 em{font-style:italic;color:#5de0a0}
       <!-- ── LONG-TERM RENTAL ── -->
       <div id="f-lng" style="display:none">
         <p style="font-size:12.5px;color:#9ca3af;margin-bottom:14px;line-height:1.6;background:#fffbeb;padding:10px 12px;border-radius:8px;border-left:3px solid #f59e0b">
-          <strong style="color:#111">28-day rental:</strong> Exclusive monthly rates — a fraction of the daily price. Ideal for relocation, extended trips, or long-term projects.
+          <strong style="color:#111">Long-term rates:</strong> 1–12 month commitments unlock SIXT's exclusive monthly pricing — typically 30-50% below daily rates. Ideal for relocations, extended trips, or seasonal use.
         </p>
         <div class="fg">
           <span class="fl">Pick-up Location</span>
@@ -545,7 +608,34 @@ h1 em{font-style:italic;color:#5de0a0}
             <div class="tw"><div class="tv" onclick="tTog('tmu')"><span class="tv-left"><svg class="tv-ico" fill="none" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span id="tmu-v">10:00</span></span><span class="tc">▾</span></div><div class="tdd" id="tmu"></div></div>
           </div>
         </div>
-        <div class="fg2">
+
+        <!-- ─── DURATION: 1-12 month chips ─── -->
+        <div class="fg" style="margin-top:14px">
+          <span class="fl">Duration</span>
+          <div class="lt-months" id="lt-months">
+            <!-- 12 chips emitted via JS so each shares the same click handler -->
+          </div>
+        </div>
+
+        <!-- ─── MONTH LENGTH: 26 vs 28 day toggle ─── -->
+        <div class="fg" style="margin-top:10px">
+          <span class="fl">Month length</span>
+          <div class="lt-mlen" id="lt-mlen">
+            <button type="button" class="lt-mlen-opt" data-mlen="28" onclick="dwSetMonthLen(28)">
+              <b>28 days/month</b>
+              <span>SIXT standard rate</span>
+            </button>
+            <button type="button" class="lt-mlen-opt" data-mlen="26" onclick="dwSetMonthLen(26)">
+              <b>26 days/month</b>
+              <span>Often better daily price</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- ─── LIVE MATH: total days + computed return date ─── -->
+        <div class="lt-math" id="lt-math">Pick a start date and duration to see total days &amp; return date</div>
+
+        <div class="fg2" style="margin-top:14px">
           <div>
             <span class="fl">Vehicle Type</span>
             <select class="fsel">
@@ -569,7 +659,7 @@ h1 em{font-style:italic;color:#5de0a0}
         </div>
         <button class="btn-go amber" onclick="goSearch('lng')">
           Search Long-Term Rates
-          <span class="btn-go-s">28-day deals · All locations compared · Unlimited mileage options</span>
+          <span class="btn-go-s" id="lt-btn-sub">Pick duration above · All branches compared</span>
         </button>
         <button class="btn-ghost amber" onclick="setTab('reg')">← Back to regular rental</button>
       </div>
@@ -633,6 +723,7 @@ function setTab(t){
     tab.classList.toggle('on',ids[i]===t);
     tab.querySelectorAll('svg').forEach(s=>s.setAttribute('stroke',ids[i]===t?'#3db87a':'#9ca3af'));
   });
+  if (t === 'lng') dwInitLongTerm();
 }
 
 // TIME PICKERS
@@ -849,7 +940,18 @@ function pickDay(y,m,d){
 }
 function updateCalDur(){
   const el=document.getElementById('cal-dur');
-  if(CAL.isLng){el.innerHTML=CAL.mu?`<strong>Start: ${fS(CAL.mu)}</strong> → End: ${fS(new Date(CAL.mu.getTime()+28*86400000))} (28 days)`:'Click a date to select your start';}
+  if(CAL.isLng){
+    if (CAL.mu) {
+      const m = LT.months || null, len = LT.monthLen || 28;
+      if (m) {
+        const total = m*len;
+        const end = new Date(CAL.mu.getTime()+total*86400000);
+        el.innerHTML = `<strong>Start: ${fS(CAL.mu)}</strong> → End: ${fS(end)} (${m} × ${len} = ${total} days)`;
+      } else {
+        el.innerHTML = `<strong>Start: ${fS(CAL.mu)}</strong> — pick a duration after closing`;
+      }
+    } else el.innerHTML = 'Click a date to select your start';
+  }
   else if(CAL.pu&&CAL.do){const d=Math.round((CAL.do-CAL.pu)/86400000);el.innerHTML=`<strong>${d} day${d!==1?'s':''}</strong> · ${fS(CAL.pu)} → ${fS(CAL.do)}`;}
   else{el.innerHTML=CAL.pu?`Pick-up: <strong>${fS(CAL.pu)}</strong> — now click return date`:'Click a date to select your pick-up';}
 }
@@ -861,10 +963,11 @@ function calApply(){
   const mode=CAL.mode;
   if(CAL.isLng){
     if(!CAL.mu)return;
-    const end=new Date(CAL.mu.getTime()+28*86400000);
     const btn=document.getElementById('dmu');
-    btn.querySelector('span').textContent=fS(CAL.mu)+' → '+fS(end)+' (28d)';
+    btn.querySelector('span').textContent=fS(CAL.mu);
     btn.classList.add('s');
+    // Refresh the long-term math line — it'll either show "Pick duration" or the full math
+    if (typeof dwUpdateLtMath === 'function') dwUpdateLtMath();
   } else {
     if(!CAL.pu||!CAL.do)return;
     const puSuf=mode==='best'?'2':'',doSuf=mode==='best'?'2':'';
@@ -984,7 +1087,16 @@ function goSearch(mode){
   const locIds={reg:'lpu',best:'lpu2',lng:'mlpu'};
   const loc=document.getElementById(locIds[mode])?.value.trim();
   if(!loc){document.getElementById(locIds[mode])?.focus();return;}
-  if(mode==='lng'&&!CAL.mu){openCal('lng');return;}
+  if(mode==='lng'){
+    if(!CAL.mu){openCal('lng');return;}
+    if(!LT.months){
+      // Highlight the months row briefly so the user notices
+      const el = document.getElementById('lt-months');
+      if (el) { el.style.boxShadow = '0 0 0 2px #f59e0b'; setTimeout(()=>el.style.boxShadow='', 1500); }
+      return;
+    }
+    // monthLen defaults to 28 in LT state — no validation needed
+  }
   if(mode!=='lng'&&(!CAL.pu||!CAL.do)){openCal(mode);return;}
   if(mode==='best'){return runArbitrage(loc);}
   if(mode==='reg'){return runRegular(loc);}
@@ -1200,19 +1312,113 @@ async function fetchArbitrageFilteredToBranch(stationId, wantName){
   renderResultsList();
 }
 
-// Long-Term Rental — uses the same arbitrage scan but with multi-month dates.
-// Full redesign (26 vs 28 day months, 2-12 month duration picker) is queued for v27.
-// For now, treat it as arbitrage with whatever dates the form provides.
+// ─── LONG-TERM RENTAL STATE ──────────────────────────────────────────
+// User picks a START DATE (CAL.mu), DURATION (LT.months = 1..12), and
+// MONTH LENGTH (LT.monthLen = 26 or 28 days). End date is computed:
+//   totalDays = months × monthLen
+//   dropoff   = start + totalDays
+// The 26-vs-28 toggle exists because SIXT's "month" is 28 days, but a
+// 26-day rental sometimes prices better than 28 (no monthly tier markup).
+const LT = {
+  months: null,        // 1..12, null = not picked yet
+  monthLen: 28,        // 28 = SIXT standard, 26 = sometimes cheaper
+};
+
+function dwInitLongTerm(){
+  const host = document.getElementById('lt-months');
+  // Only build chips once
+  if (host && !host.children.length) {
+    let html = '';
+    for (let n = 1; n <= 12; n++) {
+      html += `<button type="button" class="lt-month" data-m="${n}" onclick="dwSetMonths(${n})">
+                 <span class="lt-month-n">${n}</span>
+                 <span class="lt-month-lbl">${n === 1 ? 'month' : 'months'}</span>
+               </button>`;
+    }
+    host.innerHTML = html;
+  }
+  // Mark current selections (in case user is returning to the tab)
+  document.querySelectorAll('#lt-months .lt-month').forEach(b => {
+    b.classList.toggle('on', +b.dataset.m === LT.months);
+  });
+  document.querySelectorAll('#lt-mlen .lt-mlen-opt').forEach(b => {
+    b.classList.toggle('on', +b.dataset.mlen === LT.monthLen);
+  });
+  dwUpdateLtMath();
+}
+
+function dwSetMonths(n){
+  LT.months = n;
+  document.querySelectorAll('#lt-months .lt-month').forEach(b => {
+    b.classList.toggle('on', +b.dataset.m === n);
+  });
+  dwUpdateLtMath();
+}
+
+function dwSetMonthLen(len){
+  LT.monthLen = +len;
+  document.querySelectorAll('#lt-mlen .lt-mlen-opt').forEach(b => {
+    b.classList.toggle('on', +b.dataset.mlen === LT.monthLen);
+  });
+  dwUpdateLtMath();
+}
+
+// Recompute and display the "X months × Y days = Z days · Return by …" line.
+// Also updates the search button's subtitle so it reflects current picks.
+function dwUpdateLtMath(){
+  const el = document.getElementById('lt-math');
+  const sub = document.getElementById('lt-btn-sub');
+  if (!el) return;
+
+  const start = CAL.mu;
+  const months = LT.months;
+  const mlen = LT.monthLen;
+
+  // Not enough info yet → show the placeholder
+  if (!months || !start) {
+    let msg = '';
+    if (!start && !months) msg = 'Pick a start date and duration to see total days &amp; return date';
+    else if (!start) msg = `<b>${months} ${months===1?'month':'months'} × ${mlen} days = ${months*mlen} days</b> · Now pick a start date`;
+    else msg = `Start ${start.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})} · Pick a duration above`;
+    el.innerHTML = msg;
+    el.classList.remove('ready');
+    if (sub) sub.textContent = months
+      ? `${months} ${months===1?'month':'months'} × ${mlen} days · All branches compared`
+      : 'Pick duration above · All branches compared';
+    return;
+  }
+
+  // Both picked — show full math
+  const totalDays = months * mlen;
+  const end = new Date(start.getTime() + totalDays * 86400000);
+  const startStr = start.toLocaleDateString('en-US', {month:'short', day:'numeric', year:'numeric'});
+  const endStr   = end.toLocaleDateString('en-US',   {month:'short', day:'numeric', year:'numeric'});
+  el.innerHTML = `<b>${months} ${months===1?'month':'months'} × ${mlen} days = ${totalDays} days total</b>
+                  <span class="lt-math-end">${startStr} → ${endStr}</span>`;
+  el.classList.add('ready');
+  if (sub) sub.textContent = `${months} ${months===1?'month':'months'} × ${mlen} days · ${totalDays}-day rental · All branches compared`;
+}
+
+// Long-Term Rental — picks start date + duration + month-length, then runs
+// the same metro arbitrage scan as Find Best Price but with the computed dropoff.
 function runLongTerm(loc){
-  // Long-term form uses a single "start date" CAL.mu; default to 28-day rental
   if (!CAL.mu) { openCal('lng'); return; }
+  if (!LT.months) return;   // goSearch already flashes the months row
+
   const start = new Date(CAL.mu);
-  const end = new Date(start.getTime() + 28 * 86400000);
+  const totalDays = LT.months * LT.monthLen;
+  const end = new Date(start.getTime() + totalDays * 86400000);
   CAL.pu = start;
   CAL.do = end;
-  // Pretend the user is on the best-price tab so runArbitrage's DOM lookups work
+  // Long-term flows through the same metro arbitrage code path as Find Best Price.
+  // runArbitrage reads CAL.pu/CAL.do and the location field — set up DOM so it does.
   document.getElementById('f-lng').style.display = 'none';
-  runArbitrage(loc);
+  // Copy mlpu input value to lpu2 so runArbitrage finds it via best-tab's input id
+  const mlpuVal = document.getElementById('mlpu')?.value.trim() || loc;
+  document.getElementById('lpu2').value = mlpuVal;
+  // Carry over the autocomplete pick to pu2 so /api/arbitrage gets the metro term + branch coords
+  if (AC_PICK['mu']) AC_PICK['pu2'] = AC_PICK['mu'];
+  runArbitrage(mlpuVal);
 }
 
 // Format YYYY-MM-DDTHH:MM (no timezone) from a JS Date + "HH:MM"
@@ -1303,6 +1509,13 @@ function dwSetCat(cat){
   DW.vehicleClass = 'all';   // class chips repopulate based on new category
   DW.selectedLoc = null;
   document.querySelectorAll('#r-cats .r-cat').forEach(b=>b.classList.toggle('on', b.textContent === DW_CATS.find(c=>c.id===cat).label));
+
+  // Single-branch (Regular Rental) — just re-render the car list with the new filter
+  if (DW.mode === 'reg' && DW.raw && DW.raw.locations && DW.raw.locations[0]) {
+    renderRegularCarList();
+    return;
+  }
+
   // If we already have raw data, re-filter locally — instant, no 2-3 min wait
   if (DW.raw && Array.isArray(DW.raw.locations)) {
     DW.results = DW.raw.locations.map(loc => dwNormalize(loc, DW.category)).filter(x => x && x.total > 0);
@@ -1504,21 +1717,19 @@ function dwNormalize(loc, categoryFilter){
   };
   const wantCat = CAT_MAP[categoryFilter];
 
+  // FILTERED deals = used to pick the headline car + branch-card preview rows.
+  // These honor the active category + class chips so the home-page comparison is fair.
   let deals = allDeals;
   if (wantCat) {
     deals = allDeals.filter(d => d.category === wantCat);
     if (!deals.length) return null;   // location has nothing in this category
   }
-
-  // Class filter — applied AFTER category filter. Backend gives us carName like
-  // "Compact (NISSAN VERSA)" or "Premium Elite (BMW M340)" or "Minivan (CHRYSLER PACIFICA)".
-  // The leading token(s) before the parenthesis = vehicle class. We extract it for filtering and display.
   if (DW.vehicleClass && DW.vehicleClass !== 'all') {
     deals = deals.filter(d => dwParseClass(d.carName).className.toLowerCase() === DW.vehicleClass.toLowerCase());
     if (!deals.length) return null;
   }
 
-  // Cheapest deal becomes the headline; all deals become the cars[] list in the detail view
+  // Cheapest of the FILTERED set becomes the headline used by the branch card
   const cheapest = deals.reduce((a,b) =>
     (a.cheapestPrice <= b.cheapestPrice ? a : b), deals[0]);
 
@@ -1526,7 +1737,11 @@ function dwNormalize(loc, categoryFilter){
   const daily = +cheapest.cheapestPrice;
   const total = +(daily * days);
 
-  const cars = deals
+  // UNFILTERED cars list — every car at this branch, cheapest first.
+  // The detail view (dwOpenLoc) renders this so users always see the full
+  // inventory after clicking into a branch, regardless of which filter chip
+  // got them there.
+  const allCars = allDeals
     .slice()
     .sort((a,b) => a.cheapestPrice - b.cheapestPrice)
     .map(d => ({
@@ -1534,7 +1749,8 @@ function dwNormalize(loc, categoryFilter){
       meta:  d.category + (Array.isArray(d.rates) ? ` · ${d.rates.length} rate option${d.rates.length>1?'s':''}` : ''),
       daily: +d.cheapestPrice,
       total: +(d.cheapestPrice * days),
-      rates: Array.isArray(d.rates) ? d.rates : [],   // for the detail view
+      rates: Array.isArray(d.rates) ? d.rates : [],
+      category: d.category || '',
       raw:   d
     }));
 
@@ -1547,7 +1763,7 @@ function dwNormalize(loc, categoryFilter){
     locationName: loc.location || 'SIXT branch',
     locationId:   stationId,
     carName:      cheapest.carName,
-    cars:         cars,
+    cars:         allCars,       // ← UNFILTERED — every car at this branch
     daily:        daily,
     total:        total,
     bookUrl:      bookUrl,
@@ -1557,6 +1773,12 @@ function dwNormalize(loc, categoryFilter){
 
 // ─── RESULTS LIST ────────────────────────────────────────────────────
 function renderResultsList(){
+  // Single-branch mode (Regular Rental): render every car at the branch as its own row,
+  // sorted cheapest first, filterable by category and class chips.
+  if (DW.mode === 'reg' && DW.pickedBranch && DW.raw && DW.raw.locations && DW.raw.locations[0]) {
+    renderRegularCarList();
+    return;
+  }
   const list = DW.results;
   const cheapest = list[0], priciest = list[list.length-1];
 
@@ -1702,6 +1924,112 @@ function dwHaversineMi(lat1, lng1, lat2, lng2){
   return 2 * R * Math.asin(Math.sqrt(a));
 }
 
+// ─── REGULAR RENTAL: per-car list at one branch ────────────────────────
+// Render every car at the picked branch as its own row, sorted cheapest first.
+// Category chips filter the list; class chips narrow further.
+// Each row expands inline to show all rate tiers (Sixt Holiday / Comfort SLI / Public Special).
+function renderRegularCarList(){
+  const loc = DW.raw.locations[0];
+  const deals = Array.isArray(loc.deals) ? loc.deals : [];
+
+  // Apply category filter (from r-cats)
+  const CAT_MAP = {cheapest:null, sedan:'Sedan', suv:'SUV', van:'Multiseater', convertible:'Convertible', pickup:'Pickup'};
+  const wantCat = CAT_MAP[DW.category];
+  let filtered = wantCat ? deals.filter(d => d.category === wantCat) : deals.slice();
+
+  // Apply class filter (from r-classes)
+  if (DW.vehicleClass && DW.vehicleClass !== 'all') {
+    filtered = filtered.filter(d => dwParseClass(d.carName||'').className.toLowerCase() === DW.vehicleClass.toLowerCase());
+  }
+
+  // Sort cheapest first
+  filtered.sort((a,b) => (+a.cheapestPrice) - (+b.cheapestPrice));
+
+  // Update class chips (counts derive from current category-filtered set)
+  renderClassChips();
+
+  // Top strip — count of cars + branch name
+  const saveEl = document.getElementById('r-save');
+  if (filtered.length) {
+    const cheapest = +filtered[0].cheapestPrice;
+    const total = (cheapest * DW.days).toFixed(0);
+    saveEl.innerHTML = `
+      <div class="r-save">
+        <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+        <span><b>${filtered.length}</b> car${filtered.length>1?'s':''} available at ${DW.pickedBranch.name} · Cheapest from <b>$${cheapest.toFixed(2)}/day</b> · <b>$${total}</b> for ${DW.days} day${DW.days>1?'s':''}</span>
+      </div>`;
+  } else {
+    saveEl.innerHTML = '';
+  }
+
+  const listEl = document.getElementById('r-list');
+  if (!filtered.length) {
+    const lbl = (DW_CATS.find(c=>c.id===DW.category)||{}).label || DW.category;
+    const clsLbl = (DW.vehicleClass && DW.vehicleClass !== 'all') ? DW.vehicleClass + ' ' : '';
+    listEl.innerHTML = `
+      <div class="r-err">
+        <b>No ${clsLbl}${lbl.toLowerCase()} available at ${DW.pickedBranch.name}.</b><br>
+        Try a different class, or remove the filter to see all cars.
+      </div>`;
+    return;
+  }
+
+  // CAT_LABEL maps the backend's category string → display label
+  const CAT_LABEL = {Sedan:'Sedan', SUV:'SUV', Multiseater:'Van', Convertible:'Conv.', Pickup:'Pickup'};
+
+  // Render each car as a row
+  listEl.innerHTML = filtered.map((d, i) => {
+    const p = dwParseClass(d.carName || '');
+    const cls = p.className || '';
+    const model = p.carModel || (d.carName || '');
+    const catLabel = CAT_LABEL[d.category] || d.category || '';
+    const price = +d.cheapestPrice;
+    const total = price * DW.days;
+    const rates = Array.isArray(d.rates) ? d.rates.slice() : [];
+    // Sort rates cheapest first so the cheapest is leftmost — but DO NOT re-bind
+    // names to prices; just sort the existing pairs.
+    rates.sort((a,b) => (+a.price) - (+b.price));
+    const cheapestRatePrice = rates.length ? Math.min(...rates.map(r => +r.price)) : price;
+    const rowId = 'rcar-' + i;
+    return `
+      <div class="rcar" id="${rowId}" data-cheapest="${cheapestRatePrice}">
+        <div class="rcar-head" onclick="dwToggleCar('${rowId}')">
+          <div class="rcar-info">
+            <div class="rcar-name"><b>${cls}</b> <span class="rcar-model">${model}</span></div>
+            <div class="rcar-sub">
+              <span class="rcar-cat">${catLabel}</span>
+              ${rates.length > 1 ? `<span class="rcar-rates-count">· ${rates.length} rate option${rates.length>1?'s':''}</span>` : ''}
+            </div>
+          </div>
+          <div class="rcar-price">
+            <div class="rcar-day">$${price.toFixed(2)}/day</div>
+            <div class="rcar-total">$${Math.round(total)}</div>
+          </div>
+          <span class="rcar-toggle" aria-hidden="true">▾</span>
+        </div>
+        <div class="rcar-rates">
+          ${rates.length === 0 ? `<div class="rcar-rate-empty">Single rate · $${price.toFixed(2)}/day</div>` :
+            rates.map(r => {
+              const rp = +r.price;
+              const isMin = rp === cheapestRatePrice;
+              return `
+                <div class="rcar-rate${isMin ? ' on' : ''}">
+                  <div class="rcar-rate-name">${r.name || 'Rate'}${isMin ? ' <span class="rcar-rate-badge">CHEAPEST</span>' : ''}</div>
+                  <div class="rcar-rate-price">$${rp.toFixed(2)}/day</div>
+                </div>`;
+            }).join('')}
+        </div>
+      </div>`;
+  }).join('');
+}
+
+// Expand/collapse a car row to show its rate tiers
+function dwToggleCar(rowId){
+  const row = document.getElementById(rowId);
+  if (!row) return;
+  row.classList.toggle('open');
+}
+
 // Render the second-tier "class" chips: Economy / Compact / Intermediate / Standard / ...
 // Only show classes that actually exist in the cached response (after the current category filter).
 // Each chip shows a count of branches that have at least one car in that class.
@@ -1710,20 +2038,31 @@ function renderClassChips(){
   if (!host) return;
   if (!DW.raw || !Array.isArray(DW.raw.locations)) { host.innerHTML = ''; return; }
 
-  // Build a map: className -> count of branches offering at least one car of that class
-  // (within the current category filter, so the counts make sense)
+  // Build a map: className -> count
+  // In metro mode: count = how many branches have at least one car of this class
+  // In single-branch mode: count = how many cars of this class are at the picked branch
   const CAT_MAP = {cheapest:null, sedan:'Sedan', suv:'SUV', van:'Multiseater', convertible:'Convertible', pickup:'Pickup'};
   const wantCat = CAT_MAP[DW.category];
   const classCounts = new Map();
+  const isSingleBranch = (DW.mode === 'reg');
   for (const loc of DW.raw.locations) {
     const deals = Array.isArray(loc.deals) ? loc.deals : [];
     const inCat = wantCat ? deals.filter(d => d.category === wantCat) : deals;
-    const branchClasses = new Set();
-    for (const d of inCat) {
-      const p = dwParseClass(d.carName);
-      if (p.className) branchClasses.add(p.className);
+    if (isSingleBranch) {
+      // Count each car separately
+      for (const d of inCat) {
+        const p = dwParseClass(d.carName);
+        if (p.className) classCounts.set(p.className, (classCounts.get(p.className) || 0) + 1);
+      }
+    } else {
+      // Count branches per class
+      const branchClasses = new Set();
+      for (const d of inCat) {
+        const p = dwParseClass(d.carName);
+        if (p.className) branchClasses.add(p.className);
+      }
+      for (const c of branchClasses) classCounts.set(c, (classCounts.get(c) || 0) + 1);
     }
-    for (const c of branchClasses) classCounts.set(c, (classCounts.get(c) || 0) + 1);
   }
 
   // If 0 or 1 distinct classes exist, the sub-filter adds no value — hide it
@@ -1747,6 +2086,11 @@ function renderClassChips(){
 function dwSetClass(cls){
   DW.vehicleClass = cls;
   DW.selectedLoc = null;
+  // Single-branch (Regular Rental) — re-render the car list
+  if (DW.mode === 'reg' && DW.raw && DW.raw.locations && DW.raw.locations[0]) {
+    renderRegularCarList();
+    return;
+  }
   if (DW.raw && Array.isArray(DW.raw.locations)) {
     DW.results = DW.raw.locations.map(loc => dwNormalize(loc, DW.category)).filter(x => x && x.total > 0);
     if (!DW.results.length) {
@@ -1775,21 +2119,25 @@ function dwOpenLoc(i){
   DW.payment = 'now';
   DW.extras = {fuel:0, toll:0, gps:0, seat:0};
 
-  // r.cars is already in the right shape from dwNormalize — it has rates[] attached.
-  // Each car: {name, meta, daily, total, rates:[{name,price}], raw}
+  // r.cars is already in the right shape from dwNormalize — it has rates[] + category attached.
+  // Each car: {name, meta, daily, total, category, rates:[{name,price}], raw}
   // We pre-sort rates ascending so the index used in dwSelRate matches what's rendered.
   const cars = (Array.isArray(r.cars) && r.cars.length)
     ? r.cars.map(c => ({
-        name:    c.name || 'Option',
-        meta:    c.meta || '',
-        daily:   +c.daily || 0,
-        total:   +c.total || 0,
-        rates:   Array.isArray(c.rates) ? c.rates.slice().sort((a,b)=>(+a.price)-(+b.price)) : [],
-        bookUrl: r.bookUrl
+        name:     c.name || 'Option',
+        meta:     c.meta || '',
+        daily:    +c.daily || 0,
+        total:    +c.total || 0,
+        category: c.category || (c.raw && c.raw.category) || '',
+        rates:    Array.isArray(c.rates) ? c.rates.slice().sort((a,b)=>(+a.price)-(+b.price)) : [],
+        raw:      c.raw,
+        bookUrl:  r.bookUrl
       }))
     : [{name: r.carName || 'Best available car', meta:'', daily:r.daily, total:r.total, rates:[], bookUrl:r.bookUrl}];
 
   DW.detailCars = cars;
+  // Track the unfiltered full list so the in-detail category chip can reset to "All"
+  DW.detailCarsAll = cars.slice();
   // Show whatever extras are already on the location object (in case backend
   // ever inlines them). Otherwise, we'll fetch on demand from /api/extras.
   DW.detailLoc = (r.raw && Array.isArray(r.raw.extras)) ? r.raw
@@ -1799,6 +2147,27 @@ function dwOpenLoc(i){
   // Fire the per-location extras fetch in the background — doesn't block render
   if (!DW.detailLoc) fetchExtrasForLocation(r);
   window.scrollTo({top: document.getElementById('f-best-results').offsetTop - 16, behavior:'smooth'});
+}
+
+// In-detail category filter — narrows the visible car list to one category
+// (Sedan / SUV / Van / Convertible / Pickup) without losing the full inventory.
+// Click "All" to return to every car at the branch.
+function dwSetDetailCat(cat){
+  if (!DW.detailCarsAll) DW.detailCarsAll = DW.detailCars.slice();
+  if (cat === 'all') {
+    DW.detailCars = DW.detailCarsAll.slice();
+  } else {
+    DW.detailCars = DW.detailCarsAll.filter(c => (c.category || (c.raw && c.raw.category) || '') === cat);
+    if (!DW.detailCars.length) DW.detailCars = DW.detailCarsAll.slice();   // never empty
+  }
+  // Reset selection to the cheapest in the new view
+  DW.selectedCar = 0;
+  DW.selectedRate = null;
+  // Update chip pressed state
+  document.querySelectorAll('#d-cat-filter .d-cat').forEach(b =>
+    b.classList.toggle('on', b.dataset.cat === cat)
+  );
+  refreshDetail();
 }
 
 // ─── PER-LOCATION EXTRAS FETCH ──────────────────────────────────────
@@ -1890,7 +2259,22 @@ function renderDetail(){
       <button class="r-back" onclick="dwBackToList()">← All branches</button>
     </div>
 
-    <span class="d-sect">Choose your car</span>
+    <span class="d-sect">Choose your car · ${cars.length} available at this branch</span>
+    <div class="d-cat-filter" id="d-cat-filter">
+      ${(() => {
+        // Build category chips from what's actually in cars[]
+        const CAT_LABEL = {Sedan:'Sedan', SUV:'SUV', Multiseater:'Van', Convertible:'Convertible', Pickup:'Pickup'};
+        const cats = {};
+        for (const c of cars) {
+          const k = c.category || (c.raw && c.raw.category) || '';
+          if (k) cats[k] = (cats[k] || 0) + 1;
+        }
+        const known = Object.keys(CAT_LABEL).filter(k => cats[k]);
+        if (!known.length) return '';
+        return `<button class="d-cat on" data-cat="all" onclick="dwSetDetailCat('all')">All <span class="ct">${cars.length}</span></button>` +
+               known.map(k => `<button class="d-cat" data-cat="${k}" onclick="dwSetDetailCat('${k}')">${CAT_LABEL[k]} <span class="ct">${cats[k]}</span></button>`).join('');
+      })()}
+    </div>
     <div id="d-cars">
       ${cars.map((c,i)=>{
         const rates = Array.isArray(c.rates) ? c.rates.slice().sort((a,b)=>(+a.price)-(+b.price)) : [];
