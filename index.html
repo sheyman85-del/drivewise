@@ -179,11 +179,12 @@ h1 em{font-style:italic;color:#5de0a0}
 /* The results view replaces the form when shown, and lives directly inside the same .card */
 
 /* Top status bar — city, dates, # results, change-search action */
-.r-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding-bottom:12px;border-bottom:1px solid #f0f0f0;margin-bottom:14px}
-.r-bar-info{font-size:11.5px;color:#9ca3af;line-height:1.5}
-.r-bar-info b{color:#111;font-weight:700}
-.r-bar-info .city{color:#3db87a;font-weight:800}
-.r-back{font-size:11.5px;font-weight:700;color:#5de0a0;background:transparent;border:1.5px solid #5de0a0;padding:6px 11px;border-radius:7px;cursor:pointer;font-family:'Inter',sans-serif;transition:all .12s}
+.r-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding-bottom:14px;border-bottom:1px solid #f0f0f0;margin-bottom:14px}
+.r-bar-info{font-size:14.5px;color:#9ca3af;line-height:1.45}
+.r-bar-info b{color:#111;font-weight:800}
+.r-bar-info .city{color:#3db87a;font-weight:800;font-size:15.5px}
+.r-bar-info .sub{font-size:11.5px;color:#9ca3af;font-weight:500;display:block;margin-top:3px;line-height:1.4}
+.r-back{font-size:12px;font-weight:700;color:#5de0a0;background:transparent;border:1.5px solid #5de0a0;padding:7px 13px;border-radius:7px;cursor:pointer;font-family:'Inter',sans-serif;transition:all .12s}
 .r-back:hover{background:#5de0a0;color:#0c1e14}
 
 /* Category filter chips */
@@ -229,6 +230,75 @@ h1 em{font-style:italic;color:#5de0a0}
 .r-total{font-size:19px;font-weight:800;color:#111;line-height:1;margin-top:2px}
 .r-card.best .r-total{color:#3db87a}
 .r-strike{font-size:10.5px;color:#9ca3af;text-decoration:line-through;margin-top:2px}
+
+/* ─── CATEGORY VIEW (Find Best Price + Long-Term) ─────────────────────
+   Cars grouped by category and tier. Each row links to a branch detail. */
+.cv-sect{display:flex;align-items:center;gap:8px;margin:18px 0 8px;padding:0 2px}
+.cv-sect:first-child{margin-top:0}
+.cv-sect-ico{font-size:15px;line-height:1}
+.cv-sect-lbl{font-size:10.5px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;color:#111;flex-shrink:0}
+.cv-sect-ct{font-size:10px;font-weight:700;color:#9ca3af;letter-spacing:.4px;text-transform:uppercase}
+.cv-sect::after{content:'';flex:1;height:1px;background:#e5e7eb}
+
+.cv-car{position:relative;background:#fff;border:1px solid #e5e7eb;border-radius:9px;padding:10px 13px;margin-bottom:6px;cursor:pointer;transition:all .12s}
+.cv-car:hover{border-color:#5de0a0;transform:translateY(-1px);box-shadow:0 3px 10px rgba(93,224,160,.1)}
+.cv-car.best{border-color:#3db87a;background:linear-gradient(135deg,#f0fdf4 0%,#fff 60%);box-shadow:0 3px 14px rgba(93,224,160,.18);margin-top:14px}
+.cv-car-main{display:flex;align-items:center;gap:10px}
+.cv-car-info{flex:1;min-width:0}
+.cv-car-name{font-size:13px;color:#111;line-height:1.3;margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cv-car-name b{font-weight:800;color:#111;margin-right:6px}
+.cv-car-sub{font-size:10.5px;color:#6b7280;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cv-car-price{text-align:right;flex-shrink:0}
+.cv-car-day{font-size:13.5px;font-weight:800;color:#3db87a;line-height:1.2}
+.cv-car-total{font-size:10.5px;color:#9ca3af;font-weight:700;margin-top:1px}
+.cv-car-arrow{flex-shrink:0;font-size:13px;color:#9ca3af;font-weight:700;transition:transform .15s}
+.cv-car:hover .cv-car-arrow{color:#3db87a;transform:translateX(2px)}
+
+/* ─── MODEL-GROUPED ROWS (v34): one row per unique model, expand for branches ─ */
+.cv-model{position:relative;background:#fff;border:1px solid #e5e7eb;border-radius:9px;margin-bottom:7px;overflow:hidden;transition:all .12s}
+.cv-model:hover{border-color:#5de0a0}
+.cv-model.open{border-color:#3db87a;box-shadow:0 4px 14px rgba(61,184,122,.12)}
+.cv-model.best{border-color:#3db87a;background:linear-gradient(135deg,#f0fdf4 0%,#fff 60%);box-shadow:0 3px 14px rgba(93,224,160,.18);margin-top:18px;padding-top:0}
+/* Ribbon sits INSIDE the card so overflow:hidden doesn't clip it.
+   Positioned absolutely at the very top so it sits in the corner of the card. */
+.cv-ribbon{position:absolute;top:0;left:0;background:#3db87a;color:#fff;font-size:9.5px;font-weight:800;padding:4px 10px 4px 11px;border-radius:0 0 7px 0;letter-spacing:.5px;text-transform:uppercase;box-shadow:0 2px 6px rgba(61,184,122,.25);z-index:2}
+.cv-model.best .cv-model-head{padding-top:22px}
+.cv-model-head{display:flex;align-items:flex-start;gap:12px;padding:11px 13px;cursor:pointer;user-select:none}
+.cv-model-info{flex:1;min-width:0}
+.cv-model-name{font-size:13.5px;color:#111;line-height:1.3;margin-bottom:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cv-model-name b{font-weight:800;color:#111;margin-right:4px}
+.cv-model-make{font-weight:700;color:#374151}
+.cv-model-sub{font-size:10.5px;color:#9ca3af;margin-bottom:4px;line-height:1.4;display:flex;align-items:center;gap:5px;flex-wrap:wrap}
+.cv-or{color:#6b7280;font-weight:500;font-style:italic}
+.cv-tag{font-weight:700;color:#6b7280}
+.cv-tag-code{font-family:'SF Mono','Monaco',monospace;color:#9ca3af;letter-spacing:.5px;font-size:10px}
+.cv-tag-sep{color:#d1d5db;font-weight:400;margin:0 1px}
+.cv-model-meta{font-size:11.5px;color:#6b7280;font-weight:600;line-height:1.4}
+.cv-model-meta b{color:#111;font-weight:800}
+.cv-more{color:#3db87a;font-weight:700;cursor:pointer}
+.cv-model.open .cv-more::after{content:''}
+.cv-model-price{text-align:right;flex-shrink:0;min-width:96px}
+.cv-model-from{font-size:9.5px;color:#9ca3af;font-weight:700;text-transform:uppercase;letter-spacing:.6px;line-height:1}
+.cv-model-day{font-size:14px;font-weight:800;color:#3db87a;line-height:1.2;margin-top:2px}
+.cv-model-total{font-size:14px;font-weight:900;color:#9ca3af;line-height:1.1;margin-top:3px;letter-spacing:-.1px}
+.cv-model-total-lbl{font-size:8.5px;color:#9ca3af;font-weight:700;letter-spacing:.6px;text-transform:uppercase;display:block;margin-top:1px;line-height:1}
+.cv-model-single{padding:8px 13px;border-top:1px dashed #e5e7eb;background:#f9fafb}
+.cv-model-go{font-size:11px;color:#3db87a;font-weight:700;cursor:pointer}
+.cv-model-go:hover{text-decoration:underline}
+/* Branch sub-list — hidden until parent .cv-model.open */
+.cv-model-branches{display:none;padding:6px 8px 9px;background:#f9fafb;border-top:1px dashed #e5e7eb;flex-direction:column;gap:4px}
+.cv-model.open .cv-model-branches{display:flex}
+.cv-branch{display:flex;align-items:center;justify-content:space-between;gap:8px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;padding:7px 10px;cursor:pointer;transition:all .1s;font-size:11.5px}
+.cv-branch:hover{border-color:#5de0a0;transform:translateX(2px)}
+.cv-branch.cheapest{background:#d1fae5;border-color:#3db87a}
+.cv-branch-info{flex:1;min-width:0}
+.cv-branch-name{font-weight:700;color:#111;display:flex;align-items:center;gap:6px}
+.cv-branch-min{font-size:8.5px;font-weight:800;color:#fff;background:#3db87a;padding:1px 5px;border-radius:3px;letter-spacing:.4px}
+.cv-branch-dist{font-size:10px;color:#9ca3af;font-weight:600;margin-top:1px}
+.cv-branch-price{flex-shrink:0;text-align:right;line-height:1.2}
+.cv-branch-day{font-weight:800;color:#3db87a;font-size:12px;line-height:1}
+.cv-branch-total{display:block;font-weight:900;color:#9ca3af;font-size:12px;margin-top:2px;letter-spacing:-.1px}
+
 .r-bot{display:flex;justify-content:space-between;align-items:center;margin-top:10px;padding-top:9px;border-top:1px dashed #e5e7eb}
 .r-tag{font-size:10.5px;color:#9ca3af;font-weight:600}
 .r-tag.deal{color:#3db87a;font-weight:700}
@@ -256,25 +326,72 @@ h1 em{font-style:italic;color:#5de0a0}
 .rcar-sub{display:flex;align-items:center;gap:6px;font-size:10.5px;color:#6b7280}
 .rcar-cat{font-weight:800;text-transform:uppercase;letter-spacing:.4px;color:#3db87a;background:#d1fae5;padding:2px 6px;border-radius:3px;font-size:9.5px}
 .rcar-rates-count{color:#9ca3af;font-weight:600}
+/* When .d-rates is used inside .rcar (Regular Rental), show it on .rcar.open */
+.rcar .d-rates.rcar-rates-grid{display:none;background:#f9fafb;padding:10px 13px;border-top:1px dashed #e5e7eb;margin:0;flex-wrap:wrap;gap:8px}
+.rcar.open .d-rates.rcar-rates-grid{display:flex}
 .rcar-price{text-align:right;flex-shrink:0}
 .rcar-day{font-size:13px;font-weight:800;color:#3db87a;line-height:1.2}
-.rcar-total{font-size:10.5px;color:#9ca3af;font-weight:700;margin-top:1px}
+.rcar-total{font-size:13px;font-weight:900;color:#9ca3af;line-height:1.1;margin-top:1px;letter-spacing:-.1px}
 .rcar-toggle{flex-shrink:0;font-size:14px;color:#9ca3af;transition:transform .15s;line-height:1;padding:0 4px}
 .rcar.open .rcar-toggle{transform:rotate(180deg);color:#3db87a}
 .rcar-rates{display:none;background:#f9fafb;padding:8px 13px;border-top:1px dashed #e5e7eb;gap:6px;flex-direction:column}
 .rcar.open .rcar-rates{display:flex}
-.rcar-rate{display:flex;align-items:center;justify-content:space-between;gap:10px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;padding:7px 10px;font-size:11.5px}
+.rcar-rate{display:flex;flex-direction:column;background:#fff;border:1px solid #e5e7eb;border-radius:6px;padding:8px 10px;font-size:11.5px;gap:5px}
 .rcar-rate.on{background:#d1fae5;border-color:#3db87a}
+.rcar-rate-row{display:flex;align-items:center;justify-content:space-between;gap:10px}
 .rcar-rate-name{font-weight:700;color:#111;flex:1;min-width:0;display:flex;align-items:center;gap:6px}
 .rcar-rate-badge{font-size:8.5px;font-weight:800;color:#fff;background:#3db87a;padding:1px 5px;border-radius:3px;letter-spacing:.4px}
 .rcar-rate-price{font-weight:800;color:#3db87a;flex-shrink:0}
 .rcar-rate-empty{font-size:11px;color:#6b7280;padding:6px 0}
 
+/* ─── RATE INCLUSIONS — chips + expander + checklist ───────────────────
+   Shared by Regular Rental (.rcar-rate) and Find Best Price (.d-rate).
+   Chips give glance summary; click "all N terms" to expand full SIXT list. */
+.rate-chips{display:flex;flex-wrap:wrap;gap:4px 5px;margin-top:1px}
+.rate-chip{font-size:9.5px;font-weight:700;padding:2px 7px;border-radius:9px;line-height:1.5;letter-spacing:.1px;display:inline-flex;align-items:center;gap:3px;white-space:nowrap}
+.rate-chip-ok{background:#e6f9ee;color:#0e7c45;border:1px solid #c5ecd2}
+.rate-chip-warn{background:#fef3c7;color:#92400e;border:1px solid #fde68a}
+.rate-chip-info{background:#f3f4f6;color:#4b5563;border:1px solid #e5e7eb}
+.rate-chip-ico{font-size:10px;line-height:1}
+.rcar-rate.on .rate-chip-ok,.d-rate.sel .rate-chip-ok{background:#fff;color:#0e7c45;border-color:#a7e1bb}
+.rcar-rate.on .rate-chip-warn,.d-rate.sel .rate-chip-warn{background:#fff;color:#92400e;border-color:#fde68a}
+.rcar-rate.on .rate-chip-info,.d-rate.sel .rate-chip-info{background:#fff;color:#4b5563;border-color:#d1d5db}
+
+.rate-expand{align-self:flex-start;background:transparent;border:0;padding:2px 0;font-family:'Inter',sans-serif;font-size:10px;font-weight:700;color:#3db87a;cursor:pointer;display:inline-flex;align-items:center;gap:3px;letter-spacing:.2px;text-transform:uppercase}
+.rate-expand:hover{color:#2da16a}
+.rate-expand-arr{transition:transform .15s;font-size:9px}
+.rate-open .rate-expand-arr{transform:rotate(180deg)}
+.d-rate.sel .rate-expand{color:#fff}
+.d-rate.sel .rate-expand:hover{color:#fff;opacity:.8}
+
+.rate-incl{display:none;margin-top:5px;padding-top:6px;border-top:1px dashed #d1d5db}
+.rate-open .rate-incl{display:block}
+.d-rate.sel .rate-incl{border-top-color:rgba(255,255,255,.35)}
+.rate-incl-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:3px}
+.rate-incl-list li{font-size:10.5px;line-height:1.45;color:#1f2937;display:flex;gap:5px;align-items:flex-start}
+.rate-incl-grp{margin-bottom:7px}
+.rate-incl-grp:last-child{margin-bottom:0}
+.rate-incl-hd{font-size:9px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;margin-bottom:4px;color:#0e7c45}
+.rate-incl-hd-off{color:#92400e}
+.d-rate.sel .rate-incl-hd{color:#fff}
+.d-rate.sel .rate-incl-hd-off{color:#fef3c7}
+.rate-incl-mark{font-weight:900;font-size:11px;flex-shrink:0;width:11px;text-align:center;line-height:1.4}
+.rate-incl-on .rate-incl-mark{color:#0e7c45}
+.rate-incl-off{color:#9ca3af;text-decoration:line-through;text-decoration-thickness:1px}
+.rate-incl-off .rate-incl-mark{color:#dc2626;text-decoration:none;display:inline-block}
+.rate-incl-detail{color:#6b7280;font-weight:500}
+.d-rate.sel .rate-incl-list li{color:#fff}
+.d-rate.sel .rate-incl-on .rate-incl-mark{color:#a7f3d0}
+.d-rate.sel .rate-incl-off{color:rgba(255,255,255,.55)}
+.d-rate.sel .rate-incl-off .rate-incl-mark{color:#fecaca}
+.d-rate.sel .rate-incl-detail{color:rgba(255,255,255,.75)}
+.rate-incl-empty{font-size:10.5px;color:#9ca3af;font-style:italic;padding:3px 0}
+
 /* ─── DETAIL VIEW (when a location is clicked) ───────────────────────── */
-.d-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;flex-wrap:wrap;padding-bottom:13px;border-bottom:1px solid #f0f0f0;margin-bottom:14px}
+.d-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;flex-wrap:wrap;padding-bottom:14px;border-bottom:1px solid #f0f0f0;margin-bottom:14px}
 .d-h-info{flex:1;min-width:0}
-.d-h-name{font-size:15px;font-weight:800;color:#111;line-height:1.3;margin-bottom:3px}
-.d-h-sub{font-size:11.5px;color:#9ca3af;line-height:1.4}
+.d-h-name{font-size:18px;font-weight:800;color:#111;line-height:1.25;margin-bottom:4px}
+.d-h-sub{font-size:14px;color:#9ca3af;line-height:1.45}
 .d-h-sub .city{color:#3db87a;font-weight:700}
 
 /* Cars list — multiple cars in this category at this location */
@@ -304,15 +421,15 @@ h1 em{font-style:italic;color:#5de0a0}
 /* Rate-by-rate breakdown shown under each car when selected */
 .d-rates{display:none;margin-top:9px;padding-top:9px;border-top:1px dashed #d1d5db;gap:6px;flex-wrap:wrap}
 .d-car.sel .d-rates{display:flex}
-.d-rate{flex:1;min-width:120px;background:#fff;border:1.5px solid #e5e7eb;border-radius:6px;padding:7px 9px;cursor:pointer;transition:all .12s;position:relative}
+.d-rate{flex:1 1 220px;min-width:220px;background:#fff;border:1.5px solid #e5e7eb;border-radius:8px;padding:9px 11px;cursor:pointer;transition:all .12s;position:relative;display:flex;flex-direction:column;gap:5px}
 .d-rate:hover{border-color:#5de0a0}
 /* Selected = strong green fill (the active choice) */
 .d-rate.sel{background:#3db87a;border-color:#3db87a}
 .d-rate.sel .d-rate-name{color:#fff}
 .d-rate.sel .d-rate-px{color:#fff}
-.d-rate.sel::after{content:'✓';position:absolute;top:5px;right:7px;color:#fff;font-size:12px;font-weight:800}
-.d-rate-name{font-size:10px;color:#6b7280;font-weight:700;text-transform:uppercase;letter-spacing:.4px;line-height:1.3}
-.d-rate-px{font-size:13px;color:#111;font-weight:800;margin-top:3px}
+.d-rate.sel::after{content:'✓';position:absolute;top:6px;right:8px;color:#fff;font-size:12px;font-weight:800}
+.d-rate-name{font-size:10px;color:#6b7280;font-weight:700;text-transform:uppercase;letter-spacing:.4px;line-height:1.3;padding-right:14px}
+.d-rate-px{font-size:13px;color:#111;font-weight:800}
 .d-rate-badge{display:inline-block;background:#fef3c7;color:#92400e;font-size:8px;font-weight:800;letter-spacing:.5px;padding:1px 4px;border-radius:3px;margin-left:4px;vertical-align:middle}
 .d-rate.sel .d-rate-badge{background:rgba(255,255,255,.25);color:#fff}
 
@@ -1035,6 +1152,194 @@ function dwParseClass(carName){
   return {className:raw, carModel:model};
 }
 
+// ─── RATE INCLUSIONS ────────────────────────────────────────────────────
+// Backend ideally returns rate.inclusions[] = [{label, detail?, included}] scraped
+// from SIXT's "All details" column on each rate. If the field is missing, we fall
+// back to a canonical default by rate-name so the UI still renders something useful.
+// The bot can ship per-rate scraping incrementally — this code degrades gracefully.
+
+// Canonical SIXT inclusions per rate tier — VERIFIED from Stage 2 Configure page
+// by backend (May 2026). These are consistent across all SIXT bookings: same
+// LDW + SLI + Roadside on every rate, only kilometers + additional-driver vary.
+// Source of truth: backend scrape of partner.sixt.com Stage 2 confirmation page.
+// (Stage 1 column headers are misleading — they suggest Public Special has no LDW,
+//  but Stage 2 confirms LDW + theft protection are included in ALL three rates.)
+const DW_DEFAULT_INCLUSIONS = {
+  'sixt holiday': {
+    included: [
+      {label:'Loss Damage Waiver',         detail:'including theft protection'},
+      {label:'Supplemental Liability Insurance'},
+      {label:'24/7 Roadside Assistance Hotline'},
+      {label:'Unlimited kilometers'},
+      {label:'Free additional driver'},
+    ],
+    notIncluded: [],
+  },
+  'comfort package sli incl.': {
+    included: [
+      {label:'Loss Damage Waiver',         detail:'including theft protection'},
+      {label:'Supplemental Liability Insurance'},
+      {label:'24/7 Roadside Assistance Hotline'},
+      {label:'Unlimited kilometers'},
+      {label:'Free additional driver'},
+    ],
+    notIncluded: [],
+  },
+  'public special rate': {
+    included: [
+      {label:'Loss Damage Waiver',         detail:'including theft protection'},
+      {label:'Supplemental Liability Insurance'},
+      {label:'24/7 Roadside Assistance Hotline'},
+      {label:'Kilometers',                 detail:'per rate terms · confirmed at SIXT checkout'},
+    ],
+    notIncluded: [
+      {label:'Additional driver',          detail:'available as extra'},
+    ],
+  },
+};
+
+// Get the full inclusion data for a rate as {included:[], notIncluded:[]}.
+// Prefers backend-provided rate.inclusions when shipped; falls back to the
+// Stage-2-verified canonical defaults keyed by rate name. Returns null if nothing known.
+function dwInclusionsFor(rate){
+  // Future: backend may attach rate.inclusions directly to each rate object
+  if (rate && rate.inclusions && (Array.isArray(rate.inclusions.included) || Array.isArray(rate.inclusions.notIncluded))) {
+    return {
+      included:    Array.isArray(rate.inclusions.included)    ? rate.inclusions.included    : [],
+      notIncluded: Array.isArray(rate.inclusions.notIncluded) ? rate.inclusions.notIncluded : [],
+    };
+  }
+  const key = String(rate && rate.name || '').toLowerCase().trim();
+  return DW_DEFAULT_INCLUSIONS[key] || null;
+}
+
+// Total inclusion-row count for the expander label ("all N terms ▾")
+function dwInclusionCount(rate){
+  const incl = dwInclusionsFor(rate);
+  if (!incl) return 0;
+  return (incl.included || []).length + (incl.notIncluded || []).length;
+}
+
+// Glance chips — 3 most decision-relevant items:
+//   1. Insurance — LDW status (always green per Stage 2)
+//   2. Kilometers — unlimited vs limited (with detail)
+//   3. Additional driver — free / not included
+// Returns [{icon, label, kind:'ok'|'warn'}, ...] — at most 3 chips.
+function dwGlanceChips(rate){
+  const data = dwInclusionsFor(rate);
+  if (!data) return [];
+  const inc = data.included || [];
+  const not = data.notIncluded || [];
+
+  // Helper: find item by label substring (case-insensitive)
+  const findIn = (list, re) => list.find(i => re.test(String(i.label||'').toLowerCase()));
+
+  const chips = [];
+
+  // 1. Insurance — LDW
+  const ldw = findIn(inc, /loss damage waiver|ldw/i);
+  if (ldw) {
+    chips.push({icon:'🛡', label:'LDW included', kind:'ok'});
+  } else {
+    const ldwNot = findIn(not, /loss damage waiver|ldw/i);
+    if (ldwNot) chips.push({icon:'⚠', label:'LDW extra', kind:'warn'});
+  }
+
+  // 2. Kilometers — PREFER live rate.kmStatus from backend (e.g. "incl. unlimited km",
+  // "incl. limited km · 2000 mi"). When that field is absent, fall back to scanning the
+  // inclusion list. Last resort: gray "km per rate" placeholder.
+  const kmStatus = String(rate && rate.kmStatus || '').toLowerCase();
+  if (kmStatus) {
+    if (/unlimited/.test(kmStatus)) {
+      chips.push({icon:'♾', label:'Unlimited km', kind:'ok'});
+    } else if (/limited|miles/.test(kmStatus)) {
+      // Pull out the cap (e.g. "limited · 2000 mi") if backend provided it
+      const m = kmStatus.match(/([\d,]+\s*(?:mi|miles|km|kilometers))/i);
+      const detail = m ? m[1].trim() : '';
+      chips.push({icon:'⚠', label: detail ? `Limited · ${detail}` : 'Limited km', kind:'warn'});
+    } else {
+      chips.push({icon:'ⓘ', label: kmStatus, kind:'info'});
+    }
+  } else {
+    // Fallback — read from the hardcoded inclusion list
+    const unlimited = findIn(inc, /unlimited kilometers|unlimited km/i);
+    const limited   = findIn(inc, /limited kilometers|limited km/i);
+    // The neutral "per rate terms" case — used for rates where km policy varies by booking
+    // length/branch and we don't have live data yet. Rendered as a gray "info" chip, not a warning.
+    const perTerms  = findIn(inc, /^kilometers$/i);
+    if (unlimited) {
+      chips.push({icon:'♾', label:'Unlimited km', kind:'ok'});
+    } else if (limited) {
+      const detail = limited.detail ? limited.detail.split(',').slice(0,2).join(',').replace(/\s*included\s*$/i,'') : '';
+      chips.push({icon:'⚠', label: detail ? `Limited · ${detail}` : 'Limited km', kind:'warn'});
+    } else if (perTerms) {
+      chips.push({icon:'ⓘ', label:'km per rate', kind:'info'});
+    }
+  }
+
+  // 3. Additional driver
+  const driverInc = findIn(inc, /additional driver|free additional/i);
+  const driverNot = findIn(not, /additional driver/i);
+  if (driverInc) chips.push({icon:'👥', label:'Free additional driver', kind:'ok'});
+  else if (driverNot) chips.push({icon:'⚠', label:'Add. driver extra', kind:'warn'});
+
+  return chips.slice(0, 3);
+}
+
+// Build a single-line HTML row of glance chips for a rate. Empty string if none.
+function dwGlanceChipsHTML(rate){
+  const chips = dwGlanceChips(rate);
+  if (!chips.length) return '';
+  return `<div class="rate-chips">${chips.map(c =>
+    `<span class="rate-chip rate-chip-${c.kind}"><span class="rate-chip-ico">${c.icon}</span>${c.label}</span>`
+  ).join('')}</div>`;
+}
+
+// Build the full expanded inclusion checklist — 2 sections (Included / Not included)
+function dwInclusionListHTML(rate){
+  const data = dwInclusionsFor(rate);
+  if (!data) return `<div class="rate-incl-empty">Full terms confirmed at SIXT checkout</div>`;
+  // Clone the included list so we can upgrade the placeholder "Kilometers" row
+  // when the backend ships the real per-rate kmStatus.
+  let inc = (data.included || []).slice();
+  const not = (data.notIncluded || []).slice();
+  if (!inc.length && !not.length) return `<div class="rate-incl-empty">Full terms confirmed at SIXT checkout</div>`;
+
+  // When backend provides rate.kmStatus, replace the generic "Kilometers" placeholder
+  // row with the real terms so users see "✓ Unlimited kilometers" instead of
+  // "✓ Kilometers — per rate terms".
+  const kmStatus = String(rate && rate.kmStatus || '').toLowerCase();
+  if (kmStatus) {
+    inc = inc.map(item => {
+      const lbl = String(item.label || '').toLowerCase();
+      if (lbl !== 'kilometers') return item;
+      if (/unlimited/.test(kmStatus)) return {label:'Unlimited kilometers'};
+      if (/limited|miles/.test(kmStatus)) {
+        const m = kmStatus.match(/([\d,]+\s*(?:mi|miles|km|kilometers))/i);
+        return {label:'Limited kilometers', detail: m ? `${m[1].trim()} included` : 'cap confirmed at SIXT checkout'};
+      }
+      return item;
+    });
+  }
+
+  let html = '';
+  if (inc.length) {
+    html += `<div class="rate-incl-grp"><div class="rate-incl-hd rate-incl-hd-on">Included in rate</div>`;
+    html += `<ul class="rate-incl-list">${inc.map(i => {
+      const detail = i.detail ? ` <span class="rate-incl-detail">— ${i.detail}</span>` : '';
+      return `<li class="rate-incl-on"><span class="rate-incl-mark">✓</span>${i.label}${detail}</li>`;
+    }).join('')}</ul></div>`;
+  }
+  if (not.length) {
+    html += `<div class="rate-incl-grp"><div class="rate-incl-hd rate-incl-hd-off">Not included · available as extras</div>`;
+    html += `<ul class="rate-incl-list">${not.map(i => {
+      const detail = i.detail ? ` <span class="rate-incl-detail">— ${i.detail}</span>` : '';
+      return `<li class="rate-incl-off"><span class="rate-incl-mark">✗</span>${i.label}${detail}</li>`;
+    }).join('')}</ul></div>`;
+  }
+  return html;
+}
+
 // Catalog of SIXT extras. Prices are NOT hardcoded — they come from the backend
 // per location (DW.detailLoc.extras) since SIXT charges different rates by branch,
 // car class, rate type, and trip length. If the backend doesn't return extras data,
@@ -1419,6 +1724,8 @@ function runLongTerm(loc){
   // Carry over the autocomplete pick to pu2 so /api/arbitrage gets the metro term + branch coords
   if (AC_PICK['mu']) AC_PICK['pu2'] = AC_PICK['mu'];
   runArbitrage(mlpuVal);
+  // runArbitrage sets DW.mode = 'best'; override so the renderer treats this as long-term
+  DW.mode = 'lng';
 }
 
 // Format YYYY-MM-DDTHH:MM (no timezone) from a JS Date + "HH:MM"
@@ -1510,9 +1817,15 @@ function dwSetCat(cat){
   DW.selectedLoc = null;
   document.querySelectorAll('#r-cats .r-cat').forEach(b=>b.classList.toggle('on', b.textContent === DW_CATS.find(c=>c.id===cat).label));
 
-  // Single-branch (Regular Rental) — just re-render the car list with the new filter
-  if (DW.mode === 'reg' && DW.raw && DW.raw.locations && DW.raw.locations[0]) {
-    renderRegularCarList();
+  // Single-branch (Regular Rental) — re-route the filter to the detail-view category filter
+  if (DW.mode === 'reg' && DW.results && DW.results[0]) {
+    const detailCat = (DW.category === 'cheapest') ? 'all'
+                    : (DW.category === 'sedan' ? 'Sedan'
+                    : (DW.category === 'suv' ? 'SUV'
+                    : (DW.category === 'van' ? 'Multiseater'
+                    : (DW.category === 'convertible' ? 'Convertible'
+                    : (DW.category === 'pickup' ? 'Pickup' : 'all')))));
+    if (typeof dwSetDetailCat === 'function') dwSetDetailCat(detailCat);
     return;
   }
 
@@ -1773,10 +2086,18 @@ function dwNormalize(loc, categoryFilter){
 
 // ─── RESULTS LIST ────────────────────────────────────────────────────
 function renderResultsList(){
-  // Single-branch mode (Regular Rental): render every car at the branch as its own row,
-  // sorted cheapest first, filterable by category and class chips.
-  if (DW.mode === 'reg' && DW.pickedBranch && DW.raw && DW.raw.locations && DW.raw.locations[0]) {
-    renderRegularCarList();
+  // Single-branch mode (Regular Rental): user already picked the branch.
+  // Skip the intermediate car-list page and route straight into the detail
+  // view — same UI as Find Best Price's branch click (car list + rate pills
+  // with chips + Mileage / Payment / Extras / sticky Book on SIXT bar).
+  if (DW.mode === 'reg' && DW.pickedBranch && DW.results && DW.results[0]) {
+    dwOpenLoc(0);
+    return;
+  }
+  // Metro arbitrage (Find Best Price + Long-Term): show cars grouped by category and tier,
+  // not by branch. Each row is a deal (model + branch + price). Cheapest first.
+  if ((DW.mode === 'best' || DW.mode === 'lng') && DW.raw && Array.isArray(DW.raw.locations)) {
+    renderCategoryView();
     return;
   }
   const list = DW.results;
@@ -1846,38 +2167,62 @@ function renderResultsList(){
       ? `<b style="color:#111">${parsed.className}</b> · ${parsed.carModel}`
       : (r.carName || 'Best available car');
 
-    // Under "Cheapest overall + All classes", show cheapest car of each CATEGORY at this branch
-    // (one Sedan, one SUV, one Van/Convertible/Pickup) — so users see breadth across vehicle types,
-    // not three sedans. Limited to 3 rows max; sorted cheapest-first.
+    // Per-branch 3-row preview underneath the headline. Logic:
+    //   - "Cheapest overall + All classes" → cheapest of each CATEGORY (Sedan/SUV/Van...)
+    //   - Class chip active → cheapest of each CATEGORY *within that class*
+    //   - Category chip active → cheapest 3 cars in that category (any class)
+    //   - Both chips active → cheapest 3 cars matching both
+    // Always sorted cheapest-first. Always shows variety so cards don't look identical.
     let classPreview = '';
-    if (DW.category === 'cheapest' && (DW.vehicleClass||'all') === 'all') {
-      const rawLoc = (DW.raw && DW.raw.locations || []).find(L => (L.station_id||'') === r.locationId);
-      if (rawLoc && Array.isArray(rawLoc.deals)) {
-        // Group by CATEGORY (the backend's "Sedan"/"SUV"/"Multiseater"/"Convertible"/"Pickup" field)
+    const rawLoc = (DW.raw && DW.raw.locations || []).find(L => (L.station_id||'') === r.locationId);
+    if (rawLoc && Array.isArray(rawLoc.deals)) {
+      const CAT_BACK = {sedan:'Sedan', suv:'SUV', van:'Multiseater', convertible:'Convertible', pickup:'Pickup'};
+      const wantCat = CAT_BACK[DW.category] || null;
+      const wantCls = (DW.vehicleClass && DW.vehicleClass !== 'all') ? DW.vehicleClass.toLowerCase() : null;
+      // Start from deals filtered by whatever the user already chose
+      let pool = rawLoc.deals.slice();
+      if (wantCat) pool = pool.filter(d => d.category === wantCat);
+      if (wantCls) pool = pool.filter(d => dwParseClass(d.carName||'').className.toLowerCase() === wantCls);
+
+      // CAT_LABEL maps backend category → display label
+      const CAT_LABEL = {Sedan:'Sedan', SUV:'SUV', Multiseater:'Van', Convertible:'Convertible', Pickup:'Pickup'};
+
+      // If a CATEGORY is locked in, the preview can't show category variety —
+      // instead show the 3 cheapest cars in that category. Otherwise show
+      // cheapest car of each distinct CATEGORY (up to 3).
+      let rows = [];
+      if (wantCat) {
+        // 3 cheapest cars in this category (any class, or the chosen class)
+        rows = pool.slice()
+          .sort((a,b) => (+a.cheapestPrice) - (+b.cheapestPrice))
+          .slice(0, 3)
+          .map(d => {
+            const p = dwParseClass(d.carName || '');
+            return { cat: d.category, className: p.className, model: p.carModel, price: +d.cheapestPrice };
+          });
+      } else {
+        // Cheapest car of each CATEGORY (5 categories max → take cheapest 3)
         const byCat = new Map();
-        for (const d of rawLoc.deals) {
+        for (const d of pool) {
           const cat = String(d.category || '').trim();
           if (!cat) continue;
           const existing = byCat.get(cat);
           const price = +d.cheapestPrice;
           if (!existing || price < existing.price) {
             const p = dwParseClass(d.carName || '');
-            byCat.set(cat, {cat, className:p.className, model:p.carModel, price});
+            byCat.set(cat, { cat, className: p.className, model: p.carModel, price });
           }
         }
-        // Display order: cheapest categories first
-        const top = Array.from(byCat.values()).sort((a,b) => a.price - b.price).slice(0, 3);
-        // Map backend category strings → display labels (Multiseater → Van)
-        const CAT_LABEL = {Sedan:'Sedan', SUV:'SUV', Multiseater:'Van', Convertible:'Convertible', Pickup:'Pickup'};
-        if (top.length > 1) {
-          classPreview = `<div class="r-classpv">${top.map(c => `
-            <div class="r-classpv-row">
-              <span class="r-classpv-cat">${CAT_LABEL[c.cat] || c.cat}</span>
-              <span class="r-classpv-cls">${c.className}</span>
-              <span class="r-classpv-model">${c.model}</span>
-              <span class="r-classpv-price">$${c.price.toFixed(2)}/day</span>
-            </div>`).join('')}</div>`;
-        }
+        rows = Array.from(byCat.values()).sort((a,b) => a.price - b.price).slice(0, 3);
+      }
+      if (rows.length > 1) {
+        classPreview = `<div class="r-classpv">${rows.map(c => `
+          <div class="r-classpv-row">
+            <span class="r-classpv-cat">${CAT_LABEL[c.cat] || c.cat}</span>
+            <span class="r-classpv-cls">${c.className}</span>
+            <span class="r-classpv-model">${c.model}</span>
+            <span class="r-classpv-price">$${c.price.toFixed(2)}/day</span>
+          </div>`).join('')}</div>`;
       }
     }
 
@@ -1922,6 +2267,325 @@ function dwHaversineMi(lat1, lng1, lat2, lng2){
   const dLng = toRad(lng2 - lng1);
   const a = Math.sin(dLat/2)**2 + Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLng/2)**2;
   return 2 * R * Math.asin(Math.sqrt(a));
+}
+
+// ─── FIND BEST PRICE + LONG-TERM: category view ────────────────────────
+// Cars are grouped by category (Sedan / SUV / Van / Convertible / Pickup),
+// then by tier (Economy / Standard / Premium / Luxury) within each category.
+// Every row is a deal (model + branch + price); cheapest first within its bucket.
+// Replaces the old branch-card view that hid most of the inventory behind clicks.
+
+// Group SIXT's 12+ classes into 4 tiers for human-readable subheadlines
+const TIER_MAP = {
+  'Mini':              'Economy',
+  'Economy':           'Economy',
+  'Compact':           'Economy',
+  'Intermediate':      'Economy',
+  'Standard':          'Standard',
+  'Fullsize':          'Standard',
+  'Fullsize Elite':    'Premium',
+  'Premium Elite':     'Premium',
+  'Compact Elite':     'Premium',
+  'Intermediate Elite':'Premium',
+  'Standard Elite':    'Premium',
+  'Premium':           'Luxury',
+  'Luxury':            'Luxury',
+  'Luxury Elite':      'Luxury',
+  'Minivan':           'Standard',   // for Multiseater category
+  'Convertible':       'Standard',   // for Convertible category
+};
+const TIER_ORDER = ['Economy','Standard','Premium','Luxury'];
+
+const CAT_BACKEND = {sedan:'Sedan', suv:'SUV', van:'Multiseater', convertible:'Convertible', pickup:'Pickup'};
+const CAT_LABEL   = {Sedan:'Sedan', SUV:'SUV', Multiseater:'Van / Multiseater', Convertible:'Convertible', Pickup:'Pickup'};
+const CAT_ICON    = {Sedan:'🚗', SUV:'🚙', Multiseater:'🚐', Convertible:'🏎️', Pickup:'🛻'};
+
+function renderCategoryView(){
+  const locations = DW.raw.locations;
+  // Build flat list of every deal across all branches: {className, carModel, category, price, branchName, branchId, branchLat, branchLng, raw}
+  const allDeals = [];
+  for (const loc of locations) {
+    if (!Array.isArray(loc.deals)) continue;
+    for (const d of loc.deals) {
+      const parsed = dwParseClass(d.carName || '');
+      allDeals.push({
+        className: parsed.className,
+        carModel:  parsed.carModel,
+        category:  d.category || '',
+        tier:      TIER_MAP[parsed.className] || 'Standard',
+        price:     +d.cheapestPrice,
+        total:     +d.cheapestPrice * DW.days,
+        branchName:loc.location || 'SIXT branch',
+        branchId:  loc.station_id || '',
+        raw:       d,
+      });
+    }
+  }
+  // Build TWO pools:
+  //   classPool = filtered by category only — used for class-chip counts so chips never disappear
+  //   pool      = classPool further filtered by the active class — used for the actual render
+  const wantCat = CAT_BACKEND[DW.category];   // null for 'cheapest'
+  let classPool = allDeals;
+  if (wantCat) classPool = classPool.filter(d => d.category === wantCat);
+  let pool = classPool;
+  if (DW.vehicleClass && DW.vehicleClass !== 'all') {
+    pool = pool.filter(d => d.className.toLowerCase() === DW.vehicleClass.toLowerCase());
+  }
+
+  // Update savings strip with branch count (always reflects the underlying scan)
+  const saveEl = document.getElementById('r-save');
+  if (locations.length > 1 && DW.raw.arbitrage && DW.raw.arbitrage.totalSavings > 0) {
+    const arb = DW.raw.arbitrage;
+    saveEl.innerHTML = `
+      <div class="r-save">
+        <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+        <span>${locations.length} branches scanned · Cheapest saves <b>$${Math.round(arb.totalSavings)}</b> vs the priciest · <b>$${arb.maxSavingsPerDay.toFixed(2)}/day</b> difference</span>
+      </div>`;
+  } else {
+    saveEl.innerHTML = '';
+  }
+
+  // Class chips show every class that exists in the (category-filtered) metro — never disappear.
+  // Counts reflect classPool so they update with the category filter but stay visible
+  // regardless of the active class selection.
+  renderClassChipsFromPool(classPool, wantCat);
+
+  const listEl = document.getElementById('r-list');
+  if (!pool.length) {
+    listEl.innerHTML = `<div class="r-err"><b>No cars match this filter.</b><br>Try a different class or category.</div>`;
+    return;
+  }
+
+  // Three render modes:
+  //  - 'cheapest' + 'all'         → one row per category (5 rows max), cheapest of each
+  //  - one category, 'all' class  → grouped by tier (Economy/Standard/Premium/Luxury)
+  //  - any with a class active    → flat list, cheapest first
+  if ((!DW.vehicleClass || DW.vehicleClass === 'all') && !wantCat) {
+    listEl.innerHTML = renderCheapestOverallView(pool);
+  } else if ((!DW.vehicleClass || DW.vehicleClass === 'all') && wantCat) {
+    listEl.innerHTML = renderCategoryTierView(pool, wantCat);
+  } else {
+    listEl.innerHTML = renderFlatList(pool);
+  }
+}
+
+// Backend's class codes follow the ACRISS car-class system (CCAR / ICAR / etc).
+// Map our class names to the standard codes so each model row can show "or similar | Category | CODE".
+const CLASS_CODE = {
+  'Mini':              'MCAR',
+  'Economy':           'ECAR',
+  'Compact':           'CCAR',
+  'Intermediate':      'ICAR',
+  'Standard':          'SCAR',
+  'Fullsize':          'FCAR',
+  'Fullsize Elite':    'FDAR',
+  'Premium':           'PCAR',
+  'Premium Elite':     'PDAR',
+  'Luxury':            'LCAR',
+  'Luxury Elite':      'LDAR',
+  'Compact Elite':     'CDAR',
+  'Intermediate Elite':'IDAR',
+  'Standard Elite':    'SDAR',
+  'Minivan':           'IVAR',
+  'Convertible':       'CTAR',
+  'SUV':               'CFAR',
+};
+// Map backend category → display label used inside the "or similar" sub-line
+const CAT_TAGLINE = {Sedan:'Sedan', SUV:'SUV', Multiseater:'Van', Convertible:'Convertible', Pickup:'Pickup'};
+
+// Group an array of deals by their MODEL (className + carModel). Each group:
+//   {className, carModel, category, tier, cheapest, deals[]}
+// `cheapest` is the lowest-priced deal in the group; `deals` is every deal at every branch.
+function groupByModel(pool){
+  const groups = new Map();
+  for (const d of pool) {
+    const key = (d.className || '') + '|' + (d.carModel || '');
+    if (!groups.has(key)) {
+      groups.set(key, {
+        className: d.className,
+        carModel:  d.carModel,
+        category:  d.category,
+        tier:      d.tier,
+        cheapest:  d,
+        deals:     [d],
+      });
+    } else {
+      const g = groups.get(key);
+      g.deals.push(d);
+      if (d.price < g.cheapest.price) g.cheapest = d;
+    }
+  }
+  // Sort each group's deals by price ascending so the expander always opens cheapest-first
+  for (const g of groups.values()) g.deals.sort((a,b) => a.price - b.price);
+  return [...groups.values()];
+}
+
+// View 1 — Cheapest overall (no category, no class filter)
+// Show every unique MODEL grouped under each category section, ranked cheapest first.
+function renderCheapestOverallView(pool){
+  const byCat = new Map();
+  for (const d of pool) {
+    if (!d.category) continue;
+    if (!byCat.has(d.category)) byCat.set(d.category, []);
+    byCat.get(d.category).push(d);
+  }
+  const rows = [];
+  // Order categories by their cheapest car
+  const orderedCats = [...byCat.entries()]
+    .sort((a, b) => Math.min(...a[1].map(d => d.price)) - Math.min(...b[1].map(d => d.price)))
+    .map(([cat]) => cat);
+  for (const cat of orderedCats) {
+    const inCat = byCat.get(cat);
+    const groups = groupByModel(inCat).sort((a,b) => a.cheapest.price - b.cheapest.price);
+    rows.push({type:'header', label: CAT_LABEL[cat] || cat, icon: CAT_ICON[cat] || '', count: groups.length, countLabel: 'model'});
+    rows.push(...groups.map(g => ({type:'model', g})));
+  }
+  return renderRows(rows, /*bestRibbonOnFirst*/ true);
+}
+
+// View 2 — Specific category (Sedan/SUV/etc), all classes
+// Group by tier (Economy/Standard/Premium/Luxury); inside each tier, group by model.
+function renderCategoryTierView(pool, wantCat){
+  const byTier = new Map();
+  for (const d of pool) {
+    if (!byTier.has(d.tier)) byTier.set(d.tier, []);
+    byTier.get(d.tier).push(d);
+  }
+  const rows = [];
+  for (const tier of TIER_ORDER) {
+    const inTier = byTier.get(tier) || [];
+    if (!inTier.length) continue;
+    const groups = groupByModel(inTier).sort((a,b) => a.cheapest.price - b.cheapest.price);
+    const catLabel = CAT_LABEL[wantCat] || wantCat;
+    rows.push({type:'header', label: `${catLabel} · ${tier}`, icon: CAT_ICON[wantCat] || '', count: groups.length, countLabel: 'model'});
+    rows.push(...groups.map(g => ({type:'model', g})));
+  }
+  // 🏆 Best Deal ribbon on the very first model in the page
+  if (rows.length) {
+    const first = rows.find(r => r.type === 'model');
+    if (first) first.isCheapest = true;
+  }
+  return renderRows(rows, true);
+}
+
+// View 3 — A class is selected
+// Single flat section, every matching model ranked cheapest first
+function renderFlatList(pool){
+  const groups = groupByModel(pool).sort((a,b) => a.cheapest.price - b.cheapest.price);
+  const rows = [
+    {type:'header', label: `${DW.vehicleClass}`, count: groups.length, countLabel: 'model'},
+    ...groups.map(g => ({type:'model', g}))
+  ];
+  return renderRows(rows, true);
+}
+
+// Common rendering for any group of rows (headers + model rows + branch rows when expanded)
+function renderRows(rows, ribbonOnFirstCar){
+  const fromLat = DW.pickedBranch && Number.isFinite(DW.pickedBranch.lat) ? DW.pickedBranch.lat : null;
+  const fromLng = DW.pickedBranch && Number.isFinite(DW.pickedBranch.lng) ? DW.pickedBranch.lng : null;
+  const hasRealOrigin = (fromLat != null) && (fromLng != null);
+
+  let html = '';
+  let firstSeen = false;
+  for (let i = 0; i < rows.length; i++) {
+    const row = rows[i];
+    if (row.type === 'header') {
+      const ct = row.count, lbl = row.countLabel || 'option';
+      html += `<div class="cv-sect">${row.icon ? `<span class="cv-sect-ico">${row.icon}</span>` : ''}<span class="cv-sect-lbl">${row.label}</span><span class="cv-sect-ct">${ct} ${lbl}${ct!==1?'s':''}</span></div>`;
+    } else if (row.type === 'model') {
+      const g = row.g;
+      const isRibbon = ribbonOnFirstCar && !firstSeen;
+      firstSeen = true;
+      // The cheapest deal's branch — shown as the headline alongside the model
+      const d = g.cheapest;
+      const branchCoords = dwLookupStationCoords(d.branchId);
+      const realMi = (hasRealOrigin && branchCoords) ? dwHaversineMi(fromLat, fromLng, branchCoords.lat, branchCoords.lng) : null;
+      const distLabel = (realMi != null) ? ` · ${realMi.toFixed(1)} mi` : '';
+      const branchCount = g.deals.length;
+      const catTag  = CAT_TAGLINE[g.category] || g.category || '';
+      const codeTag = CLASS_CODE[g.className] || '';
+      const subline = [
+        '<span class="cv-or">or similar</span>',
+        catTag ? `<span class="cv-tag">${catTag}</span>` : '',
+        codeTag ? `<span class="cv-tag cv-tag-code">${codeTag}</span>` : '',
+      ].filter(Boolean).join(`<span class="cv-tag-sep">|</span>`);
+      // Inline expander to list every branch for this model
+      const modelId = 'm-' + g.className.replace(/\s+/g,'') + '-' + g.carModel.replace(/[^A-Za-z0-9]/g,'');
+      html += `
+        <div class="cv-model${isRibbon ? ' best' : ''}" id="${modelId}">
+          ${isRibbon ? '<div class="cv-ribbon">🏆 Best Deal</div>' : ''}
+          <div class="cv-model-head" onclick="dwToggleModel('${modelId}')">
+            <div class="cv-model-info">
+              <div class="cv-model-name"><b>${g.className}</b> (<span class="cv-model-make">${g.carModel}</span>)</div>
+              <div class="cv-model-sub">${subline}</div>
+              <div class="cv-model-meta">
+                from <b>${g.cheapest.branchName}</b>${distLabel}
+                ${branchCount > 1 ? ` · <span class="cv-more">${branchCount} branches available ▾</span>` : ''}
+              </div>
+            </div>
+            <div class="cv-model-price">
+              <div class="cv-model-from">from</div>
+              <div class="cv-model-day">$${g.cheapest.price.toFixed(2)}/day</div>
+              <div class="cv-model-total">$${Math.round(g.cheapest.total)}<span class="cv-model-total-lbl">total · ${DW.days}d</span></div>
+            </div>
+          </div>
+          ${branchCount > 1 ? `
+            <div class="cv-model-branches">
+              ${g.deals.map(dd => {
+                const bc = dwLookupStationCoords(dd.branchId);
+                const dm = (hasRealOrigin && bc) ? dwHaversineMi(fromLat, fromLng, bc.lat, bc.lng) : null;
+                const dl = (dm != null) ? `${dm.toFixed(1)} mi` : '';
+                const resultIdx = DW.results.findIndex(r => String(r.locationId) === String(dd.branchId));
+                const isMin = (dd === g.cheapest);
+                return `
+                  <div class="cv-branch${isMin ? ' cheapest' : ''}" onclick="event.stopPropagation();dwOpenLoc(${resultIdx})">
+                    <div class="cv-branch-info">
+                      <div class="cv-branch-name">${dd.branchName}${isMin ? ' <span class="cv-branch-min">CHEAPEST</span>' : ''}</div>
+                      ${dl ? `<div class="cv-branch-dist">${dl}</div>` : ''}
+                    </div>
+                    <div class="cv-branch-price">
+                      <div class="cv-branch-day">$${dd.price.toFixed(2)}/day</div>
+                      <span class="cv-branch-total">$${Math.round(dd.total)}</span>
+                    </div>
+                  </div>`;
+              }).join('')}
+            </div>` : `
+            <div class="cv-model-single" onclick="event.stopPropagation();dwOpenLoc(${DW.results.findIndex(r => String(r.locationId) === String(g.cheapest.branchId))})">
+              <span class="cv-model-go">View at ${g.cheapest.branchName} →</span>
+            </div>`}
+        </div>`;
+    }
+  }
+  return html;
+}
+
+// Toggle visibility of a model's branch sub-list
+function dwToggleModel(id){
+  const el = document.getElementById(id);
+  if (el) el.classList.toggle('open');
+}
+
+// Variant of renderClassChips that takes a pre-filtered pool (so counts reflect any
+// category filter that's active in the category-view path). Falls back to the default
+// renderer if the legacy structure is needed.
+function renderClassChipsFromPool(pool, wantCat){
+  const host = document.getElementById('r-classes');
+  if (!host) return;
+  const classCounts = new Map();
+  for (const d of pool) {
+    if (!d.className) continue;
+    classCounts.set(d.className, (classCounts.get(d.className) || 0) + 1);
+  }
+  // Keep the same display order as before
+  const DW_CLASSES_ORDERED = ['Mini','Economy','Compact','Intermediate','Standard','Fullsize','Fullsize Elite','Premium Elite','Premium','Luxury','Minivan','SUV','Compact Elite','Intermediate Elite','Standard Elite','Luxury Elite','Convertible'];
+  const ordered = DW_CLASSES_ORDERED.filter(c => classCounts.has(c));
+  // Include any classes from the data that aren't in the canonical list
+  for (const k of classCounts.keys()) if (!ordered.includes(k)) ordered.push(k);
+  if (!ordered.length) { host.innerHTML = ''; return; }
+  host.innerHTML =
+    `<span class="r-classes-lbl">Class:</span>` +
+    `<button class="r-class ${DW.vehicleClass==='all'?'on':''}" onclick="dwSetClass('all')">All classes</button>` +
+    ordered.map(c => `<button class="r-class ${DW.vehicleClass===c?'on':''}" onclick="dwSetClass('${c}')">${c} <span class="ct">${classCounts.get(c)}</span></button>`).join('');
 }
 
 // ─── REGULAR RENTAL: per-car list at one branch ────────────────────────
@@ -2007,15 +2671,20 @@ function renderRegularCarList(){
           </div>
           <span class="rcar-toggle" aria-hidden="true">▾</span>
         </div>
-        <div class="rcar-rates">
+        <div class="d-rates rcar-rates-grid">
           ${rates.length === 0 ? `<div class="rcar-rate-empty">Single rate · $${price.toFixed(2)}/day</div>` :
-            rates.map(r => {
+            rates.map((r, ri) => {
               const rp = +r.price;
               const isMin = rp === cheapestRatePrice;
+              const chipsHTML = dwGlanceChipsHTML(r);
+              const inclCount = dwInclusionCount(r);
+              const detailsId = `${rowId}-rt-${ri}`;
               return `
-                <div class="rcar-rate${isMin ? ' on' : ''}">
-                  <div class="rcar-rate-name">${r.name || 'Rate'}${isMin ? ' <span class="rcar-rate-badge">CHEAPEST</span>' : ''}</div>
-                  <div class="rcar-rate-price">$${rp.toFixed(2)}/day</div>
+                <div class="d-rate${isMin ? ' sel' : ''}" id="${detailsId}">
+                  <div class="d-rate-name">${r.name || 'Rate'}${isMin ? ' <span class="d-rate-badge">CHEAPEST</span>' : ''}</div>
+                  <div class="d-rate-px">$${rp.toFixed(2)}/day</div>
+                  ${chipsHTML}
+                  ${inclCount ? `<button class="rate-expand" onclick="event.stopPropagation();dwToggleRateDetails('${detailsId}')"><span class="rate-expand-lbl">all ${inclCount} terms</span><span class="rate-expand-arr">▾</span></button><div class="rate-incl">${dwInclusionListHTML(r)}</div>` : ''}
                 </div>`;
             }).join('')}
         </div>
@@ -2028,6 +2697,13 @@ function dwToggleCar(rowId){
   const row = document.getElementById(rowId);
   if (!row) return;
   row.classList.toggle('open');
+}
+
+// Expand/collapse a rate pill's full inclusion checklist
+function dwToggleRateDetails(rateId){
+  const row = document.getElementById(rateId);
+  if (!row) return;
+  row.classList.toggle('rate-open');
 }
 
 // Render the second-tier "class" chips: Economy / Compact / Intermediate / Standard / ...
@@ -2086,9 +2762,8 @@ function renderClassChips(){
 function dwSetClass(cls){
   DW.vehicleClass = cls;
   DW.selectedLoc = null;
-  // Single-branch (Regular Rental) — re-render the car list
-  if (DW.mode === 'reg' && DW.raw && DW.raw.locations && DW.raw.locations[0]) {
-    renderRegularCarList();
+  // Single-branch (Regular Rental) — class filter not active inside detail view; no-op
+  if (DW.mode === 'reg' && DW.results && DW.results[0]) {
     return;
   }
   if (DW.raw && Array.isArray(DW.raw.locations)) {
@@ -2256,7 +2931,7 @@ function renderDetail(){
         <div class="d-h-name">${r.locationName}</div>
         <div class="d-h-sub"><span class="city">${DW.city}</span> · ${pickupDate} → ${dropDate} · ${DW.days} day${DW.days>1?'s':''}</div>
       </div>
-      <button class="r-back" onclick="dwBackToList()">← All branches</button>
+      <button class="r-back" onclick="${DW.mode === 'reg' ? 'dwBackToForm()' : 'dwBackToList()'}">${DW.mode === 'reg' ? '← Change search' : '← All branches'}</button>
     </div>
 
     <span class="d-sect">Choose your car · ${cars.length} available at this branch</span>
@@ -2297,9 +2972,20 @@ function renderDetail(){
               // On initial render, no rate is explicitly chosen yet — show the cheapest as the
               // active selection (since that's what the price summary defaults to).
               const isSelected = (i===DW.selectedCar) && (DW.selectedRate != null ? DW.selectedRate===ri : isCheap);
-              return `<div class="d-rate${isSelected?' sel':''}" onclick="event.stopPropagation();dwSelRate(${i},${ri})">
+              const chipsHTML = dwGlanceChipsHTML(rt);
+              const inclCount = dwInclusionCount(rt);
+              const detailsId = `d-rt-${i}-${ri}`;
+              return `<div class="d-rate${isSelected?' sel':''}" id="${detailsId}" onclick="event.stopPropagation();dwSelRate(${i},${ri})">
                 <div class="d-rate-name">${rt.name}${isCheap ? ' <span class="d-rate-badge">CHEAPEST</span>' : ''}</div>
                 <div class="d-rate-px">$${(+rt.price).toFixed(2)}/day</div>
+                ${chipsHTML}
+                ${inclCount ? `
+                  <button class="rate-expand" onclick="event.stopPropagation();dwToggleRateDetails('${detailsId}')">
+                    <span class="rate-expand-lbl">all ${inclCount} terms</span>
+                    <span class="rate-expand-arr">▾</span>
+                  </button>
+                  <div class="rate-incl">${dwInclusionListHTML(rt)}</div>
+                ` : ''}
               </div>`;
             }).join('')
           }</div>` : ''}
@@ -2479,9 +3165,14 @@ function refreshDetail(){
             const showSel  = (i===DW.selectedCar)
               ? (DW.selectedRate != null ? DW.selectedRate===ri : isCheap)
               : false;
-            return `<div class="d-rate${showSel?' sel':''}" onclick="event.stopPropagation();dwSelRate(${i},${ri})">
+            const chipsHTML = (typeof dwGlanceChipsHTML === 'function') ? dwGlanceChipsHTML(rt) : '';
+            const inclCount = (typeof dwInclusionCount === 'function') ? dwInclusionCount(rt) : 0;
+            const detailsId = `d-rt-${i}-${ri}`;
+            return `<div class="d-rate${showSel?' sel':''}" id="${detailsId}" onclick="event.stopPropagation();dwSelRate(${i},${ri})">
               <div class="d-rate-name">${rt.name}${isCheap ? ' <span class="d-rate-badge">CHEAPEST</span>' : ''}</div>
               <div class="d-rate-px">$${(+rt.price).toFixed(2)}/day</div>
+              ${chipsHTML}
+              ${inclCount ? `<button class="rate-expand" onclick="event.stopPropagation();dwToggleRateDetails('${detailsId}')"><span class="rate-expand-lbl">all ${inclCount} terms</span><span class="rate-expand-arr">▾</span></button><div class="rate-incl">${dwInclusionListHTML(rt)}</div>` : ''}
             </div>`;
           }).join('')
         }</div>` : ''}
