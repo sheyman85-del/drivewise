@@ -1867,6 +1867,34 @@ const DW_LIVE_PATH = '/api/arbitrage';
 // 1) GET /api/stations?search=<region> → list of ALL SIXT branches in the metro
 // 2) For each branch, POST /api/search/live in parallel → 3-8 sec per branch concurrently
 // 3) Build the locations[] + arbitrage{} structure the renderer expects
+//
+// v52: METRO EXPANSION — searching "Miami" misses Hallandale, Hollywood, Pompano,
+// Boca, Fort Lauderdale, etc. that are in the same metro but lack "Miami" in the
+// name. We expand a single typed city into all nearby city search terms and merge.
+const DW_METROS = {
+  // South Florida metro (Miami → Palm Beach corridor)
+  'miami': ['Miami','Miami Beach','Aventura','Sunny Isles','Hallandale','Hollywood','Fort Lauderdale','Pompano','Deerfield','Boca','Delray','Pembroke Pines','Coral Springs','Plantation','Sunrise','Tamarac','Weston','Doral','Coral Gables','Kendall','Dadeland','Homestead','Hialeah'],
+  'fort lauderdale': ['Fort Lauderdale','Hollywood','Hallandale','Pompano','Deerfield','Coral Springs','Plantation','Sunrise','Tamarac','Weston','Aventura','Miami','Miami Beach','Boca'],
+  'hollywood': ['Hollywood','Hallandale','Fort Lauderdale','Miami','Aventura','Pompano','Pembroke Pines'],
+  // Greater NYC
+  'new york': ['New York','Manhattan','Brooklyn','Queens','Bronx','Newark','Jersey City','LaGuardia','JFK'],
+  // Greater LA
+  'los angeles': ['Los Angeles','LAX','Hollywood','Santa Monica','Beverly Hills','Long Beach','Burbank','Pasadena'],
+  // Greater London
+  'london': ['London','Heathrow','Gatwick','Stansted','Luton','City Airport'],
+};
+
+function dwMetroSearchTerms(city){
+  const key = String(city || '').trim().toLowerCase();
+  if (DW_METROS[key]) return DW_METROS[key];
+  // Try partial match — "Miami Beach" should find the Miami metro
+  for (const metroKey of Object.keys(DW_METROS)){
+    if (key.includes(metroKey) || metroKey.includes(key)) return DW_METROS[metroKey];
+  }
+  // No expansion — just search the literal typed term
+  return [city];
+}
+
 async function fetchArbitrage(){
   const region = DW.city;
   const pickup  = DW.pickupISO.split('T')[0];
@@ -1875,24 +1903,41 @@ async function fetchArbitrage(){
 
   startScanProgress();
 
-  // STEP 1 — fetch the full branch list from the station database
-  let stations;
+  // STEP 1 — expand the city into metro search terms, fire /api/stations for each in parallel
+  const searchTerms = dwMetroSearchTerms(region);
+  console.log(`[Arbitrage v52] Expanding "${region}" → ${searchTerms.length} metro search terms:`, searchTerms);
+
+  let stationsResults;
   try {
-    const sUrl = DW_API + '/api/stations?search=' + encodeURIComponent(region);
-    const sR = await fetch(sUrl, {headers:{'ngrok-skip-browser-warning':'true'}});
-    if (!sR.ok) throw new Error('stations HTTP ' + sR.status);
-    const sData = await sR.json();
-    stations = Array.isArray(sData) ? sData : (Array.isArray(sData.data) ? sData.data : []);
+    const stationCalls = searchTerms.map(term => fetch(
+      DW_API + '/api/stations?search=' + encodeURIComponent(term),
+      {headers:{'ngrok-skip-browser-warning':'true'}}
+    )
+    .then(r => r.ok ? r.json() : [])
+    .then(d => Array.isArray(d) ? d : (Array.isArray(d.data) ? d.data : []))
+    .catch(() => []));
+    stationsResults = await Promise.all(stationCalls);
   } catch (e) {
     stopScanProgress();
     document.getElementById('r-list').innerHTML = `
       <div class="r-err">
         <b>Network error reaching the backend.</b><br>
         ${String(e.message || e).replace(/</g,'&lt;')}<br><br>
-        Make sure the Mac M4 backend is running (<code>cd ~/drivewise &amp;&amp; node server.js</code>)
-        and the ngrok tunnel <code>${DW_API.replace('https://','')}</code> is live.
+        Make sure the Mac M4 backend is running and ngrok tunnel <code>${DW_API.replace('https://','')}</code> is live.
       </div>`;
     return;
+  }
+
+  // Merge + dedupe by station_id
+  const seenIds = new Set();
+  const stations = [];
+  for (const arr of stationsResults){
+    for (const s of arr){
+      const id = s.id || s.station_id;
+      if (!id || seenIds.has(String(id))) continue;
+      seenIds.add(String(id));
+      stations.push(s);
+    }
   }
 
   if (!stations.length) {
@@ -1900,12 +1945,12 @@ async function fetchArbitrage(){
     document.getElementById('r-list').innerHTML = `
       <div class="r-err">
         <b>No SIXT branches found for "${region}".</b><br>
-        Try a different city name (e.g. "Miami" instead of "miami beach").
+        Try a different city name.
       </div>`;
     return;
   }
 
-  console.log(`[Arbitrage v51] Found ${stations.length} branches in ${region}, querying rates in parallel…`);
+  console.log(`[Arbitrage v52] Found ${stations.length} unique branches across ${searchTerms.length} metro searches, querying rates in parallel…`);
 
   // Cache coords for downstream distance calcs
   for (const s of stations) {
@@ -1948,7 +1993,7 @@ async function fetchArbitrage(){
   stopScanProgress();
 
   const validLocations = allLocations.filter(l => l.deals && l.deals.length > 0);
-  console.log(`[Arbitrage v51] Got ${validLocations.length}/${stations.length} branches with deals`);
+  console.log(`[Arbitrage v52] Got ${validLocations.length}/${stations.length} branches with deals`);
 
   if (!validLocations.length) {
     document.getElementById('r-list').innerHTML = `
