@@ -1739,7 +1739,10 @@ function runArbitrage(loc){
   // (so arbitrage scans the metro, per agreed plan) and stash the picked branch's
   // coords for real distance calculation on the results cards.
   const picked = AC_PICK['pu2'];
-  const region = (picked && picked.search) ? picked.search : loc;
+  let region = (picked && picked.search) ? picked.search : loc;
+  // Backend /api/arbitrage is case-sensitive on region= (returns 0 locations for "miami"
+  // but data for "Miami"). Title-case every word as a frontend workaround.
+  region = String(region || '').trim().toLowerCase().replace(/\b\w/g, c => c.toUpperCase());
   DW.city      = region;
   DW.pickedBranch = picked ? {id:picked.id, name:picked.name, lat:picked.lat, lng:picked.lng, type:picked.type} : null;
   DW.pickupISO = dwISO(CAL.pu, document.getElementById('tpu2-v')?.textContent || '10:00');
@@ -1860,93 +1863,143 @@ function dwSetCat(cat){
 //   Each location has nested deals[] with category + rates[].
 const DW_LIVE_PATH = '/api/arbitrage';
 
+// NEW v51 APPROACH (replaces single /api/arbitrage scan with parallel /api/search/live)
+// 1) GET /api/stations?search=<region> → list of ALL SIXT branches in the metro
+// 2) For each branch, POST /api/search/live in parallel → 3-8 sec per branch concurrently
+// 3) Build the locations[] + arbitrage{} structure the renderer expects
 async function fetchArbitrage(){
-  // region = just the city name (e.g. "Miami"), no airport suffix
-  // region = the typed search term (autocomplete already locked it in as DW.city)
   const region = DW.city;
-  const params = {
-    region:   region,
-    pickup:   DW.pickupISO.split('T')[0],   // YYYY-MM-DD only — backend rejects times
-    dropoff:  DW.dropoffISO.split('T')[0],
-    currency: DW.currency
-  };
-  const url = DW_API + DW_LIVE_PATH + '?' + new URLSearchParams(params).toString();
+  const pickup  = DW.pickupISO.split('T')[0];
+  const dropoff = DW.dropoffISO.split('T')[0];
+  const currency = DW.currency;
 
-  // Start the long-running scan progress UI
   startScanProgress();
 
-  let r, bodyText;
+  // STEP 1 — fetch the full branch list from the station database
+  let stations;
   try {
-    r = await fetch(url, {
-      method: 'GET',
-      headers: {'ngrok-skip-browser-warning':'true'},
-      // Browser doesn't honor a custom timeout, but the backend keeps the conn alive for 15 min
-    });
-    bodyText = await r.text();
+    const sUrl = DW_API + '/api/stations?search=' + encodeURIComponent(region);
+    const sR = await fetch(sUrl, {headers:{'ngrok-skip-browser-warning':'true'}});
+    if (!sR.ok) throw new Error('stations HTTP ' + sR.status);
+    const sData = await sR.json();
+    stations = Array.isArray(sData) ? sData : (Array.isArray(sData.data) ? sData.data : []);
   } catch (e) {
     stopScanProgress();
     document.getElementById('r-list').innerHTML = `
       <div class="r-err">
-        <b>Network error reaching the arbitrage backend.</b><br>
+        <b>Network error reaching the backend.</b><br>
         ${String(e.message || e).replace(/</g,'&lt;')}<br><br>
         Make sure the Mac M4 backend is running (<code>cd ~/drivewise &amp;&amp; node server.js</code>)
         and the ngrok tunnel <code>${DW_API.replace('https://','')}</code> is live.
       </div>`;
     return;
   }
+
+  if (!stations.length) {
+    stopScanProgress();
+    document.getElementById('r-list').innerHTML = `
+      <div class="r-err">
+        <b>No SIXT branches found for "${region}".</b><br>
+        Try a different city name (e.g. "Miami" instead of "miami beach").
+      </div>`;
+    return;
+  }
+
+  console.log(`[Arbitrage v51] Found ${stations.length} branches in ${region}, querying rates in parallel…`);
+
+  // Cache coords for downstream distance calcs
+  for (const s of stations) {
+    const id = s.id || s.station_id;
+    const lat = +(s.lat || s.latitude);
+    const lng = +(s.lng || s.longitude);
+    if (id && Number.isFinite(lat) && Number.isFinite(lng)) {
+      DW_STATION_COORDS.set(String(id), {lat, lng});
+    }
+  }
+
+  // STEP 2 — fire /api/search/live for every branch in parallel
+  const liveCalls = stations.map(st => fetch(DW_API + '/api/search/live', {
+    method: 'POST',
+    headers: {'Content-Type':'application/json','ngrok-skip-browser-warning':'true'},
+    body: JSON.stringify({
+      station_id: st.id || st.station_id,
+      city: st.name,
+      pickup, dropoff, currency
+    })
+  })
+  .then(r => r.ok ? r.json() : Promise.reject(new Error('HTTP ' + r.status)))
+  .then(d => ({
+    station_id: st.id || st.station_id,
+    location:   st.name || d.location || `Station ${st.id}`,
+    type:       st.type,
+    deals:      Array.isArray(d.deals) ? d.deals : [],
+    status:     d.status || 'ok'
+  }))
+  .catch(err => ({
+    station_id: st.id || st.station_id,
+    location:   st.name || `Station ${st.id}`,
+    type:       st.type,
+    deals:      [],
+    status:     'error',
+    error:      String(err.message || err)
+  })));
+
+  const allLocations = await Promise.all(liveCalls);
   stopScanProgress();
 
-  if (!r.ok) {
+  const validLocations = allLocations.filter(l => l.deals && l.deals.length > 0);
+  console.log(`[Arbitrage v51] Got ${validLocations.length}/${stations.length} branches with deals`);
+
+  if (!validLocations.length) {
     document.getElementById('r-list').innerHTML = `
       <div class="r-err">
-        <b>Backend rejected the request (HTTP ${r.status}).</b><br>
-        Sent: <code style="font-size:11px;background:#fff;padding:1px 5px;border-radius:3px">GET ${DW_LIVE_PATH}?${new URLSearchParams(params).toString()}</code><br>
-        Response:
-        <pre style="background:#fff;padding:8px;border-radius:4px;font-size:10.5px;white-space:pre-wrap;word-break:break-all;margin-top:6px;color:#374151">${bodyText.slice(0,600).replace(/</g,'&lt;')}</pre>
+        <b>No availability at any SIXT branch in ${region} for these dates.</b><br>
+        ${stations.length} branches checked. Try different dates.
       </div>`;
     return;
   }
 
-  let data;
-  try { data = JSON.parse(bodyText); }
-  catch (e) {
-    document.getElementById('r-list').innerHTML = `
-      <div class="r-err">
-        <b>Backend returned non-JSON.</b><br>
-        <pre style="background:#fff;padding:8px;border-radius:4px;font-size:10.5px;white-space:pre-wrap;word-break:break-all;margin-top:6px;color:#374151">${bodyText.slice(0,600).replace(/</g,'&lt;')}</pre>
-      </div>`;
-    return;
-  }
+  // STEP 3 — compute arbitrage analysis on the aggregated results
+  const allPrices = validLocations
+    .flatMap(loc => loc.deals.map(d => +d.cheapestPrice || 0))
+    .filter(p => p > 0);
+  const bestPrice  = allPrices.length ? Math.min(...allPrices) : 0;
+  const worstPrice = allPrices.length ? Math.max(...allPrices) : 0;
+  const bestLoc    = validLocations.find(l => l.deals.some(d => +d.cheapestPrice === bestPrice));
 
-  // Stash raw response — we use the arbitrage.* metadata in the savings strip
+  const data = {
+    city: region,
+    pickup, dropoff, currency,
+    locations: validLocations,
+    arbitrage: {
+      bestLocation:     bestLoc ? bestLoc.location : null,
+      bestCity:         region,
+      bestPrice,
+      worstPrice,
+      maxSavingsPerDay: Math.max(0, worstPrice - bestPrice),
+      locationsCompared: validLocations.length,
+      allLocations:      validLocations.length
+    }
+  };
+
+  // Stash raw response — same shape the old /api/arbitrage returned, so all
+  // downstream code (renderCategoryView, dwNormalize, savings strip) works unchanged.
   DW.raw = data;
-  const locations = Array.isArray(data.locations) ? data.locations : [];
-  if (!locations.length) {
-    document.getElementById('r-list').innerHTML = `
-      <div class="r-err">
-        <b>Backend returned 0 locations.</b><br>
-        Response keys: <code>${Object.keys(data).join(', ')}</code>
-      </div>`;
-    return;
-  }
 
   // Normalize + filter by category. "cheapest" keeps everything.
-  DW.results = locations.map(loc => dwNormalize(loc, DW.category)).filter(x => x && x.total > 0);
+  DW.results = validLocations.map(loc => dwNormalize(loc, DW.category)).filter(x => x && x.total > 0);
   if (!DW.results.length) {
     const catLabel = (DW_CATS.find(c=>c.id===DW.category)||{}).label || DW.category;
     document.getElementById('r-list').innerHTML = `
       <div class="r-err">
         <b>No ${catLabel.toLowerCase()} available in ${region}.</b><br>
-        ${locations.length} branches were scanned but none had a ${catLabel.toLowerCase()} option.
+        ${validLocations.length} branches were checked but none had a ${catLabel.toLowerCase()} option.
         Try a different category.
       </div>`;
     return;
   }
   DW.results.sort((a,b) => a.total - b.total);
   renderResultsList();
-  // Backfill station coords for any branches we don't have yet — fires in background,
-  // re-renders the list when coords arrive so distances update from synthetic → real.
-  dwBackfillStationCoords();
 }
 
 // Fire one /api/stations?search=<region> call so we get coords for every branch
