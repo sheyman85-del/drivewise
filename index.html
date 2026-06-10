@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RentAt28 — Compare every SIXT branch. Pay less.</title>
+<title>RentAt28 — We find the best deal. You just drive.</title>
 <meta name="description" content="A certified SIXT travel agent. Compare every branch in your city in 60 seconds. Insurance, unlimited km, and free additional driver — always included.">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
 <style>
@@ -37,18 +37,47 @@ body{background:var(--bg);color:var(--text);font-family:Inter,-apple-system,sans
 .btn:active{transform:scale(.98)}
 
 /* HERO */
-.hero{padding:80px 24px 60px;text-align:center;position:relative}
+.hero{padding:72px 24px 64px;text-align:center;position:relative}
 .hero-in{max-width:1100px;margin:0 auto}
-.eyebrow{display:inline-flex;align-items:center;gap:10px;padding:7px 14px;border:1px solid var(--line-2);border-radius:99px;font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--text-2);letter-spacing:.5px;margin-bottom:32px}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;padding:7px 14px;border:1px solid var(--line-2);border-radius:99px;font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--text-2);letter-spacing:.5px;margin-bottom:36px;opacity:0;animation:fadeIn .6s ease forwards}
 .eyebrow .sixt-tag{background:var(--orange);color:#fff;padding:2px 7px;border-radius:4px;font-weight:700;font-size:10px;letter-spacing:.8px}
 .eyebrow .sep{color:var(--text-mute)}
-h1{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:clamp(40px,5.6vw,68px);line-height:1.04;letter-spacing:-1.8px;margin-bottom:22px;max-width:900px;margin-left:auto;margin-right:auto}
-h1 .accent{color:var(--orange)}
-.hero-sub{font-size:19px;color:var(--text-2);max-width:640px;margin:0 auto 44px;line-height:1.55}
-.hero-sub b{color:var(--text);font-weight:600}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+
+h1.hero-h1{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:clamp(48px,6.5vw,88px);line-height:1.02;letter-spacing:-2.4px;margin-bottom:48px}
+h1.hero-h1 .line{display:block;opacity:0;transform:translateY(60px);animation:bounceLine .85s cubic-bezier(.34,1.56,.64,1) forwards}
+h1.hero-h1 .line-1{animation-delay:.25s}
+h1.hero-h1 .line-2{animation-delay:.55s}
+h1.hero-h1 .line-3{animation-delay:.85s;color:var(--orange)}
+@keyframes bounceLine{
+  0%{opacity:0;transform:translateY(60px) scale(.94)}
+  60%{opacity:1;transform:translateY(-6px) scale(1.015)}
+  85%{transform:translateY(2px) scale(.998)}
+  100%{opacity:1;transform:translateY(0) scale(1)}
+}
+
+/* PROOF STRIP (compact comparison in hero) */
+.proof{display:grid;grid-template-columns:1fr auto 1fr;gap:14px;max-width:880px;margin:0 auto 40px;align-items:stretch;opacity:0;animation:fadeUp .8s ease forwards;animation-delay:1.55s}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.proof-card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:24px 24px;text-align:center;display:flex;flex-direction:column;justify-content:center}
+.proof-card.air{border-color:rgba(255,81,38,.2)}
+.proof-card.dwn{border-color:rgba(62,153,104,.22)}
+.proof-label{font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:1.4px;text-transform:uppercase;margin-bottom:10px;font-weight:500}
+.proof-card.air .proof-label{color:var(--orange)}
+.proof-card.dwn .proof-label{color:var(--green)}
+.proof-price{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:54px;line-height:1;letter-spacing:-2.2px;margin-bottom:6px}
+.proof-card.air .proof-price{color:var(--orange)}
+.proof-card.dwn .proof-price{color:var(--green)}
+.proof-detail{font-size:12.5px;color:var(--text-3);line-height:1.4}
+.proof-detail b{color:var(--text-2);font-weight:600;display:block;margin-bottom:2px}
+.proof-mid{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:0 12px;min-width:120px}
+.proof-arrow{width:42px;height:42px;border-radius:50%;background:var(--orange);color:#fff;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;box-shadow:0 8px 24px -4px rgba(255,81,38,.45)}
+.proof-saved-lbl{font-family:"JetBrains Mono",monospace;font-size:9.5px;letter-spacing:1.3px;text-transform:uppercase;color:var(--text-mute);margin-top:4px}
+.proof-saved{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:26px;letter-spacing:-1px;color:var(--text);line-height:1}
+.proof-saved-sub{font-size:11px;color:var(--text-mute)}
 
 /* SEARCH */
-.search{max-width:980px;margin:0 auto;background:var(--surface);border:1px solid var(--line-2);border-radius:18px;padding:8px;box-shadow:var(--shadow);text-align:left}
+.search{max-width:980px;margin:0 auto;background:var(--surface);border:1px solid var(--line-2);border-radius:18px;padding:8px;box-shadow:var(--shadow);text-align:left;opacity:0;animation:fadeUp .8s ease forwards;animation-delay:1.7s}
 .search-tabs{display:flex;gap:4px;padding:6px;border-bottom:1px solid var(--line);margin-bottom:6px}
 .tab{flex:1;padding:11px 16px;font-size:13.5px;font-weight:600;color:var(--text-3);background:transparent;border:0;cursor:pointer;border-radius:10px;font-family:inherit;display:flex;align-items:center;justify-content:center;gap:8px;transition:all .15s}
 .tab:hover{color:var(--text)}
@@ -66,7 +95,7 @@ h1 .accent{color:var(--orange)}
 .search-btn .arrow{font-size:16px}
 
 /* TRUST STRIP */
-.trust{margin-top:32px;display:flex;flex-wrap:wrap;justify-content:center;gap:8px 28px;color:var(--text-3)}
+.trust{margin-top:32px;display:flex;flex-wrap:wrap;justify-content:center;gap:8px 28px;color:var(--text-3);opacity:0;animation:fadeIn .6s ease forwards;animation-delay:1.95s}
 .trust .t{display:flex;align-items:center;gap:8px;font-size:13px}
 .trust .ch{width:16px;height:16px;border-radius:50%;background:var(--green-soft);color:var(--green);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700}
 
@@ -79,29 +108,6 @@ h1 .accent{color:var(--orange)}
 h2{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:clamp(32px,3.6vw,46px);line-height:1.1;letter-spacing:-1.3px;margin-bottom:18px}
 h2 .accent{color:var(--orange)}
 .section-sub{font-size:17px;color:var(--text-2);line-height:1.55;max-width:560px}
-
-/* COMPARISON */
-.compare{background:var(--bg-2)}
-.cmp-grid{display:grid;grid-template-columns:1fr auto 1fr;gap:20px;align-items:stretch;margin-bottom:36px}
-.cmp-card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:36px 32px;display:flex;flex-direction:column;justify-content:center;text-align:center}
-.cmp-card.air{border-color:rgba(255,81,38,.18)}
-.cmp-card.dwn{border-color:rgba(62,153,104,.22)}
-.cmp-label{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:14px;font-weight:500}
-.cmp-card.air .cmp-label{color:var(--orange)}
-.cmp-card.dwn .cmp-label{color:var(--green)}
-.cmp-price{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:74px;line-height:1;letter-spacing:-3px;margin-bottom:6px}
-.cmp-card.air .cmp-price{color:var(--orange)}
-.cmp-card.dwn .cmp-price{color:var(--green)}
-.cmp-per{font-size:13px;color:var(--text-mute);margin-bottom:18px}
-.cmp-detail{font-size:14px;color:var(--text-2);line-height:1.5}
-.cmp-detail b{color:var(--text);font-weight:600;display:block;margin-bottom:3px;font-size:15px}
-.cmp-middle{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;min-width:160px}
-.cmp-arrow{width:54px;height:54px;border-radius:50%;background:var(--orange);color:#fff;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:700;box-shadow:0 12px 32px -6px rgba(255,81,38,.45)}
-.cmp-saved-lbl{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-mute)}
-.cmp-saved{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:32px;letter-spacing:-1px;color:var(--text);margin:-4px 0}
-.cmp-saved-sub{font-size:12px;color:var(--text-3)}
-.cmp-foot{text-align:center;max-width:680px;margin:0 auto;font-size:14px;color:var(--text-3);line-height:1.55;font-family:"JetBrains Mono",monospace}
-.cmp-foot b{color:var(--text-2);font-weight:500}
 
 /* STEPS */
 .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
@@ -177,8 +183,8 @@ h2 .accent{color:var(--orange)}
 @media(max-width:1024px){
   .search-form{grid-template-columns:1fr 1fr}
   .search-btn{grid-column:1/-1;padding:14px}
-  .cmp-grid{grid-template-columns:1fr;gap:14px}
-  .cmp-middle{padding:14px 0}
+  .proof{grid-template-columns:1fr;gap:10px}
+  .proof-mid{padding:14px 0;flex-direction:row;gap:14px}
   .prices-grid{grid-template-columns:repeat(2,1fr)}
   .steps,.why-grid,.test-grid{grid-template-columns:1fr 1fr}
   .footer-in{grid-template-columns:1fr 1fr}
@@ -192,7 +198,7 @@ h2 .accent{color:var(--orange)}
   .search-form{grid-template-columns:1fr}
   .steps,.why-grid,.test-grid,.prices-grid{grid-template-columns:1fr}
   .footer-in{grid-template-columns:1fr 1fr;gap:32px}
-  .cmp-price{font-size:56px}
+  .proof-price{font-size:44px}
   .final{padding:80px 18px}
 }
 </style>
@@ -227,8 +233,33 @@ h2 .accent{color:var(--orange)}
       <span class="sep">·</span>
       <span>2,013 branches worldwide</span>
     </div>
-    <h1>Find your car. <span class="accent">Right in your neighborhood.</span></h1>
-    <p class="hero-sub">Compare every SIXT branch in your city in 60 seconds. Pay <b>20–40% less</b> for the same car. Insurance, unlimited km, and a free additional driver — always included.</p>
+
+    <h1 class="hero-h1">
+      <span class="line line-1">We find</span>
+      <span class="line line-2">the best deal.</span>
+      <span class="line line-3">You just drive.</span>
+    </h1>
+
+    <div class="proof">
+      <div class="proof-card air">
+        <div class="proof-label">Airport branch</div>
+        <div class="proof-price">$45</div>
+        <div class="proof-detail"><b>BMW 3 Series</b>7 days · MIA Terminal D</div>
+      </div>
+      <div class="proof-mid">
+        <div class="proof-arrow">→</div>
+        <div>
+          <div class="proof-saved-lbl">You save</div>
+          <div class="proof-saved">$119</div>
+          <div class="proof-saved-sub">per week</div>
+        </div>
+      </div>
+      <div class="proof-card dwn">
+        <div class="proof-label">Lincoln Road</div>
+        <div class="proof-price">$28</div>
+        <div class="proof-detail"><b>Same BMW</b>7 days · Six blocks from your hotel</div>
+      </div>
+    </div>
 
     <div class="search">
       <div class="search-tabs">
@@ -267,37 +298,6 @@ h2 .accent{color:var(--orange)}
       <div class="t"><span class="ch">✓</span> Zero booking fees</div>
       <div class="t"><span class="ch">✓</span> Pay at pickup</div>
     </div>
-  </div>
-</section>
-
-<section class="section compare">
-  <div class="section-in">
-    <div class="section-head center">
-      <div class="section-eye">The proof</div>
-      <h2>Same car. Different address. <span class="accent">$119 less.</span></h2>
-      <p class="section-sub" style="margin:0 auto">Real numbers from Miami last week — what a quick six-block move off the airport actually saves you.</p>
-    </div>
-    <div class="cmp-grid">
-      <div class="cmp-card air">
-        <div class="cmp-label">Airport branch</div>
-        <div class="cmp-price">$45</div>
-        <div class="cmp-per">per day</div>
-        <div class="cmp-detail"><b>BMW 3 Series</b>7-day rental · MIA Terminal D · Pick-up at 10:00</div>
-      </div>
-      <div class="cmp-middle">
-        <div class="cmp-arrow">→</div>
-        <div class="cmp-saved-lbl">You save</div>
-        <div class="cmp-saved">$119</div>
-        <div class="cmp-saved-sub">per week, same car</div>
-      </div>
-      <div class="cmp-card dwn">
-        <div class="cmp-label">Lincoln Road branch</div>
-        <div class="cmp-price">$28</div>
-        <div class="cmp-per">per day</div>
-        <div class="cmp-detail"><b>BMW 3 Series</b>7-day rental · Six blocks from your hotel · Pick-up at 10:00</div>
-      </div>
-    </div>
-    <p class="cmp-foot">Airport convenience routinely costs <b>20–40% more</b> for the exact same vehicle. We scan every branch in your city so you don't pay the airport tax.</p>
   </div>
 </section>
 
@@ -563,7 +563,6 @@ h2 .accent{color:var(--orange)}
 </footer>
 
 <script>
-// Tab switcher (visual only for now — backend wiring next pass)
 document.querySelectorAll('.tab').forEach(t=>{
   t.addEventListener('click',()=>{
     document.querySelectorAll('.tab').forEach(x=>x.classList.remove('on'));
